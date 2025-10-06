@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>דוח פוטנציאל קידום אתרים - glam-brand.co.il</title>
+    <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Assistant', Arial, sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .hero {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            margin-bottom: 30px;
+            box-shadow: 0 8px 25px rgba(32, 184, 184, 0.1);
+            text-align: center;
+        }
+
+        .hero h1 {
+            color: #20b8b8;
+            font-size: 2.5em;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        .hero h2 {
+            color: #2c5f5d;
+            font-size: 1.4em;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+
+        .domain-info {
+            background: linear-gradient(135deg, #20b8b8, #2c5f5d);
+            color: white;
+            padding: 20px;
+            border-radius: 15px;
+            margin: 20px 0;
+        }
+
+        .domain-info h3 {
+            font-size: 1.3em;
+            margin-bottom: 10px;
+        }
+
+        .message {
+            color: #5a7c7b;
+            font-size: 1.1em;
+            margin-top: 15px;
+        }
+
+        .kpi-bar {
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .kpi-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .kpi-item {
+            text-align: center;
+        }
+
+        .kpi-value {
+            font-size: 2.2em;
+            font-weight: 700;
+            color: #20b8b8;
+            margin-bottom: 5px;
+        }
+
+        .kpi-label {
+            color: #2c5f5d;
+            font-weight: 600;
+            font-size: 0.9em;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 10px;
+            background: #e6e6e6;
+            border-radius: 5px;
+            margin: 10px 0;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #20b8b8, #2c5f5d);
+            border-radius: 5px;
+            transition: width 0.3s ease;
+        }
+
+        .keywords-section {
+            margin-bottom: 30px;
+        }
+
+        .section-title {
+            color: #2c5f5d;
+            font-size: 1.8em;
+            margin-bottom: 20px;
+            text-align: center;
+            font-weight: 700;
+        }
+
+        .keywords-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 20px;
+        }
+
+        .keyword-card {
+            background: #fafafa;
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+            border-left: 5px solid #20b8b8;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .keyword-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(32, 184, 184, 0.15);
+        }
+
+        .keyword-title {
+            color: #2c5f5d;
+            font-size: 1.3em;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+
+        .keyword-info {
+            color: #5a7c7b;
+            margin-bottom: 8px;
+        }
+
+        .keyword-highlight {
+            color: #20b8b8;
+            font-weight: 700;
+            background: rgba(32, 184, 184, 0.1);
+            padding: 5px 10px;
+            border-radius: 8px;
+            display: inline-block;
+            margin: 5px 0;
+        }
+
+        .keyword-small {
+            font-size: 0.9em;
+            color: #5a7c7b;
+        }
+
+        .recommendations {
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .recommendations ul {
+            list-style: none;
+            padding-right: 0;
+        }
+
+        .recommendations li {
+            color: #5a7c7b;
+            margin-bottom: 12px;
+            padding-right: 25px;
+            position: relative;
+            line-height: 1.5;
+        }
+
+        .recommendations li:before {
+            content: "💡";
+            position: absolute;
+            right: 0;
+            top: 0;
+        }
+
+        .summary {
+            background: linear-gradient(135deg, #20b8b8, #2c5f5d);
+            color: white;
+            border-radius: 20px;
+            padding: 30px;
+            text-align: center;
+            margin-bottom: 30px;
+            box-shadow: 0 8px 25px rgba(32, 184, 184, 0.2);
+        }
+
+        .summary h3 {
+            font-size: 1.5em;
+            margin-bottom: 15px;
+        }
+
+        .closing {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            border: 2px solid #20b8b8;
+        }
+
+        .closing p {
+            color: #2c5f5d;
+            font-size: 1.2em;
+            font-weight: 600;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 10px;
+            }
+            
+            .hero {
+                padding: 25px;
+            }
+            
+            .hero h1 {
+                font-size: 2em;
+            }
+            
+            .keywords-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .kpi-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="hero">
+            <h1>🎉 מצאנו הזדמנויות מעולות לקידום האתר שלך!</h1>
+            <h2>הנה המילים שכדאי להתמקד בהן:</h2>
+            
+            <div class="domain-info">
+                <h3>🌐 דומיין: glam-brand.co.il</h3>
+            </div>
+            
+            <div class="message">
+                האתר במיקום בינוני עם פוטנציאל גדול לשיפור בתוך 90 יום
+            </div>
+        </div>
+
+        <div class="kpi-bar">
+            <div class="kpi-grid">
+                <div class="kpi-item">
+                    <div class="kpi-value" aria-label="ציון כללי">100</div>
+                    <div class="kpi-label">ציון כללי</div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 100%"></div>
+                    </div>
+                </div>
+                <div class="kpi-item">
+                    <div class="kpi-value" aria-label="תנועה פוטנציאלית חודשית">588</div>
+                    <div class="kpi-label">תנועה פוטנציאלית/חודש</div>
+                </div>
+                <div class="kpi-item">
+                    <div class="kpi-value" aria-label="מספר מילות מפתח">10</div>
+                    <div class="kpi-label">מס' מילות מפתח</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="keywords-section">
+            <h2 class="section-title">📊 ניתוח מילות מפתח</h2>
+            <div class="keywords-grid">
+                <div class="keyword-card">
+                    <div class="keyword-title">תכשיטי אופנה</div>
+                    <div class="keyword-info">נפח חיפוש: 1,200</div>
+                    <div class="keyword-info">תחרות: בינונית</div>
+                    <div class="keyword-small">מיקום: 50 → יעד: 5</div>
+                    <div class="keyword-small">מבקרים/חודש: 5 → 84</div>
+                    <div class="keyword-highlight">גידול של 500% בתנועה</div>
+                    <div class="keyword-small">שיפור של 45 מקומות</div>
+                </div>
+
+                <div class="keyword-card">
+                    <div class="keyword-title">אקססוריז לנשים</div>
+                    <div class="keyword-info">נפח חיפוש: 850</div>
+                    <div class="keyword-info">תחרות: בינונית</div>
+                    <div class="keyword-small">מיקום: 50 → יעד: 4</div>
+                    <div class="keyword-small">מבקרים/חודש: 3 → 77</div>
+                    <div class="keyword-highlight">גידול של 500% בתנועה</div>
+                    <div class="keyword-small">שיפור של 46 מקומות</div>
+                </div>
+
+                <div class="keyword-card">
+                    <div class="keyword-title">תכשיטי כסף 925</div>
+                    <div class="keyword-info">נפח חיפוש: 2,100</div>
+                    <div class="keyword-info">תחרות: גבוהה</div>
+                    <div class="keyword-small">מיקום: 50 → יעד: 6</div>
+                    <div class="keyword-small">מבקרים/חודש: 8 → 105</div>
+                    <div class="keyword-highlight">גידול של 500% בתנועה</div>
+                    <div class="keyword-small">שיפור של 44 מקומות</div>
+                </div>
+
+                <div class="keyword-card">
+                    <div class="keyword-title">צמידים לנשים</div>
+                    <div class="keyword-info">נפח חיפוש: 680</div>
+                    <div class="keyword-info">תחרות: נמוכה</div>
+                    <div class="keyword-small">מיקום: 50 → יעד: 5</div>
+                    <div class="keyword-small">מבקרים/חודש: 3 → 48</div>
+                    <div class="keyword-highlight">גידול של 500% בתנועה</div>
+                    <div class="keyword-small">שיפור של 45 מקומות</div>
+                </div>
+
+                <div class="keyword-card">
+                    <div class="keyword-title">עגילים אופנתיים</div>
+                    <div class="keyword-info">נפח חיפוש: 520</div>
+                    <div class="keyword-info">תחרות: נמוכה</div>
+                    <div class="keyword-small">מיקום: 50 → יעד: 7</div>
+                    <div class="keyword-small">מבקרים/חודש: 2 → 26</div>
+                    <div class="keyword-highlight">גידול של 500% בתנועה</div>
+                    <div class="keyword-small">שיפור של 43 מקומות</div>
+                </div>
+
+                <div class="keyword-card">
+                    <div class="keyword-title">שרשראות זהב</div>
+                    <div class="keyword-info">נפח חיפוש: 1,450</div>
+                    <div class="keyword-info">תחרות: גבוהה</div>
+                    <div class="keyword-small">מיקום: 50 → יעד: 8</div>
+                    <div class="keyword-small">מבקרים/חודש: 6 → 44</div>
+                    <div class="keyword-highlight">גידול של 500% בתנועה</div>
+                    <div class="keyword-small">שיפור של 42 מקומות</div>
+                </div>
+
+                <div class="keyword-card">
+                    <div class="keyword-title">טבעות כסף</div>
+                    <div class="keyword-info">נפח חיפוש: 780</div>
+                    <div class="keyword-info">תחרות: בינונית</div>
+                    <div class="keyword-small">מיקום: 50 → יעד: 6</div>
+                    <div class="keyword-small">מבקרים/חודש: 3 → 39</div>
+                    <div class="keyword-highlight">גידול של 500% בתנועה</div>
+                    <div class="keyword-small">שיפור של 44 מקומות</div>
+                </div>
+
+                <div class="keyword-card">
+                    <div class="keyword-title">תכשיטים אונליין</div>
+                    <div class="keyword-info">נפח חיפוש: 920</div>
+                    <div class="keyword-info">תחרות: בינונית</div>
+                    <div class="keyword-small">מיקום: 50 → יעד: 5</div>
+                    <div class="keyword-small">מבקרים/חודש: 4 → 64</div>
+                    <div class="keyword-highlight">גידול של 500% בתנועה</div>
+                    <div class="keyword-small">שיפור של 45 מקומות</div>
+                </div>
+
+                <div class="keyword-card">
+                    <div class="keyword-title">מתנות לאישה</div>
+                    <div class="keyword-info">נפח חיפוש: 1,100</div>
+                    <div class="keyword-info">תחרות: בינונית</div>
+                    <div class="keyword-small">מיקום: 50 → יעד: 7</div>
+                    <div class="keyword-small">מבקרים/חודש: 4 → 55</div>
+                    <div class="keyword-highlight">גידול של 500% בתנועה</div>
+                    <div class="keyword-small">שיפור של 43 מקומות</div>
+                </div>
+
+                <div class="keyword-card">
+                    <div class="keyword-title">תכשיטי טרנד 2024</div>
+                    <div class="keyword-info">נפח חיפוש: 380</div>
+                    <div class="keyword-info">תחרות: נמוכה</div>
+                    <div class="keyword-small">מיקום: 50 → יעד: 3</div>
+                    <div class="keyword-small">מבקרים/חודש: 2 → 46</div>
+                    <div class="keyword-highlight">גידול של 500% בתנועה</div>
+                    <div class="keyword-small">שיפור של 47 מקומות</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="recommendations">
+            <h3 class="section-title">🎯 המלצות לשיפור</h3>
+            <ul>
+                <li>יצירת דפי קטגוריות ממוקדים לכל סוג תכשיט עם תוכן איכותי של 800+ מילים</li>
+                <li>הוספת גלריית תמונות מקצועית עם ALT תגיות מותאמות SEO</li>
+                <li>בניית מדריכי רכישה ותוכן חינוכי על סוגי תכשיטים וטרנדים</li>
+                <li>מימוש Schema Markup למוצרים, ביקורות ופרטי העסק</li>
+                <li>אופטימיזציה טכנית: דחיית JS, Critical CSS, Lazy Loading ו-CDN</li>
+                <li>בניית קישורים פנימיים חכמה בין קטגוריות ומוצרים קשורים</li>
+            </ul>
+        </div>
+
+        <div class="summary">
+            <h3>📈 סיכום הדוח</h3>
+            <p>פוטנציאל לגידול של כ-600 מבקרים חודשיים נוספים תוך 90 יום על ידי מיקוד במילות מפתח רלוונטיות</p>
+        </div>
+
+        <div class="closing">
+            <p>בואו נקדם את האתר יחד בקהילת המקדמים המובילה בארץ.</p>
+        </div>
+    </div>
+</body>
+</html>
