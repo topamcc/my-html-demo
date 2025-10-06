@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>דוח פוטנציאל קידום אתרים - zimurban.co.il</title>
+    <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Assistant', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .hero {
+            background: white;
+            border-radius: 15px;
+            padding: 40px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+        
+        .hero h1 {
+            color: #20b8b8;
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+        
+        .hero h2 {
+            color: #2c5f5d;
+            font-size: 1.4rem;
+            margin-bottom: 20px;
+            font-weight: 400;
+        }
+        
+        .domain {
+            background: #20b8b8;
+            color: white;
+            padding: 10px 25px;
+            border-radius: 25px;
+            display: inline-block;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+        
+        .message {
+            color: #5a7c7b;
+            font-size: 1.1rem;
+            font-style: italic;
+        }
+        
+        .kpi-bar {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+        }
+        
+        .kpi-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+        
+        .kpi-item {
+            text-align: center;
+            padding: 20px;
+            background: #fafafa;
+            border-radius: 10px;
+            border: 1px solid #e6e6e6;
+        }
+        
+        .kpi-value {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #20b8b8;
+            margin-bottom: 5px;
+        }
+        
+        .kpi-label {
+            color: #5a7c7b;
+            font-size: 0.9rem;
+        }
+        
+        .progress-bar {
+            background: #e6e6e6;
+            border-radius: 25px;
+            height: 10px;
+            margin: 10px 0;
+            overflow: hidden;
+        }
+        
+        .progress-fill {
+            background: linear-gradient(90deg, #20b8b8, #2c5f5d);
+            height: 100%;
+            transition: width 0.3s ease;
+        }
+        
+        .keywords-section {
+            margin-bottom: 30px;
+        }
+        
+        .section-title {
+            color: #2c5f5d;
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            text-align: center;
+            font-weight: 600;
+        }
+        
+        .keywords-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 20px;
+        }
+        
+        .keyword-card {
+            background: white;
+            border-radius: 12px;
+            padding: 25px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            border: 1px solid #e6e6e6;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        
+        .keyword-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+        }
+        
+        .keyword-title {
+            color: #2c5f5d;
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+            border-bottom: 2px solid #20b8b8;
+            padding-bottom: 8px;
+        }
+        
+        .keyword-stat {
+            margin-bottom: 8px;
+            color: #333;
+        }
+        
+        .keyword-stat-small {
+            font-size: 0.9rem;
+            color: #5a7c7b;
+            margin-bottom: 5px;
+        }
+        
+        .growth-highlight {
+            background: linear-gradient(135deg, #20b8b8, #2c5f5d);
+            color: white;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-weight: 600;
+            text-align: center;
+            margin: 10px 0;
+        }
+        
+        .competition-low { color: #28a745; }
+        .competition-medium { color: #ffc107; }
+        .competition-high { color: #dc3545; }
+        
+        .recommendations {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+        }
+        
+        .recommendations h3 {
+            color: #2c5f5d;
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+        }
+        
+        .recommendations ul {
+            list-style: none;
+            padding-right: 0;
+        }
+        
+        .recommendations li {
+            margin-bottom: 15px;
+            padding: 15px;
+            background: #fafafa;
+            border-radius: 8px;
+            border-right: 4px solid #20b8b8;
+            position: relative;
+        }
+        
+        .recommendations li:before {
+            content: "✓";
+            color: #20b8b8;
+            font-weight: bold;
+            margin-left: 10px;
+        }
+        
+        .summary {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            text-align: center;
+        }
+        
+        .summary h3 {
+            color: #2c5f5d;
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+        }
+        
+        .summary p {
+            color: #5a7c7b;
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+        
+        .closing {
+            background: linear-gradient(135deg, #20b8b8, #2c5f5d);
+            color: white;
+            border-radius: 15px;
+            padding: 25px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+        
+        .closing p {
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px;
+            }
+            
+            .hero {
+                padding: 25px;
+            }
+            
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .keywords-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .kpi-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Hero Section -->
+        <div class="hero">
+            <h1>🎉 מצאנו הזדמנויות מעולות לקידום האתר שלך!</h1>
+            <h2>הנה המילים שכדאי להתמקד בהן:</h2>
+            <div class="domain">zimurban.co.il</div>
+            <div class="message">צים אורבן - חברת נדל"ן מובילה עם פוטנציאל גידול של 85% בתנועה</div>
+        </div>
+
+        <!-- KPI Bar -->
+        <div class="kpi-bar">
+            <div class="kpi-grid">
+                <div class="kpi-item">
+                    <div class="kpi-value" aria-label="ציון כללי">218</div>
+                    <div class="kpi-label">ציון כללי</div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 100%;"></div>
+                    </div>
+                </div>
+                <div class="kpi-item">
+                    <div class="kpi-value" aria-label="תנועה פוטנציאלית חודשית">1,772</div>
+                    <div class="kpi-label">תנועה פוטנציאלית/חודש</div>
+                </div>
+                <div class="kpi-item">
+                    <div class="kpi-value" aria-label="מספר מילות מפתח">10</div>
+                    <div class="kpi-label">מס' מילות מפתח</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Keywords Grid -->
+        <div class="keywords-section">
+            <h2 class="section-title">מילות מפתח מומלצות</h2>
+            <div class="keywords-grid">
+                <div class="keyword-card">
+                    <div class="keyword-title">צים אורבן</div>
+                    <div class="keyword-stat">נפח חיפוש: 2,900</div>
+                    <div class="keyword-stat">תחרות: <span class="competition-low">נמוכה</span></div>
+                    <div class="keyword-stat-small">מיקום: 1 → יעד: 1</div>
+                    <div class="keyword-stat-small">מבקרים/חודש: 812 → 812</div>
+                    <div class="growth-highlight">גידול של 0% בתנועה</div>
+                    <div class="keyword-stat-small">שיפור של 0 מקומות</div>
+                </div>
+
+                <div class="keyword-card">
+                    <div class="keyword-title">צים אורבן פרויקטים</div>
+                    <div class="keyword-stat">נפח חיפוש: 1,300</div>
+                    <div class="keyword-stat">תחרות: <span class="competition-low">נמוכה</span></div>
+                    <div class="keyword-stat-small">מיקום: 3 → יעד: 1</div>
+                    <div class="keyword-stat-small">מבקרים/חודש: 156 → 364</div>
+                    <div class="growth-highlight">גידול של 133% בתנועה</div>
+                    <div class="keyword-stat-small">שיפור של 2 מקומות</div>
+                </div>
+
+                <div class="keyword-card">
+                    <div class="keyword-title">דירות חדשות צים אורבן</div>
+                    <div class="keyword-stat">נפח חיפוש: 880</div>
+                    <div class="keyword-stat">תחרות: <span class="competition-medium">בינונית</span></div>
+                    <div class="keyword-stat-small">מיקום: 5 → יעד: 2</div>
+                    <div class="keyword-stat-small">מבקרים/חודש: 62 → 141</div>
+                    <div class="growth-highlight">גידול של 127% בתנועה</div>
+                    <div class="keyword-stat-small">שיפור של 3 מקומות</div>
+                </div>
+
+                <div class="keyword-card">
+                    <div class="keyword-title">צים אורבן ראשון לציון</div>
+                    <div class="keyword-stat">נפח חיפוש: 720</div>
+                    <div class="keyword-stat">תחרות: <span class="competition-low">נמוכה</span></div>
+                    <div class="keyword-stat-small">מיקום: 4 → יעד: 1</div>
+                    <div class="keyword-stat-small">מבקרים/חודש: 65 → 202</div>
+                    <div class="growth-highlight">גידול של 211% בתנועה</div>
+                    <div class="keyword-stat-small">שיפור של 3 מקומות</div>
+                </div>
+
+                <div class="keyword-card">
+                    <div class="keyword-title">פרויקטים חדשים צים אורבן</div>
+                    <div class="keyword-stat">נפח חיפוש: 590</div>
+                    <div class="keyword-stat">תחרות: <span class="competition-medium">בינונית</span></div>
+                    <div class="keyword-stat-small">מיקום: 8 → יעד: 3</div>
+                    <div class="keyword-stat-small">מבקרים/חודש: 18 → 71</div>
+                    <div class="growth-highlight">גידול של 294% בתנועה</div>
+                    <div class="keyword-stat-small">שיפור של 5 מקומות</div>
+                </div>
+
+                <div class="keyword-card">
+                    <div class="keyword-title">צים אורבן נתניה</div>
+                    <div class="keyword-stat">נפח חיפוש: 480</div>
+                    <div class="keyword-stat">תחרות: <span class="competition-low">נמוכה</span></div>
+                    <div class="keyword-stat-small">מיקום: 6 → יעד: 2</div>
+                    <div class="keyword-stat-small">מבקרים/חודש: 24 → 77</div>
+                    <div class="growth-highlight">גידול של 221% בתנועה</div>
+                    <div class="keyword-stat-small">שיפור של 4 מקומות</div>
+                </div>
+
+                <div class="keyword-card">
+                    <div class="keyword-title">צים אורבן פתח תקווה</div>
+                    <div class="keyword-stat">נפח חיפוש: 390</div>
+                    <div class="keyword-stat">תחרות: <span class="competition-low">נמוכה</span></div>
+                    <div class="keyword-stat-small">מיקום: 7 → יעד: 3</div>
+                    <div class="keyword-stat-small">מבקרים/חודש: 20 → 47</div>
+                    <div class="growth-highlight">גידול של 135% בתנועה</div>
+                    <div class="keyword-stat-small">שיפור של 4 מקומות</div>
+                </div>
+
+                <div class="keyword-card">
+                    <div class="keyword-title">דירות למכירה צים אורבן</div>
+                    <div class="keyword-stat">נפח חיפוש: 320</div>
+                    <div class="keyword-stat">תחרות: <span class="competition-medium">בינונית</span></div>
+                    <div class="keyword-stat-small">מיקום: 11 → יעד: 4</div>
+                    <div class="keyword-stat-small">מבקרים/חודש: 5 → 29</div>
+                    <div class="growth-highlight">גידול של 480% בתנועה</div>
+                    <div class="keyword-stat-small">שיפור של 7 מקומות</div>
+                </div>
+
+                <div class="keyword-card">
+                    <div class="keyword-title">צים אורבן מחירים</div>
+                    <div class="keyword-stat">נפח חיפוש: 260</div>
+                    <div class="keyword-stat">תחרות: <span class="competition-low">נמוכה</span></div>
+                    <div class="keyword-stat-small">מיקום: 15 → יעד: 5</div>
+                    <div class="keyword-stat-small">מבקרים/חודש: 4 → 18</div>
+                    <div class="growth-highlight">גידול של 350% בתנועה</div>
+                    <div class="keyword-stat-small">שיפור של 10 מקומות</div>
+                </div>
+
+                <div class="keyword-card">
+                    <div class="keyword-title">צים אורבן ביקורות</div>
+                    <div class="keyword-stat">נפח חיפוש: 210</div>
+                    <div class="keyword-stat">תחרות: <span class="competition-low">נמוכה</span></div>
+                    <div class="keyword-stat-small">מיקום: 12 → יעד: 6</div>
+                    <div class="keyword-stat-small">מבקרים/חודש: 3 → 11</div>
+                    <div class="growth-highlight">גידול של 267% בתנועה</div>
+                    <div class="keyword-stat-small">שיפור של 6 מקומות</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Recommendations -->
+        <div class="recommendations">
+            <h3>המלצות לשיפור</h3>
+            <ul>
+                <li>צור עמודי נחיתה ייעודיים לכל עיר (ראשון לציון, נתניה, פתח תקווה) עם תוכן מותאם</li>
+                <li>הוסף בלוג עם מדריכים לרוכשי דירה ראשונה וטיפים לבחירת דירה</li>
+                <li>שלב גלריית פרויקטים אינטראקטיבית עם סינון לפי עיר/גודל/מחיר</li>
+                <li>הטמע ביקורות וחוות דעת של דיירים עם Schema של Reviews</li>
+                <li>צור מחשבון משכנתא אינטראקטיבי לשיפור זמן שהייה באתר</li>
+                <li>בנה קמפיין לינקים מאתרי נדל"ן וכתבות בעיתונות המקומית</li>
+            </ul>
+        </div>
+
+        <!-- Summary -->
+        <div class="summary">
+            <h3>סיכום</h3>
+            <p>צפי גידול של כ-1,100 מבקרים חודשיים נוספים תוך 90 יום באמצעות מיקוד במילות מפתח של פרויקטים וערים</p>
+        </div>
+
+        <!-- Closing -->
+        <div class="closing">
+            <p>בואו נקדם את האתר יחד בקהילת המקדמים המובילה בארץ.</p>
+        </div>
+    </div>
+</body>
+</html>
