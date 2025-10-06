@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>דוח פוטנציאל קידום אתרים - quatroteam.com</title>
+    <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Assistant', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .hero {
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        
+        .hero h1 {
+            color: #20b8b8;
+            font-size: 2.5em;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+        
+        .hero h2 {
+            color: #2c5f5d;
+            font-size: 1.5em;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+        
+        .domain {
+            background: #20b8b8;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 25px;
+            display: inline-block;
+            margin: 10px 0;
+            font-weight: 600;
+        }
+        
+        .message {
+            color: #5a7c7b;
+            font-size: 1.2em;
+            margin-top: 15px;
+            font-weight: 400;
+        }
+        
+        .kpi-bar {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            margin-bottom: 30px;
+        }
+        
+        .kpi-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .kpi-item {
+            text-align: center;
+            padding: 20px;
+            background: #fafafa;
+            border-radius: 10px;
+            border: 2px solid #e6e6e6;
+        }
+        
+        .kpi-value {
+            font-size: 2.5em;
+            font-weight: 700;
+            color: #20b8b8;
+            margin-bottom: 5px;
+        }
+        
+        .kpi-label {
+            color: #2c5f5d;
+            font-weight: 600;
+            font-size: 0.9em;
+        }
+        
+        .progress-container {
+            margin-top: 20px;
+        }
+        
+        .progress-bar {
+            background: #e6e6e6;
+            height: 15px;
+            border-radius: 10px;
+            overflow: hidden;
+            margin-top: 10px;
+        }
+        
+        .progress-fill {
+            background: linear-gradient(90deg, #20b8b8, #2c5f5d);
+            height: 100%;
+            border-radius: 10px;
+            transition: width 0.3s ease;
+        }
+        
+        .keywords-section h3 {
+            color: #2c5f5d;
+            font-size: 2em;
+            margin-bottom: 25px;
+            text-align: center;
+            font-weight: 700;
+        }
+        
+        .keywords-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+        
+        .keyword-card {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            border: 2px solid #e6e6e6;
+            transition: all 0.3s ease;
+        }
+        
+        .keyword-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(32,184,184,0.15);
+            border-color: #20b8b8;
+        }
+        
+        .keyword-title {
+            color: #2c5f5d;
+            font-size: 1.3em;
+            font-weight: 700;
+            margin-bottom: 15px;
+            border-bottom: 2px solid #20b8b8;
+            padding-bottom: 8px;
+        }
+        
+        .keyword-detail {
+            margin: 8px 0;
+            color: #5a7c7b;
+            font-weight: 500;
+        }
+        
+        .keyword-detail strong {
+            color: #2c5f5d;
+        }
+        
+        .growth-highlight {
+            background: #20b8b8;
+            color: white;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-weight: 600;
+            display: inline-block;
+            margin: 10px 0;
+        }
+        
+        .improvement-text {
+            color: #5a7c7b;
+            font-style: italic;
+            font-size: 0.9em;
+        }
+        
+        .recommendations {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            margin-bottom: 30px;
+        }
+        
+        .recommendations h3 {
+            color: #2c5f5d;
+            font-size: 1.8em;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+        
+        .recommendations ul {
+            list-style: none;
+        }
+        
+        .recommendations li {
+            background: #fafafa;
+            margin: 10px 0;
+            padding: 15px 20px;
+            border-radius: 8px;
+            border-right: 4px solid #20b8b8;
+            color: #5a7c7b;
+            font-weight: 500;
+            position: relative;
+        }
+        
+        .recommendations li:before {
+            content: "✓";
+            color: #20b8b8;
+            font-weight: bold;
+            margin-left: 10px;
+        }
+        
+        .summary {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            margin-bottom: 30px;
+        }
+        
+        .summary h3 {
+            color: #2c5f5d;
+            font-size: 1.8em;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+        
+        .summary-text {
+            color: #5a7c7b;
+            font-size: 1.1em;
+            line-height: 1.8;
+            font-weight: 500;
+        }
+        
+        .closing {
+            background: linear-gradient(135deg, #20b8b8, #2c5f5d);
+            color: white;
+            padding: 25px;
+            border-radius: 15px;
+            text-align: center;
+            font-size: 1.2em;
+            font-weight: 600;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 1.8em;
+            }
+            
+            .hero h2 {
+                font-size: 1.2em;
+            }
+            
+            .container {
+                padding: 15px;
+            }
+            
+            .hero {
+                padding: 25px;
+            }
+            
+            .kpi-bar {
+                padding: 20px;
+            }
+            
+            .keywords-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .keyword-card {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <section class="hero">
+            <h1>🎉 מצאנו הזדמנויות מעולות לקידום האתר שלך!</h1>
+            <h2>הנה המילים שכדאי להתמקד בהן:</h2>
+            <div class="domain">quatroteam.com</div>
+            <div class="message">האתר מתמקד בהדרכות ארגוניות ופיתוח מנהלים - 7 מתוך 10 מילות מפתח רלוונטיות לנישה</div>
+        </section>
+
+        <section class="kpi-bar" role="region" aria-label="מדדי ביצועים מרכזיים">
+            <div class="kpi-grid">
+                <div class="kpi-item">
+                    <div class="kpi-value" aria-label="ציון כללי">74</div>
+                    <div class="kpi-label">ציון כללי</div>
+                </div>
+                <div class="kpi-item">
+                    <div class="kpi-value" aria-label="תנועה פוטנציאלית חודשית">334</div>
+                    <div class="kpi-label">תנועה פוטנציאלית/חודש</div>
+                </div>
+                <div class="kpi-item">
+                    <div class="kpi-value" aria-label="מספר מילות מפתח">10</div>
+                    <div class="kpi-label">מס' מילות מפתח</div>
+                </div>
+            </div>
+            <div class="progress-container">
+                <div class="kpi-label">התקדמות הפרויקט</div>
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: 74%"></div>
+                </div>
+            </div>
+        </section>
+
+        <section class="keywords-section">
+            <h3>מילות המפתח הזהב שלך</h3>
+            <div class="keywords-grid">
+                <div class="keyword-card">
+                    <div class="keyword-title">פידבק</div>
+                    <div class="keyword-detail">נפח חיפוש: <strong>880</strong></div>
+                    <div class="keyword-detail">תחרות: <strong>נמוכה</strong></div>
+                    <div class="keyword-detail">מיקום: 22 → יעד: 5</div>
+                    <div class="keyword-detail">מבקרים/חודש: 13 → 62</div>
+                    <div class="growth-highlight">גידול של 377% בתנועה</div>
+                    <div class="improvement-text">שיפור של 17 מקומות</div>
+                </div>
+                
+                <div class="keyword-card">
+                    <div class="keyword-title">קוואטרו</div>
+                    <div class="keyword-detail">נפח חיפוש: <strong>480</strong></div>
+                    <div class="keyword-detail">תחרות: <strong>נמוכה</strong></div>
+                    <div class="keyword-detail">מיקום: 45 → יעד: 5</div>
+                    <div class="keyword-detail">מבקרים/חודש: 2 → 34</div>
+                    <div class="growth-highlight">גידול של 500% בתנועה</div>
+                    <div class="improvement-text">שיפור של 40 מקומות</div>
+                </div>
+                
+                <div class="keyword-card">
+                    <div class="keyword-title">quatro</div>
+                    <div class="keyword-detail">נפח חיפוש: <strong>210</strong></div>
+                    <div class="keyword-detail">תחרות: <strong>נמוכה</strong></div>
+                    <div class="keyword-detail">מיקום: 2 → יעד: 2</div>
+                    <div class="keyword-detail">מבקרים/חודש: 34 → 34</div>
+                    <div class="growth-highlight">גידול של 0% בתנועה</div>
+                    <div class="improvement-text">שיפור של 0 מקומות</div>
+                </div>
+                
+                <div class="keyword-card">
+                    <div class="keyword-title">סדנת סטוריטלינג</div>
+                    <div class="keyword-detail">נפח חיפוש: <strong>90</strong></div>
+                    <div class="keyword-detail">תחרות: <strong>בינונית</strong></div>
+                    <div class="keyword-detail">מיקום: 23 → יעד: 5</div>
+                    <div class="keyword-detail">מבקרים/חודש: 1 → 6</div>
+                    <div class="growth-highlight">גידול של 500% בתנועה</div>
+                    <div class="improvement-text">שיפור של 18 מקומות</div>
+                </div>
+                
+                <div class="keyword-card">
+                    <div class="keyword-title">שיחות משוב</div>
+                    <div class="keyword-detail">נפח חיפוש: <strong>90</strong></div>
+                    <div class="keyword-detail">תחרות: <strong>נמוכה</strong></div>
+                    <div class="keyword-detail">מיקום: 50 → יעד: 5</div>
+                    <div class="keyword-detail">מבקרים/חודש: 0 → 6</div>
+                    <div class="growth-highlight">גידול של 500% בתנועה</div>
+                    <div class="improvement-text">שיפור של 45 מקומות</div>
+                </div>
+                
+                <div class="keyword-card">
+                    <div class="keyword-title">העברת מסר</div>
+                    <div class="keyword-detail">נפח חיפוש: <strong>70</strong></div>
+                    <div class="keyword-detail">תחרות: <strong>נמוכה</strong></div>
+                    <div class="keyword-detail">מיקום: 37 → יעד: 5</div>
+                    <div class="keyword-detail">מבקרים/חודש: 1 → 5</div>
+                    <div class="growth-highlight">גידול של 400% בתנועה</div>
+                    <div class="improvement-text">שיפור של 32 מקומות</div>
+                </div>
+                
+                <div class="keyword-card">
+                    <div class="keyword-title">העברת מסרים</div>
+                    <div class="keyword-detail">נפח חיפוש: <strong>70</strong></div>
+                    <div class="keyword-detail">תחרות: <strong>נמוכה</strong></div>
+                    <div class="keyword-detail">מיקום: 39 → יעד: 5</div>
+                    <div class="keyword-detail">מבקרים/חודש: 1 → 5</div>
+                    <div class="growth-highlight">גידול של 400% בתנועה</div>
+                    <div class="improvement-text">שיפור של 34 מקומות</div>
+                </div>
+                
+                <div class="keyword-card">
+                    <div class="keyword-title">פיתוח מנהלים</div>
+                    <div class="keyword-detail">נפח חיפוש: <strong>1,300</strong></div>
+                    <div class="keyword-detail">תחרות: <strong>בינונית</strong></div>
+                    <div class="keyword-detail">מיקום: 50 → יעד: 5</div>
+                    <div class="keyword-detail">מבקרים/חודש: 5 → 91</div>
+                    <div class="growth-highlight">גידול של 500% בתנועה</div>
+                    <div class="improvement-text">שיפור של 45 מקומות</div>
+                </div>
+                
+                <div class="keyword-card">
+                    <div class="keyword-title">אימון צוותים</div>
+                    <div class="keyword-detail">נפח חיפוש: <strong>720</strong></div>
+                    <div class="keyword-detail">תחרות: <strong>בינונית</strong></div>
+                    <div class="keyword-detail">מיקום: 50 → יעד: 5</div>
+                    <div class="keyword-detail">מבקרים/חודש: 3 → 50</div>
+                    <div class="growth-highlight">גידול של 500% בתנועה</div>
+                    <div class="improvement-text">שיפור של 45 מקומות</div>
+                </div>
+                
+                <div class="keyword-card">
+                    <div class="keyword-title">הדרכות ארגוניות</div>
+                    <div class="keyword-detail">נפח חיפוש: <strong>590</strong></div>
+                    <div class="keyword-detail">תחרות: <strong>בינונית</strong></div>
+                    <div class="keyword-detail">מיקום: 50 → יעד: 5</div>
+                    <div class="keyword-detail">מבקרים/חודש: 2 → 41</div>
+                    <div class="growth-highlight">גידול של 500% בתנועה</div>
+                    <div class="improvement-text">שיפור של 45 מקומות</div>
+                </div>
+            </div>
+        </section>
+
+        <section class="recommendations">
+            <h3>המלצות לפעולה</h3>
+            <ul>
+                <li>צור עמוד נחיתה ייעודי ל'פיתוח מנהלים' עם תוכן מעמיק של 1500+ מילים</li>
+                <li>הוסף בלוג עם 4 מאמרים חודשיים בנושאי הדרכות ארגוניות ואימון צוותים</li>
+                <li>בנה עמודי שירות נפרדים לכל תחום (משוב, סטוריטלינג, אימון צוותים)</li>
+                <li>צור קישורים פנימיים בין העמודים עם Anchor Text ממוקד</li>
+                <li>הוסף עדויות לקוחות וסיפורי הצלחה עם Schema של Reviews</li>
+                <li>אופטימיזציה טכנית: Critical CSS, defer לJS, ודחיסת תמונות ל-WebP</li>
+            </ul>
+        </section>
+
+        <section class="summary">
+            <h3>סיכום</h3>
+            <div class="summary-text">תוספת פוטנציאלית של כ-340 מבקרים חודשיים תוך 90 יום באמצעות מיקוד במילות מפתח בנישת ההדרכות הארגוניות</div>
+        </section>
+
+        <section class="closing">
+            בואו נקדם את האתר יחד בקהילת המקדמים המובילה בארץ.
+        </section>
+    </div>
+</body>
+</html>
