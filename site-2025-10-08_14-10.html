@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>דוח פוטנציאל קידום אתרים</title>
+    <link href="https://fonts.googleapis.com/css2?family=Assistant:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,200;1,300;1,400;1,500;1,600;1,700;1,800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Assistant', sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .hero {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+        }
+
+        .hero h1 {
+            color: #2c5f5d;
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        .hero h2 {
+            color: #5a7c7b;
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            font-weight: 400;
+        }
+
+        .domain {
+            background: #20b8b8;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 25px;
+            display: inline-block;
+            font-weight: 500;
+            margin: 15px 0;
+        }
+
+        .message {
+            background: #fafafa;
+            border-right: 4px solid #20b8b8;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 10px;
+            font-size: 1.1rem;
+            color: #2c5f5d;
+        }
+
+        .kpi-bar {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            margin-bottom: 30px;
+        }
+
+        .kpi-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .kpi-item {
+            text-align: center;
+            padding: 20px;
+            background: #fafafa;
+            border-radius: 12px;
+            border: 2px solid #e6e6e6;
+        }
+
+        .kpi-value {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #20b8b8;
+            display: block;
+        }
+
+        .kpi-label {
+            color: #5a7c7b;
+            font-size: 0.9rem;
+            margin-top: 5px;
+        }
+
+        .progress-container {
+            background: #e6e6e6;
+            border-radius: 10px;
+            height: 20px;
+            margin-top: 10px;
+            overflow: hidden;
+        }
+
+        .progress-bar {
+            background: linear-gradient(90deg, #20b8b8, #2c5f5d);
+            height: 100%;
+            border-radius: 10px;
+            transition: width 0.3s ease;
+        }
+
+        .keywords-section {
+            margin-bottom: 30px;
+        }
+
+        .section-title {
+            color: #2c5f5d;
+            font-size: 2rem;
+            margin-bottom: 20px;
+            text-align: center;
+            font-weight: 600;
+        }
+
+        .keywords-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .keyword-card {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            border: 1px solid #e6e6e6;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .keyword-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.12);
+        }
+
+        .keyword-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: #2c5f5d;
+            margin-bottom: 15px;
+        }
+
+        .keyword-metric {
+            display: flex;
+            justify-content: space-between;
+            margin: 8px 0;
+            font-size: 0.9rem;
+        }
+
+        .metric-label {
+            color: #5a7c7b;
+        }
+
+        .metric-value {
+            font-weight: 500;
+            color: #333;
+        }
+
+        .growth-highlight {
+            background: linear-gradient(135deg, #20b8b8, #2c5f5d);
+            color: white;
+            padding: 10px 15px;
+            border-radius: 8px;
+            margin: 10px 0;
+            text-align: center;
+            font-weight: 500;
+        }
+
+        .recommendations {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            margin-bottom: 30px;
+        }
+
+        .recommendations ul {
+            list-style: none;
+        }
+
+        .recommendations li {
+            padding: 12px 0;
+            padding-right: 25px;
+            position: relative;
+            border-bottom: 1px solid #e6e6e6;
+            color: #333;
+        }
+
+        .recommendations li:before {
+            content: "✓";
+            position: absolute;
+            right: 0;
+            color: #20b8b8;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        .recommendations li:last-child {
+            border-bottom: none;
+        }
+
+        .summary {
+            background: linear-gradient(135deg, #20b8b8, #2c5f5d);
+            color: white;
+            border-radius: 15px;
+            padding: 30px;
+            text-align: center;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+            margin-bottom: 30px;
+        }
+
+        .summary-text {
+            font-size: 1.2rem;
+            line-height: 1.8;
+        }
+
+        .closing {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            border: 2px solid #20b8b8;
+        }
+
+        .closing-text {
+            color: #2c5f5d;
+            font-size: 1.1rem;
+            font-weight: 500;
+        }
+
+        .competition-low { color: #28a745; }
+        .competition-medium { color: #ffc107; }
+        .competition-high { color: #dc3545; }
+
+        @media (max-width: 768px) {
+            .container { padding: 15px; }
+            .hero { padding: 25px; }
+            .hero h1 { font-size: 2rem; }
+            .keywords-grid { grid-template-columns: 1fr; }
+            .kpi-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="hero">
+            <h1>🎉 מצאנו הזדמנויות מעולות לקידום האתר שלך!</h1>
+            <h2>הנה המילים שכדאי להתמקד בהן:</h2>
+            <div class="domain">www.the-rothschild-hotel.com</div>
+            <div class="message">האתר במיקום טוב למילות מותג, נדרש מיקוד במילות מפתח מסחריות בעברית</div>
+        </div>
+
+        <div class="kpi-bar">
+            <div class="kpi-grid">
+                <div class="kpi-item">
+                    <span class="kpi-value">457</span>
+                    <div class="kpi-label">ציון כללי</div>
+                    <div class="progress-container">
+                        <div class="progress-bar" style="width: 100%"></div>
+                    </div>
+                </div>
+                <div class="kpi-item">
+                    <span class="kpi-value">2,643</span>
+                    <div class="kpi-label">תנועה פוטנציאלית/חודש</div>
+                </div>
+                <div class="kpi-item">
+                    <span class="kpi-value">10</span>
+                    <div class="kpi-label">מס' מילות מפתח</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="keywords-section">
+            <h2 class="section-title">מילות המפתח הפוטנציאליות</h2>
+            <div class="keywords-grid">
+                <div class="keyword-card">
+                    <div class="keyword-title">רוטשילד 22</div>
+                    <div class="keyword-metric">
+                        <span class="metric-label">נפח חיפוש:</span>
+                        <span class="metric-value">14,800</span>
+                    </div>
+                    <div class="keyword-metric">
+                        <span class="metric-label">תחרות:</span>
+                        <span class="metric-value competition-low">נמוכה</span>
+                    </div>
+                    <div class="keyword-metric">
+                        <span class="metric-label">מיקום:</span>
+                        <span class="metric-value">11 → יעד: 5</span>
+                    </div>
+                    <div class="keyword-metric">
+                        <span class="metric-label">מבקרים/חודש:</span>
+                        <span class="metric-value">222 → 1,036</span>
+                    </div>
+                    <div class="growth-highlight">גידול של 366% בתנועה</div>
+                    <div class="keyword-metric">
+                        <span class="metric-value">שיפור של 6 מקומות</span>
+                    </div>
+                </div>
+
+                <div class="keyword-card">
+                    <div class="keyword-title">רוטשילד</div>
+                    <div class="keyword-metric">
+                        <span class="metric-label">נפח חיפוש:</span>
+                        <span class="metric-value">9,900</span>
+                    </div>
+                    <div class="keyword-metric">
+                        <span class="metric-label">תחרות:</span>
+                        <span class="metric-value competition-medium">בינונית</span>
+                    </div>
+                    <div class="keyword-metric">
+                        <span class="metric-label">מיקום:</span>
+                        <span class="metric-value">14 → יעד: 5</span>
+                    </div>
+                    <div class="keyword-metric">
+                        <span class="metric-label">מבקרים/חודש:</span>
+                        <span class="metric-value">148 → 693</span>
+                    </div>
+                    <div class="growth-highlight">גידול של 368% בתנועה</div>
+                    <div class="keyword-metric">
+                        <span class="metric-value">שיפור של 9 מקומות</span>
+                    </div>
+                </div>
+
+                <div class="keyword-card">
+                    <div class="keyword-title">מלון רוטשילד תל אביב</div>
+                    <div class="keyword-metric">
+                        <span class="metric-label">נפח חיפוש:</span>
+                        <span class="metric-value">2,400</span>
+                    </div>
+                    <div class="keyword-metric">
+                        <span class="metric-label">תחרות:</span>
+                        <span class="metric-value competition-low">נמוכה</span>
+                    </div>
+                    <div class="keyword-metric">
+                        <span class="metric-label">מיקום:</span>
+                        <span class="metric-value">50 → יעד: 3</span>
+                    </div>
+                    <div class="keyword-metric">
+                        <span class="metric-label">מבקרים/חודש:</span>
+                        <span class="metric-value">10 → 288</span>
+                    </div>
+                    <div class="growth-highlight">גידול של 500% בתנועה</div>
+                    <div class="keyword-metric">
+                        <span class="metric-value">שיפור של 47 מקומות</span>
+                    </div>
+                </div>
+
+                <div class="keyword-card">
+                    <div class="keyword-title">מלונות בוטיק תל אביב</div>
+                    <div class="keyword-metric">
+                        <span class="metric-label">נפח חיפוש:</span>
+                        <span class="metric-value">1,900</span>
+                    </div>
+                    <div class="keyword-metric">
+                        <span class="metric-label">תחרות:</span>
+                        <span class="metric-value competition-high">גבוהה</span>
+                    </div>
+                    <div class="keyword-metric">
+                        <span class="metric-label">מיקום:</span>
+                        <span class="metric-value">50 → יעד: 5</span>
+                    </div>
+                    <div class="keyword-metric">
+                        <span class="metric-label">מבקרים/חודש:</span>
+                        <span class="metric-value">8 → 133</span>
+                    </div>
+                    <div class="growth-highlight">גידול של 500% בתנועה</div>
+                    <div class="keyword-metric">
+                        <span class="metric-value">שיפור של 45 מקומות</span>
+                    </div>
+                </div>
+
+                <div class="keyword-card">
+                    <div class="keyword-title">מלון יוקרה תל אביב</div>
+                    <div class="keyword-metric">
+                        <span class="metric-label">נפח חיפוש:</span>
+                        <span class="metric-value">1,600</span>
+                    </div>
+                    <div class="keyword-metric">
+                        <span class="metric-label">תחרות:</span>
+                        <span class="metric-value competition-high">גבוהה</span>
+                    </div>
+                    <div class="keyword-metric">
+                        <span class="metric-label">מיקום:</span>
+                        <span class="metric-value">50 → יעד: 6</span>
+                    </div>
+                    <div class="keyword-metric">
+                        <span class="metric-label">מבקרים/חודש:</span>
+                        <span class="metric-value">6 → 80</span>
+                    </div>
+                    <div class="growth-highlight">גידול של 500% בתנועה</div>
+                    <div class="keyword-metric">
+                        <span class="metric-value">שיפור של 44 מקומות</span>
+                    </div>
+                </div>
+
+                <div class="keyword-card">
+                    <div class="keyword-title">מלונות שדרות רוטשילד</div>
+                    <div class="keyword-metric">
+                        <span class="metric-label">נפח חיפוש:</span>
+                        <span class="metric-value">880</span>
+                    </div>
+                    <div class="keyword-metric">
+                        <span class="metric-label">תחרות:</span>
+                        <span class="metric-value competition-medium">בינונית</span>
+                    </div>
+                    <div class="keyword-metric">
+                        <span class="metric-label">מיקום:</span>
+                        <span class="metric-value">50 → יעד: 2</span>
+                    </div>
+                    <div class="keyword-metric">
+                        <span class="metric-label">מבקרים/חודש:</span>
+                        <span class="metric-value">4 → 141</span>
+                    </div>
+                    <div class="growth-highlight">גידול של 500% בתנועה</div>
+                    <div class="keyword-metric">
+                        <span class="metric-value">שיפור של 48 מקומות</span>
+                    </div>
+                </div>
+
+                <div class="keyword-card">
+                    <div class="keyword-title">מלון פרימיום תל אביב</div>
+                    <div class="keyword-metric">
+                        <span class="metric-label">נפח חיפוש:</span>
+                        <span class="metric-value">720</span>
+                    </div>
+                    <div class="keyword-metric">
+                        <span class="metric-label">תחרות:</span>
+                        <span class="metric-value competition-medium">בינונית</span>
+                    </div>
+                    <div class="keyword-metric">
+                        <span class="metric-label">מיקום:</span>
+                        <span class="metric-value">50 → יעד: 4</span>
+                    </div>
+                    <div class="keyword-metric">
+                        <span class="metric-label">מבקרים/חודש:</span>
+                        <span class="metric-value">3 → 65</span>
+                    </div>
+                    <div class="growth-highlight">גידול של 500% בתנועה</div>
+                    <div class="keyword-metric">
+                        <span class="metric-value">שיפור של 46 מקומות</span>
+                    </div>
+                </div>
+
+                <div class="keyword-card">
+                    <div class="keyword-title">מלונות במרכז תל אביב</div>
+                    <div class="keyword-metric">
+                        <span class="metric-label">נפח חיפוש:</span>
+                        <span class="metric-value">3,600</span>
+                    </div>
+                    <div class="keyword-metric">
+                        <span class="metric-label">תחרות:</span>
+                        <span class="metric-value competition-high">גבוהה</span>
+                    </div>
+                    <div class="keyword-metric">
+                        <span class="metric-label">מיקום:</span>
+                        <span class="metric-value">50 → יעד: 8</span>
+                    </div>
+                    <div class="keyword-metric">
+                        <span class="metric-label">מבקרים/חודש:</span>
+                        <span class="metric-value">14 → 108</span>
+                    </div>
+                    <div class="growth-highlight">גידול של 500% בתנועה</div>
+                    <div class="keyword-metric">
+                        <span class="metric-value">שיפור של 42 מקומות</span>
+                    </div>
+                </div>
+
+                <div class="keyword-card">
+                    <div class="keyword-title">אירוח בוטיק תל אביב</div>
+                    <div class="keyword-metric">
+                        <span class="metric-label">נפח חיפוש:</span>
+                        <span class="metric-value">590</span>
+                    </div>
+                    <div class="keyword-metric">
+                        <span class="metric-label">תחרות:</span>
+                        <span class="metric-value competition-low">נמוכה</span>
+                    </div>
+                    <div class="keyword-metric">
+                        <span class="metric-label">מיקום:</span>
+                        <span class="metric-value">50 → יעד: 5</span>
+                    </div>
+                    <div class="keyword-metric">
+                        <span class="metric-label">מבקרים/חודש:</span>
+                        <span class="metric-value">2 → 41</span>
+                    </div>
+                    <div class="growth-highlight">גידול של 500% בתנועה</div>
+                    <div class="keyword-metric">
+                        <span class="metric-value">שיפור של 45 מקומות</span>
+                    </div>
+                </div>
+
+                <div class="keyword-card">
+                    <div class="keyword-title">לינה שדרות רוטשילד</div>
+                    <div class="keyword-metric">
+                        <span class="metric-label">נפח חיפוש:</span>
+                        <span class="metric-value">480</span>
+                    </div>
+                    <div class="keyword-metric">
+                        <span class="metric-label">תחרות:</span>
+                        <span class="metric-value competition-low">נמוכה</span>
+                    </div>
+                    <div class="keyword-metric">
+                        <span class="metric-label">מיקום:</span>
+                        <span class="metric-value">50 → יעד: 3</span>
+                    </div>
+                    <div class="keyword-metric">
+                        <span class="metric-label">מבקרים/חודש:</span>
+                        <span class="metric-value">2 → 58</span>
+                    </div>
+                    <div class="growth-highlight">גידול של 500% בתנועה</div>
+                    <div class="keyword-metric">
+                        <span class="metric-value">שיפור של 47 מקומות</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="recommendations">
+            <h2 class="section-title">המלצות לשיפור</h2>
+            <ul>
+                <li>צור עמוד נחיתה ייעודי 'מלון בוטיק תל אביב' עם תוכן עשיר של 1000+ מילים</li>
+                <li>הוסף סקשן FAQ עם 10 שאלות נפוצות על המלון ושדרות רוטשילד</li>
+                <li>פתח בלוג עם מדריכי אזור: 'מסעדות ברוטשילד', 'אטרקציות במרכז תל אביב'</li>
+                <li>בנה עמודי שירותים נפרדים: 'אירועים עסקיים', 'חבילות רומנטיות', 'ספא ובריאות'</li>
+                <li>צור קמפיין לינקים מאתרי תיירות ומדריכי תל אביב המובילים</li>
+                <li>הוסף גלריית תמונות אינטראקטיבית עם alt tags ממוקדי מילות מפתח</li>
+            </ul>
+        </div>
+
+        <div class="summary">
+            <div class="summary-text">צפי לגידול של כ-2,400 מבקרים חודשיים נוספים תוך 90 יום באמצעות מיקוד במילות מפתח בעברית</div>
+        </div>
+
+        <div class="closing">
+            <div class="closing-text">בואו נקדם את האתר יחד בקהילת המקדמים המובילה בארץ.</div>
+        </div>
+    </div>
+</body>
+</html>
