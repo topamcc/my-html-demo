@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>דוח פוטנציאל קידום אתרים - www.ez-grade.co.il</title>
+    <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Assistant', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f8f9fa;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .hero {
+            background: linear-gradient(135deg, #20b8b8, #2c5f5d);
+            color: white;
+            padding: 60px 0;
+            text-align: center;
+            margin-bottom: 40px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(32, 184, 184, 0.3);
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+
+        .hero h2 {
+            font-size: 1.5rem;
+            font-weight: 500;
+            margin-bottom: 20px;
+            opacity: 0.9;
+        }
+
+        .hero .domain {
+            font-size: 1.2rem;
+            background: rgba(255, 255, 255, 0.2);
+            padding: 10px 20px;
+            border-radius: 25px;
+            display: inline-block;
+            margin-bottom: 15px;
+        }
+
+        .hero .message {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .kpi-bar {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            margin-bottom: 40px;
+            border-right: 5px solid #20b8b8;
+        }
+
+        .kpi-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .kpi-item {
+            text-align: center;
+        }
+
+        .kpi-value {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #20b8b8;
+            margin-bottom: 5px;
+        }
+
+        .kpi-label {
+            font-size: 1rem;
+            color: #5a7c7b;
+            font-weight: 500;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 10px;
+            background: #e6e6e6;
+            border-radius: 5px;
+            overflow: hidden;
+            margin-top: 10px;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #20b8b8, #2c5f5d);
+            border-radius: 5px;
+            transition: width 0.3s ease;
+        }
+
+        .section {
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            margin-bottom: 40px;
+        }
+
+        .section h2 {
+            font-size: 2rem;
+            color: #2c5f5d;
+            margin-bottom: 30px;
+            border-bottom: 3px solid #20b8b8;
+            padding-bottom: 10px;
+        }
+
+        .keywords-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+            gap: 25px;
+        }
+
+        .keyword-card {
+            background: #fafafa;
+            border: 1px solid #e6e6e6;
+            border-radius: 12px;
+            padding: 20px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .keyword-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(32, 184, 184, 0.2);
+            border-color: #20b8b8;
+        }
+
+        .keyword-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 4px;
+            height: 100%;
+            background: #20b8b8;
+        }
+
+        .keyword-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #2c5f5d;
+            margin-bottom: 15px;
+            padding-left: 10px;
+        }
+
+        .keyword-info {
+            font-size: 0.95rem;
+            color: #5a7c7b;
+            margin-bottom: 8px;
+            padding-right: 5px;
+        }
+
+        .keyword-info strong {
+            color: #2c5f5d;
+        }
+
+        .keyword-small {
+            font-size: 0.85rem;
+            color: #7a8e8d;
+            margin-bottom: 6px;
+        }
+
+        .keyword-growth {
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: #20b8b8;
+            background: rgba(32, 184, 184, 0.1);
+            padding: 5px 10px;
+            border-radius: 20px;
+            display: inline-block;
+            margin-top: 5px;
+        }
+
+        .recommendations ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .recommendations li {
+            background: #fafafa;
+            margin-bottom: 15px;
+            padding: 15px 20px;
+            border-radius: 8px;
+            border-right: 4px solid #20b8b8;
+            position: relative;
+        }
+
+        .recommendations li::before {
+            content: '✓';
+            color: #20b8b8;
+            font-weight: bold;
+            margin-left: 10px;
+        }
+
+        .summary-text {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #2c5f5d;
+            background: rgba(32, 184, 184, 0.05);
+            padding: 20px;
+            border-radius: 10px;
+            border: 1px solid rgba(32, 184, 184, 0.2);
+        }
+
+        .closing {
+            background: linear-gradient(135deg, #2c5f5d, #20b8b8);
+            color: white;
+            padding: 30px;
+            text-align: center;
+            border-radius: 15px;
+            font-size: 1.2rem;
+            font-weight: 500;
+            margin-top: 40px;
+            box-shadow: 0 5px 20px rgba(44, 95, 93, 0.3);
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px;
+            }
+
+            .hero {
+                padding: 40px 20px;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero h2 {
+                font-size: 1.2rem;
+            }
+
+            .kpi-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .keywords-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .section {
+                padding: 25px;
+            }
+        }
+
+        .competition-low { color: #28a745; }
+        .competition-medium { color: #ffc107; }
+        .competition-high { color: #dc3545; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Hero Section -->
+        <div class="hero">
+            <h1>🎉 מצאנו הזדמנויות מעולות לקידום האתר שלך!</h1>
+            <h2>הנה המילים שכדאי להתמקד בהן:</h2>
+            <div class="domain">www.ez-grade.co.il</div>
+            <div class="message">האתר מתמחה בכתיבת עבודות אקדמיות. חלק מהמילים שסופקו רלוונטיות, אך חלקן דורשות אופטימיזציה ממוקדת יותר</div>
+        </div>
+
+        <!-- KPI Bar -->
+        <div class="kpi-bar">
+            <div class="kpi-grid">
+                <div class="kpi-item">
+                    <div class="kpi-value" aria-label="ציון כללי">437</div>
+                    <div class="kpi-label">ציון כללי</div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 100%;"></div>
+                    </div>
+                </div>
+                <div class="kpi-item">
+                    <div class="kpi-value" aria-label="תנועה פוטנציאלית חודשית">412</div>
+                    <div class="kpi-label">תנועה פוטנציאלית/חודש</div>
+                </div>
+                <div class="kpi-item">
+                    <div class="kpi-value" aria-label="מספר מילות מפתח">10</div>
+                    <div class="kpi-label">מס' מילות מפתח</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Keywords Grid -->
+        <div class="section">
+            <h2>מילות המפתח המומלצות</h2>
+            <div class="keywords-grid">
+                <div class="keyword-card">
+                    <div class="keyword-title">כתיבת עבודות סמינריון</div>
+                    <div class="keyword-info">נפח חיפוש: <strong>590</strong></div>
+                    <div class="keyword-info">תחרות: <strong class="competition-high">גבוהה</strong></div>
+                    <div class="keyword-small">מיקום: 50 → יעד: 3</div>
+                    <div class="keyword-small">מבקרים/חודש: 2 → 71</div>
+                    <div class="keyword-growth">גידול של 500% בתנועה</div>
+                    <div class="keyword-small">שיפור של 47 מקומות</div>
+                </div>
+
+                <div class="keyword-card">
+                    <div class="keyword-title">עבודת סמינריון לדוגמא</div>
+                    <div class="keyword-info">נפח חיפוש: <strong>110</strong></div>
+                    <div class="keyword-info">תחרות: <strong class="competition-medium">בינונית</strong></div>
+                    <div class="keyword-small">מיקום: 13 → יעד: 5</div>
+                    <div class="keyword-small">מבקרים/חודש: 2 → 8</div>
+                    <div class="keyword-growth">גידול של 300% בתנועה</div>
+                    <div class="keyword-small">שיפור של 8 מקומות</div>
+                </div>
+
+                <div class="keyword-card">
+                    <div class="keyword-title">כתיבת עבודות אקדמיות</div>
+                    <div class="keyword-info">נפח חיפוש: <strong>480</strong></div>
+                    <div class="keyword-info">תחרות: <strong class="competition-high">גבוהה</strong></div>
+                    <div class="keyword-small">מיקום: 50 → יעד: 4</div>
+                    <div class="keyword-small">מבקרים/חודש: 2 → 43</div>
+                    <div class="keyword-growth">גידול של 500% בתנועה</div>
+                    <div class="keyword-small">שיפור של 46 מקומות</div>
+                </div>
+
+                <div class="keyword-card">
+                    <div class="keyword-title">ביבליוגרפיה</div>
+                    <div class="keyword-info">נפח חיפוש: <strong>2,900</strong></div>
+                    <div class="keyword-info">תחרות: <strong class="competition-low">נמוכה</strong></div>
+                    <div class="keyword-small">מיקום: 77 → יעד: 5</div>
+                    <div class="keyword-small">מבקרים/חודש: 12 → 203</div>
+                    <div class="keyword-growth">גידול של 500% בתנועה</div>
+                    <div class="keyword-small">שיפור של 72 מקומות</div>
+                </div>
+
+                <div class="keyword-card">
+                    <div class="keyword-title">האזכור האחיד</div>
+                    <div class="keyword-info">נפח חיפוש: <strong>480</strong></div>
+                    <div class="keyword-info">תחרות: <strong class="competition-low">נמוכה</strong></div>
+                    <div class="keyword-small">מיקום: 18 → יעד: 5</div>
+                    <div class="keyword-small">מבקרים/חודש: 7 → 34</div>
+                    <div class="keyword-growth">גידול של 386% בתנועה</div>
+                    <div class="keyword-small">שיפור של 13 מקומות</div>
+                </div>
+
+                <div class="keyword-card">
+                    <div class="keyword-title">הגהה אקדמית</div>
+                    <div class="keyword-info">נפח חיפוש: <strong>210</strong></div>
+                    <div class="keyword-info">תחרות: <strong class="competition-medium">בינונית</strong></div>
+                    <div class="keyword-small">מיקום: 50 → יעד: 6</div>
+                    <div class="keyword-small">מבקרים/חודש: 1 → 11</div>
+                    <div class="keyword-growth">גידול של 500% בתנועה</div>
+                    <div class="keyword-small">שיפור של 44 מקומות</div>
+                </div>
+
+                <div class="keyword-card">
+                    <div class="keyword-title">כתיבת תזה</div>
+                    <div class="keyword-info">נפח חיפוש: <strong>170</strong></div>
+                    <div class="keyword-info">תחרות: <strong class="competition-high">גבוהה</strong></div>
+                    <div class="keyword-small">מיקום: 50 → יעד: 5</div>
+                    <div class="keyword-small">מבקרים/חודש: 1 → 12</div>
+                    <div class="keyword-growth">גידול של 500% בתנועה</div>
+                    <div class="keyword-small">שיפור של 45 מקומות</div>
+                </div>
+
+                <div class="keyword-card">
+                    <div class="keyword-title">פרויקט גמר</div>
+                    <div class="keyword-info">נפח חיפוש: <strong>110</strong></div>
+                    <div class="keyword-info">תחרות: <strong class="competition-medium">בינונית</strong></div>
+                    <div class="keyword-small">מיקום: 32 → יעד: 7</div>
+                    <div class="keyword-small">מבקרים/חודש: 0 → 6</div>
+                    <div class="keyword-growth">גידול של 500% בתנועה</div>
+                    <div class="keyword-small">שיפור של 25 מקומות</div>
+                </div>
+
+                <div class="keyword-card">
+                    <div class="keyword-title">כתיבה מדעית</div>
+                    <div class="keyword-info">נפח חיפוש: <strong>90</strong></div>
+                    <div class="keyword-info">תחרות: <strong class="competition-low">נמוכה</strong></div>
+                    <div class="keyword-small">מיקום: 4 → יעד: 2</div>
+                    <div class="keyword-small">מבקרים/חודש: 8 → 14</div>
+                    <div class="keyword-growth">גידול של 75% בתנועה</div>
+                    <div class="keyword-small">שיפור של 2 מקומות</div>
+                </div>
+
+                <div class="keyword-card">
+                    <div class="keyword-title">תמלול הרצאות</div>
+                    <div class="keyword-info">נפח חיפוש: <strong>320</strong></div>
+                    <div class="keyword-info">תחרות: <strong class="competition-medium">בינונית</strong></div>
+                    <div class="keyword-small">מיקום: 50 → יעד: 8</div>
+                    <div class="keyword-small">מבקרים/חודש: 1 → 10</div>
+                    <div class="keyword-growth">גידול של 500% בתנועה</div>
+                    <div class="keyword-small">שיפור של 42 מקומות</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Recommendations -->
+        <div class="section recommendations">
+            <h2>המלצות לקידום האתר</h2>
+            <ul>
+                <li>יצירת 10 דפי נחיתה ייעודיים - דף לכל סוג עבודה (סמינריון, תזה, דוקטורט) עם 1500+ מילים</li>
+                <li>הוספת בלוג עם 2 מאמרים חדשים בשבוע בנושאי כתיבה אקדמית וטיפים לסטודנטים</li>
+                <li>אופטימיזציה טכנית: הטמעת CDN, דחיסת תמונות, Lazy Loading ו-Critical CSS</li>
+                <li>בניית 30 קישורים איכותיים מאתרי חינוך ואקדמיה בישראל</li>
+                <li>הוספת עמוד FAQ עם 20+ שאלות נפוצות וסכמת FAQPage</li>
+                <li>יצירת תוכן וידאו - מדריכים קצרים ביוטיוב והטמעה באתר</li>
+            </ul>
+        </div>
+
+        <!-- Summary -->
+        <div class="section">
+            <h2>סיכום הדוח</h2>
+            <div class="summary-text">
+                צפי לגידול של כ-400 מבקרים חודשיים נוספים תוך 90 יום באמצעות מיקוד במילות מפתח אקדמיות
+            </div>
+        </div>
+
+        <!-- Closing -->
+        <div class="closing">
+            בואו נקדם את האתר יחד בקהילת המקדמים המובילה בארץ.
+        </div>
+    </div>
+</body>
+</html>
