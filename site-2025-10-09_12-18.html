@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>דוח פוטנציאל קידום אתרים - www.infomed.co.il</title>
+    <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Assistant', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .hero {
+            background: white;
+            border-radius: 15px;
+            padding: 40px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+
+        .hero h1 {
+            color: #2c5f5d;
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+
+        .hero .subtitle {
+            color: #5a7c7b;
+            font-size: 1.3rem;
+            font-weight: 500;
+            margin-bottom: 20px;
+        }
+
+        .hero .domain {
+            color: #20b8b8;
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+
+        .hero .message {
+            color: #666;
+            font-size: 1rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .kpi-section {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+        }
+
+        .kpi-title {
+            color: #2c5f5d;
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 25px;
+            text-align: center;
+        }
+
+        .kpi-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .kpi-card {
+            background: #fafafa;
+            border: 1px solid #e6e6e6;
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+            transition: transform 0.2s ease;
+        }
+
+        .kpi-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .kpi-value {
+            color: #20b8b8;
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+
+        .kpi-label {
+            color: #5a7c7b;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 10px;
+            background: #e6e6e6;
+            border-radius: 5px;
+            margin-top: 10px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #20b8b8, #2c5f5d);
+            border-radius: 5px;
+            transition: width 0.3s ease;
+        }
+
+        .keywords-section {
+            margin-bottom: 30px;
+        }
+
+        .section-title {
+            color: #2c5f5d;
+            font-size: 1.8rem;
+            font-weight: 600;
+            margin-bottom: 25px;
+            text-align: center;
+        }
+
+        .keywords-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .keyword-card {
+            background: white;
+            border-radius: 12px;
+            padding: 25px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            transition: all 0.2s ease;
+            border: 1px solid #e6e6e6;
+        }
+
+        .keyword-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.12);
+        }
+
+        .keyword-title {
+            color: #2c5f5d;
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+
+        .keyword-info {
+            margin-bottom: 8px;
+            font-size: 0.9rem;
+        }
+
+        .keyword-info strong {
+            color: #5a7c7b;
+        }
+
+        .keyword-info.small {
+            font-size: 0.85rem;
+            color: #777;
+        }
+
+        .keyword-info.growth {
+            color: #20b8b8;
+            font-weight: 600;
+            font-size: 1rem;
+        }
+
+        .recommendations-section {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+        }
+
+        .recommendations-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .recommendations-list li {
+            padding: 12px 0;
+            border-bottom: 1px solid #f0f0f0;
+            position: relative;
+            padding-right: 25px;
+        }
+
+        .recommendations-list li:last-child {
+            border-bottom: none;
+        }
+
+        .recommendations-list li:before {
+            content: "✓";
+            position: absolute;
+            right: 0;
+            top: 12px;
+            color: #20b8b8;
+            font-weight: bold;
+            font-size: 1.1rem;
+        }
+
+        .summary-section {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            text-align: center;
+        }
+
+        .summary-text {
+            color: #666;
+            font-size: 1.1rem;
+            line-height: 1.7;
+        }
+
+        .closing {
+            background: linear-gradient(135deg, #20b8b8, #2c5f5d);
+            color: white;
+            border-radius: 15px;
+            padding: 25px;
+            text-align: center;
+            font-size: 1.1rem;
+            font-weight: 500;
+            box-shadow: 0 5px 20px rgba(32,184,184,0.3);
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px;
+            }
+            
+            .hero {
+                padding: 25px;
+            }
+            
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .keywords-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .kpi-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="hero">
+            <h1>🎉 מצאנו הזדמנויות מעולות לקידום האתר שלך!</h1>
+            <div class="subtitle">הנה המילים שכדאי להתמקד בהן:</div>
+            <div class="domain">www.infomed.co.il</div>
+            <div class="message">האתר מדורג היטב למונחים רפואיים מקצועיים, אך חסר במילות מפתח פופולריות בעברית עם פוטנציאל תנועה גבוה</div>
+        </div>
+
+        <div class="kpi-section">
+            <div class="kpi-title">מדדי ביצועים מרכזיים</div>
+            <div class="kpi-grid">
+                <div class="kpi-card">
+                    <div class="kpi-value">100</div>
+                    <div class="kpi-label">ציון כללי</div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 100%"></div>
+                    </div>
+                </div>
+                <div class="kpi-card">
+                    <div class="kpi-value">32,865</div>
+                    <div class="kpi-label">תנועה פוטנציאלית/חודש</div>
+                </div>
+                <div class="kpi-card">
+                    <div class="kpi-value">10</div>
+                    <div class="kpi-label">מס' מילות מפתח</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="keywords-section">
+            <h2 class="section-title">מילות מפתח מומלצות</h2>
+            <div class="keywords-grid">
+                <div class="keyword-card">
+                    <div class="keyword-title">מחשבון הריון</div>
+                    <div class="keyword-info"><strong>נפח חיפוש:</strong> 49,500</div>
+                    <div class="keyword-info"><strong>תחרות:</strong> בינונית</div>
+                    <div class="keyword-info small">מיקום: 27 → יעד: 5</div>
+                    <div class="keyword-info small">מבקרים/חודש: 198 → 3,465</div>
+                    <div class="keyword-info growth">גידול של 500% בתנועה</div>
+                    <div class="keyword-info small">שיפור של 22 מקומות</div>
+                </div>
+                
+                <div class="keyword-card">
+                    <div class="keyword-title">מחשבון bmi</div>
+                    <div class="keyword-info"><strong>נפח חיפוש:</strong> 22,200</div>
+                    <div class="keyword-info"><strong>תחרות:</strong> נמוכה</div>
+                    <div class="keyword-info small">מיקום: 5 → יעד: 2</div>
+                    <div class="keyword-info small">מבקרים/חודש: 1,554 → 3,552</div>
+                    <div class="keyword-info growth">גידול של 129% בתנועה</div>
+                    <div class="keyword-info small">שיפור של 3 מקומות</div>
+                </div>
+                
+                <div class="keyword-card">
+                    <div class="keyword-title">bmi</div>
+                    <div class="keyword-info"><strong>נפח חיפוש:</strong> 33,100</div>
+                    <div class="keyword-info"><strong>תחרות:</strong> נמוכה</div>
+                    <div class="keyword-info small">מיקום: 16 → יעד: 5</div>
+                    <div class="keyword-info small">מבקרים/חודש: 497 → 2,317</div>
+                    <div class="keyword-info growth">גידול של 366% בתנועה</div>
+                    <div class="keyword-info small">שיפור של 11 מקומות</div>
+                </div>
+                
+                <div class="keyword-card">
+                    <div class="keyword-title">אימפטיגו</div>
+                    <div class="keyword-info"><strong>נפח חיפוש:</strong> 22,200</div>
+                    <div class="keyword-info"><strong>תחרות:</strong> נמוכה</div>
+                    <div class="keyword-info small">מיקום: 7 → יעד: 3</div>
+                    <div class="keyword-info small">מבקרים/חודש: 1,110 → 2,664</div>
+                    <div class="keyword-info growth">גידול של 140% בתנועה</div>
+                    <div class="keyword-info small">שיפור של 4 מקומות</div>
+                </div>
+                
+                <div class="keyword-card">
+                    <div class="keyword-title">מגנזיום</div>
+                    <div class="keyword-info"><strong>נפח חיפוש:</strong> 18,100</div>
+                    <div class="keyword-info"><strong>תחרות:</strong> בינונית</div>
+                    <div class="keyword-info small">מיקום: 15 → יעד: 5</div>
+                    <div class="keyword-info small">מבקרים/חודש: 272 → 1,267</div>
+                    <div class="keyword-info growth">גידול של 366% בתנועה</div>
+                    <div class="keyword-info small">שיפור של 10 מקומות</div>
+                </div>
+                
+                <div class="keyword-card">
+                    <div class="keyword-title">angiotensin converting enzyme</div>
+                    <div class="keyword-info"><strong>נפח חיפוש:</strong> 110,000</div>
+                    <div class="keyword-info"><strong>תחרות:</strong> נמוכה</div>
+                    <div class="keyword-info small">מיקום: 5 → יעד: 2</div>
+                    <div class="keyword-info small">מבקרים/חודש: 7,700 → 17,600</div>
+                    <div class="keyword-info growth">גידול של 129% בתנועה</div>
+                    <div class="keyword-info small">שיפור של 3 מקומות</div>
+                </div>
+                
+                <div class="keyword-card">
+                    <div class="keyword-title">תרופות ללא מרשם</div>
+                    <div class="keyword-info"><strong>נפח חיפוש:</strong> 8,100</div>
+                    <div class="keyword-info"><strong>תחרות:</strong> גבוהה</div>
+                    <div class="keyword-info small">מיקום: 50 → יעד: 5</div>
+                    <div class="keyword-info small">מבקרים/חודש: 32 → 567</div>
+                    <div class="keyword-info growth">גידול של 500% בתנועה</div>
+                    <div class="keyword-info small">שיפור של 45 מקומות</div>
+                </div>
+                
+                <div class="keyword-card">
+                    <div class="keyword-title">בדיקות דם</div>
+                    <div class="keyword-info"><strong>נפח חיפוש:</strong> 14,800</div>
+                    <div class="keyword-info"><strong>תחרות:</strong> בינונית</div>
+                    <div class="keyword-info small">מיקום: 50 → יעד: 6</div>
+                    <div class="keyword-info small">מבקרים/חודש: 59 → 740</div>
+                    <div class="keyword-info growth">גידול של 500% בתנועה</div>
+                    <div class="keyword-info small">שיפור של 44 מקומות</div>
+                </div>
+                
+                <div class="keyword-card">
+                    <div class="keyword-title">מידע רפואי</div>
+                    <div class="keyword-info"><strong>נפח חיפוש:</strong> 6,600</div>
+                    <div class="keyword-info"><strong>תחרות:</strong> בינונית</div>
+                    <div class="keyword-info small">מיקום: 50 → יעד: 8</div>
+                    <div class="keyword-info small">מבקרים/חודש: 26 → 198</div>
+                    <div class="keyword-info growth">גידול של 500% בתנועה</div>
+                    <div class="keyword-info small">שיפור של 42 מקומות</div>
+                </div>
+                
+                <div class="keyword-card">
+                    <div class="keyword-title">מחלות עור</div>
+                    <div class="keyword-info"><strong>נפח חיפוש:</strong> 9,900</div>
+                    <div class="keyword-info"><strong>תחרות:</strong> בינונית</div>
+                    <div class="keyword-info small">מיקום: 50 → יעד: 7</div>
+                    <div class="keyword-info small">מבקרים/חודש: 40 → 495</div>
+                    <div class="keyword-info growth">גידול של 500% בתנועה</div>
+                    <div class="keyword-info small">שיפור של 43 מקומות</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="recommendations-section">
+            <h2 class="section-title">המלצות לשיפור</h2>
+            <ul class="recommendations-list">
+                <li>ליצור עמוד ייעודי ומפורט למחשבון הריון עם תוכן עשיר, כלים אינטראקטיביים ומידע על שלבי ההריון</li>
+                <li>לשפר את עמודי המחשבונים הרפואיים (BMI, הריון) עם הסברים מפורטים, טבלאות השוואה וגרפים</li>
+                <li>להוסיף Schema מסוג MedicalWebPage, Tool ו-FAQ לכל עמודי המידע הרפואי והמחשבונים</li>
+                <li>ליצור cluster תוכן סביב מונחים רפואיים פופולריים עם עמודי נחיתה ממוקדים</li>
+                <li>לבנות עמודי Hub למחלות, תרופות ובדיקות עם קישורים פנימיים חזקים</li>
+                <li>להטמיע וידאו הסברים קצרים ואינפוגרפיקות בעמודים הפופולריים</li>
+            </ul>
+        </div>
+
+        <div class="summary-section">
+            <h2 class="section-title">סיכום הדוח</h2>
+            <div class="summary-text">ניתן להשיג כ-35,000 מבקרים נוספים בחודש תוך 90 יום באמצעות אופטימיזציה ממוקדת למילות מפתח רפואיות פופולריות</div>
+        </div>
+
+        <div class="closing">
+            בואו נקדם את האתר יחד בקהילת המקדמים המובילה בארץ.
+        </div>
+    </div>
+</body>
+</html>
