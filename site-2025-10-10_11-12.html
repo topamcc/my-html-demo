@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>דוח פוטנציאל קידום אתרים - pmc.im</title>
+    <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Assistant', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .hero {
+            background: white;
+            border-radius: 15px;
+            padding: 40px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+
+        .hero h1 {
+            color: #20b8b8;
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        .hero h2 {
+            color: #2c5f5d;
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+
+        .domain {
+            background: #20b8b8;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 25px;
+            display: inline-block;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .message {
+            color: #5a7c7b;
+            font-size: 1.1rem;
+            margin-top: 20px;
+            padding: 20px;
+            background: #fafafa;
+            border-radius: 10px;
+            border-right: 4px solid #20b8b8;
+        }
+
+        .kpi-bar {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+        }
+
+        .kpi-bar h3 {
+            color: #2c5f5d;
+            text-align: center;
+            margin-bottom: 25px;
+            font-size: 1.8rem;
+        }
+
+        .kpi-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .kpi-item {
+            text-align: center;
+            padding: 20px;
+            background: #fafafa;
+            border-radius: 10px;
+            border: 1px solid #e6e6e6;
+        }
+
+        .kpi-value {
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: #20b8b8;
+            margin-bottom: 5px;
+            display: block;
+        }
+
+        .kpi-label {
+            color: #5a7c7b;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 20px;
+            background: #e6e6e6;
+            border-radius: 10px;
+            overflow: hidden;
+            margin: 10px 0;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #20b8b8, #2c5f5d);
+            border-radius: 10px;
+            transition: width 0.3s ease;
+        }
+
+        .keywords-section {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+        }
+
+        .keywords-section h3 {
+            color: #2c5f5d;
+            text-align: center;
+            margin-bottom: 25px;
+            font-size: 1.8rem;
+        }
+
+        .keywords-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 20px;
+        }
+
+        .keyword-card {
+            background: #fafafa;
+            border: 1px solid #e6e6e6;
+            border-radius: 12px;
+            padding: 20px;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .keyword-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+        }
+
+        .keyword-title {
+            color: #2c5f5d;
+            font-weight: 700;
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+            border-bottom: 2px solid #20b8b8;
+            padding-bottom: 8px;
+        }
+
+        .keyword-stat {
+            color: #5a7c7b;
+            margin-bottom: 8px;
+            font-size: 0.95rem;
+        }
+
+        .keyword-stat strong {
+            color: #2c5f5d;
+        }
+
+        .growth-highlight {
+            background: #e8f8f8;
+            color: #2c5f5d;
+            padding: 8px 12px;
+            border-radius: 6px;
+            font-weight: 600;
+            margin-top: 10px;
+            border-right: 3px solid #20b8b8;
+        }
+
+        .recommendations {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+        }
+
+        .recommendations h3 {
+            color: #2c5f5d;
+            margin-bottom: 20px;
+            font-size: 1.8rem;
+        }
+
+        .recommendations ul {
+            list-style: none;
+            padding-right: 0;
+        }
+
+        .recommendations li {
+            color: #5a7c7b;
+            margin-bottom: 15px;
+            padding-right: 20px;
+            position: relative;
+            line-height: 1.7;
+        }
+
+        .recommendations li::before {
+            content: "✓";
+            color: #20b8b8;
+            font-weight: bold;
+            position: absolute;
+            right: 0;
+            top: 0;
+        }
+
+        .summary {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+        }
+
+        .summary h3 {
+            color: #2c5f5d;
+            margin-bottom: 20px;
+            font-size: 1.8rem;
+        }
+
+        .summary p {
+            color: #5a7c7b;
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+
+        .closing {
+            background: linear-gradient(135deg, #20b8b8, #2c5f5d);
+            color: white;
+            border-radius: 15px;
+            padding: 25px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .closing p {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin: 0;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px;
+            }
+            
+            .hero {
+                padding: 25px;
+            }
+            
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .hero h2 {
+                font-size: 1.3rem;
+            }
+            
+            .keywords-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .kpi-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="hero">
+            <h1>🎉 מצאנו הזדמנויות מעולות לקידום האתר שלך!</h1>
+            <h2>הנה המילים שכדאי להתמקד בהן:</h2>
+            <div class="domain">pmc.im</div>
+            <div class="message">האתר עוסק בריכוז חברות ניהול נכסים בישראל, מילות המפתח שסופקו אינן רלוונטיות ולכן הוחלפו ב-10 מילות מפתח ממוקדות לתחום</div>
+        </div>
+
+        <div class="kpi-bar">
+            <h3>מדדי ביצוע מרכזיים</h3>
+            <div class="kpi-grid">
+                <div class="kpi-item">
+                    <span class="kpi-value" aria-label="ציון כללי">475</span>
+                    <div class="kpi-label">ציון כללי</div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 100%;"></div>
+                    </div>
+                </div>
+                <div class="kpi-item">
+                    <span class="kpi-value" aria-label="תנועה פוטנציאלית חודשית">667</span>
+                    <div class="kpi-label">תנועה פוטנציאלית/חודש</div>
+                </div>
+                <div class="kpi-item">
+                    <span class="kpi-value" aria-label="מספר מילות מפתח">10</span>
+                    <div class="kpi-label">מס' מילות מפתח</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="keywords-section">
+            <h3>מילות מפתח מומלצות</h3>
+            <div class="keywords-grid">
+                <div class="keyword-card">
+                    <div class="keyword-title">חברות ניהול נכסים</div>
+                    <div class="keyword-stat"><strong>נפח חיפוש:</strong> 1,200</div>
+                    <div class="keyword-stat"><strong>תחרות:</strong> גבוהה</div>
+                    <div class="keyword-stat"><strong>מיקום:</strong> 50 → יעד: 3</div>
+                    <div class="keyword-stat"><strong>מבקרים/חודש:</strong> 5 → 144</div>
+                    <div class="growth-highlight">גידול של 500% בתנועה</div>
+                    <div class="keyword-stat">שיפור של 47 מקומות</div>
+                </div>
+
+                <div class="keyword-card">
+                    <div class="keyword-title">חברת ניהול</div>
+                    <div class="keyword-stat"><strong>נפח חיפוש:</strong> 390</div>
+                    <div class="keyword-stat"><strong>תחרות:</strong> בינונית</div>
+                    <div class="keyword-stat"><strong>מיקום:</strong> 5 → יעד: 2</div>
+                    <div class="keyword-stat"><strong>מבקרים/חודש:</strong> 27 → 62</div>
+                    <div class="growth-highlight">גידול של 130% בתנועה</div>
+                    <div class="keyword-stat">שיפור של 3 מקומות</div>
+                </div>
+
+                <div class="keyword-card">
+                    <div class="keyword-title">ניהול בניינים משותפים</div>
+                    <div class="keyword-stat"><strong>נפח חיפוש:</strong> 880</div>
+                    <div class="keyword-stat"><strong>תחרות:</strong> בינונית</div>
+                    <div class="keyword-stat"><strong>מיקום:</strong> 50 → יעד: 5</div>
+                    <div class="keyword-stat"><strong>מבקרים/חודש:</strong> 4 → 62</div>
+                    <div class="growth-highlight">גידול של 500% בתנועה</div>
+                    <div class="keyword-stat">שיפור של 45 מקומות</div>
+                </div>
+
+                <div class="keyword-card">
+                    <div class="keyword-title">ניהול נכסים למגורים</div>
+                    <div class="keyword-stat"><strong>נפח חיפוש:</strong> 720</div>
+                    <div class="keyword-stat"><strong>תחרות:</strong> בינונית</div>
+                    <div class="keyword-stat"><strong>מיקום:</strong> 50 → יעד: 4</div>
+                    <div class="keyword-stat"><strong>מבקרים/חודש:</strong> 3 → 65</div>
+                    <div class="growth-highlight">גידול של 500% בתנועה</div>
+                    <div class="keyword-stat">שיפור של 46 מקומות</div>
+                </div>
+
+                <div class="keyword-card">
+                    <div class="keyword-title">ניהול דירות להשכרה</div>
+                    <div class="keyword-stat"><strong>נפח חיפוש:</strong> 590</div>
+                    <div class="keyword-stat"><strong>תחרות:</strong> גבוהה</div>
+                    <div class="keyword-stat"><strong>מיקום:</strong> 50 → יעד: 5</div>
+                    <div class="keyword-stat"><strong>מבקרים/חודש:</strong> 2 → 41</div>
+                    <div class="growth-highlight">גידול של 500% בתנועה</div>
+                    <div class="keyword-stat">שיפור של 45 מקומות</div>
+                </div>
+
+                <div class="keyword-card">
+                    <div class="keyword-title">ניהול ועד בית</div>
+                    <div class="keyword-stat"><strong>נפח חיפוש:</strong> 2,400</div>
+                    <div class="keyword-stat"><strong>תחרות:</strong> גבוהה</div>
+                    <div class="keyword-stat"><strong>מיקום:</strong> 50 → יעד: 6</div>
+                    <div class="keyword-stat"><strong>מבקרים/חודש:</strong> 10 → 120</div>
+                    <div class="growth-highlight">גידול של 500% בתנועה</div>
+                    <div class="keyword-stat">שיפור של 44 מקומות</div>
+                </div>
+
+                <div class="keyword-card">
+                    <div class="keyword-title">חברות ניהול בתים משותפים</div>
+                    <div class="keyword-stat"><strong>נפח חיפוש:</strong> 480</div>
+                    <div class="keyword-stat"><strong>תחרות:</strong> בינונית</div>
+                    <div class="keyword-stat"><strong>מיקום:</strong> 50 → יעד: 3</div>
+                    <div class="keyword-stat"><strong>מבקרים/חודש:</strong> 2 → 58</div>
+                    <div class="growth-highlight">גידול של 500% בתנועה</div>
+                    <div class="keyword-stat">שיפור של 47 מקומות</div>
+                </div>
+
+                <div class="keyword-card">
+                    <div class="keyword-title">ניהול נכסים מסחריים</div>
+                    <div class="keyword-stat"><strong>נפח חיפוש:</strong> 390</div>
+                    <div class="keyword-stat"><strong>תחרות:</strong> בינונית</div>
+                    <div class="keyword-stat"><strong>מיקום:</strong> 50 → יעד: 5</div>
+                    <div class="keyword-stat"><strong>מבקרים/חודש:</strong> 2 → 27</div>
+                    <div class="growth-highlight">גידול של 500% בתנועה</div>
+                    <div class="keyword-stat">שיפור של 45 מקומות</div>
+                </div>
+
+                <div class="keyword-card">
+                    <div class="keyword-title">ניהול משרדים להשכרה</div>
+                    <div class="keyword-stat"><strong>נפח חיפוש:</strong> 320</div>
+                    <div class="keyword-stat"><strong>תחרות:</strong> נמוכה</div>
+                    <div class="keyword-stat"><strong>מיקום:</strong> 50 → יעד: 4</div>
+                    <div class="keyword-stat"><strong>מבקרים/חודש:</strong> 1 → 29</div>
+                    <div class="growth-highlight">גידול של 500% בתנועה</div>
+                    <div class="keyword-stat">שיפור של 46 מקומות</div>
+                </div>
+
+                <div class="keyword-card">
+                    <div class="keyword-title">pmc ניהול נכסים</div>
+                    <div class="keyword-stat"><strong>נפח חיפוש:</strong> 210</div>
+                    <div class="keyword-stat"><strong>תחרות:</strong> נמוכה</div>
+                    <div class="keyword-stat"><strong>מיקום:</strong> 50 → יעד: 1</div>
+                    <div class="keyword-stat"><strong>מבקרים/חודש:</strong> 1 → 59</div>
+                    <div class="growth-highlight">גידול של 500% בתנועה</div>
+                    <div class="keyword-stat">שיפור של 49 מקומות</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="recommendations">
+            <h3>המלצות לקידום</h3>
+            <ul>
+                <li>יצירת 10 עמודי תוכן חדשים (1000+ מילים) על חברות ניהול מובילות, טיפים לבחירת חברת ניהול, ומדריכים לבעלי נכסים</li>
+                <li>בניית 30 קישורים איכותיים מאתרי נדל"ן ופורטלים רלוונטיים עם עוגנים ממוקדים למילות המפתח החדשות</li>
+                <li>אופטימיזציה טכנית מלאה: defer/async ל-JS, Critical CSS, Lazy Loading, מעבר ל-CDN וצמצום DOM</li>
+                <li>הוספת Schema מקיף: Organization, LocalBusiness, FAQ ו-Article לעמודי תוכן</li>
+                <li>שדרוג תוכן קיים בעמוד הבית עם H2/H3 ממוקדים, דוגמאות מעשיות ומדיה תומכת</li>
+                <li>יצירת עמוד נחיתה ייעודי לכל מילת מפתח ראשית עם תוכן ממוקד וCTA ברור</li>
+            </ul>
+        </div>
+
+        <div class="summary">
+            <h3>סיכום</h3>
+            <p>צפי לגידול של 600+ מבקרים חודשיים תוך 90 יום באמצעות מיקוד במילות מפתח רלוונטיות לתחום ניהול הנכסים</p>
+        </div>
+
+        <div class="closing">
+            <p>בואו נקדם את האתר יחד בקהילת המקדמים המובילה בארץ.</p>
+        </div>
+    </div>
+</body>
+</html>
