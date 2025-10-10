@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>דוח פוטנציאל קידום אתרים - zivmanor.co.il</title>
+    <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Assistant', sans-serif;
+            line-height: 1.6;
+            background: #f8f9fa;
+            color: #333;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .hero {
+            background: linear-gradient(135deg, #20b8b8, #2c5f5d);
+            color: white;
+            padding: 40px 20px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            text-align: center;
+            box-shadow: 0 8px 25px rgba(32, 184, 184, 0.2);
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .hero h2 {
+            font-size: 1.4rem;
+            font-weight: 400;
+            margin-bottom: 20px;
+            opacity: 0.9;
+        }
+
+        .hero-info {
+            background: rgba(255,255,255,0.1);
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 25px;
+            backdrop-filter: blur(10px);
+        }
+
+        .domain {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .message {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        .kpi-bar {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        }
+
+        .kpi-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 25px;
+        }
+
+        .kpi-item {
+            text-align: center;
+        }
+
+        .kpi-value {
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: #20b8b8;
+            margin-bottom: 5px;
+        }
+
+        .kpi-label {
+            color: #5a7c7b;
+            font-weight: 500;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 12px;
+            background: #e6e6e6;
+            border-radius: 6px;
+            margin: 10px 0;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #20b8b8, #2c5f5d);
+            border-radius: 6px;
+            transition: width 0.3s ease;
+        }
+
+        .keywords-section {
+            margin-bottom: 30px;
+        }
+
+        .section-title {
+            font-size: 1.8rem;
+            font-weight: 600;
+            color: #2c5f5d;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .keywords-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .keyword-card {
+            background: #fafafa;
+            padding: 20px;
+            border-radius: 12px;
+            border: 1px solid #e6e6e6;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+
+        .keyword-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 20px rgba(32, 184, 184, 0.1);
+            border-color: #20b8b8;
+        }
+
+        .keyword-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #2c5f5d;
+            margin-bottom: 12px;
+        }
+
+        .keyword-info {
+            font-size: 0.9rem;
+            color: #5a7c7b;
+            margin-bottom: 6px;
+        }
+
+        .keyword-growth {
+            background: linear-gradient(90deg, #20b8b8, #2c5f5d);
+            color: white;
+            padding: 8px 12px;
+            border-radius: 6px;
+            font-weight: 600;
+            margin: 8px 0;
+            text-align: center;
+        }
+
+        .recommendations {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        }
+
+        .recommendations h3 {
+            font-size: 1.6rem;
+            color: #2c5f5d;
+            margin-bottom: 20px;
+        }
+
+        .recommendations ul {
+            list-style: none;
+        }
+
+        .recommendations li {
+            position: relative;
+            padding: 12px 0 12px 30px;
+            color: #5a7c7b;
+            line-height: 1.7;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .recommendations li:before {
+            content: "•";
+            color: #20b8b8;
+            font-size: 1.5rem;
+            position: absolute;
+            right: 0;
+            top: 8px;
+        }
+
+        .recommendations li:last-child {
+            border-bottom: none;
+        }
+
+        .summary {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        }
+
+        .summary h3 {
+            font-size: 1.6rem;
+            color: #2c5f5d;
+            margin-bottom: 15px;
+        }
+
+        .summary p {
+            color: #5a7c7b;
+            line-height: 1.7;
+            font-size: 1.1rem;
+        }
+
+        .closing {
+            background: linear-gradient(135deg, #2c5f5d, #20b8b8);
+            color: white;
+            padding: 25px;
+            border-radius: 12px;
+            text-align: center;
+            font-size: 1.1rem;
+            font-weight: 500;
+            box-shadow: 0 4px 15px rgba(44, 95, 93, 0.2);
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .keywords-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .kpi-grid {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+            
+            .container {
+                padding: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="hero">
+            <h1>🎉 מצאנו הזדמנויות מעולות לקידום האתר שלך!</h1>
+            <h2>הנה המילים שכדאי להתמקד בהן:</h2>
+            <div class="hero-info">
+                <div class="domain">zivmanor.co.il</div>
+                <div class="message">האתר מדורג היטב למילות מפתח רלוונטיות לסדנאות קוקטיילים, עם פוטנציאל צמיחה משמעותי</div>
+            </div>
+        </header>
+
+        <section class="kpi-bar">
+            <div class="kpi-grid">
+                <div class="kpi-item">
+                    <div class="kpi-value">49</div>
+                    <div class="kpi-label">ציון כללי</div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 49%"></div>
+                    </div>
+                </div>
+                <div class="kpi-item">
+                    <div class="kpi-value">779</div>
+                    <div class="kpi-label">תנועה פוטנציאלית/חודש</div>
+                </div>
+                <div class="kpi-item">
+                    <div class="kpi-value">10</div>
+                    <div class="kpi-label">מס' מילות מפתח</div>
+                </div>
+            </div>
+        </section>
+
+        <section class="keywords-section">
+            <h3 class="section-title">מילות מפתח מומלצות</h3>
+            <div class="keywords-grid">
+                <div class="keyword-card">
+                    <div class="keyword-title">סדנת קוקטיילים</div>
+                    <div class="keyword-info">נפח חיפוש: 2,400</div>
+                    <div class="keyword-info">תחרות: בינונית</div>
+                    <div class="keyword-info">מיקום: 23 → יעד: 5</div>
+                    <div class="keyword-info">מבקרים/חודש: 36 → 168</div>
+                    <div class="keyword-growth">גידול של 366% בתנועה</div>
+                    <div class="keyword-info">שיפור של 18 מקומות</div>
+                </div>
+
+                <div class="keyword-card">
+                    <div class="keyword-title">סדנאות קוקטיילים</div>
+                    <div class="keyword-info">נפח חיפוש: 1,900</div>
+                    <div class="keyword-info">תחרות: בינונית</div>
+                    <div class="keyword-info">מיקום: 50 → יעד: 3</div>
+                    <div class="keyword-info">מבקרים/חודש: 8 → 228</div>
+                    <div class="keyword-growth">גידול של 500% בתנועה</div>
+                    <div class="keyword-info">שיפור של 47 מקומות</div>
+                </div>
+
+                <div class="keyword-card">
+                    <div class="keyword-title">בר קוקטיילים לאירועים</div>
+                    <div class="keyword-info">נפח חיפוש: 1,600</div>
+                    <div class="keyword-info">תחרות: גבוהה</div>
+                    <div class="keyword-info">מיקום: 50 → יעד: 5</div>
+                    <div class="keyword-info">מבקרים/חודש: 6 → 112</div>
+                    <div class="keyword-growth">גידול של 500% בתנועה</div>
+                    <div class="keyword-info">שיפור של 45 מקומות</div>
+                </div>
+
+                <div class="keyword-card">
+                    <div class="keyword-title">סדנת קוקטיילים ליום הולדת</div>
+                    <div class="keyword-info">נפח חיפוש: 880</div>
+                    <div class="keyword-info">תחרות: נמוכה</div>
+                    <div class="keyword-info">מיקום: 50 → יעד: 5</div>
+                    <div class="keyword-info">מבקרים/חודש: 4 → 62</div>
+                    <div class="keyword-growth">גידול של 500% בתנועה</div>
+                    <div class="keyword-info">שיפור של 45 מקומות</div>
+                </div>
+
+                <div class="keyword-card">
+                    <div class="keyword-title">סדנת קוקטיילים למסיבת רווקות</div>
+                    <div class="keyword-info">נפח חיפוש: 720</div>
+                    <div class="keyword-info">תחרות: נמוכה</div>
+                    <div class="keyword-info">מיקום: 50 → יעד: 5</div>
+                    <div class="keyword-info">מבקרים/חודש: 3 → 50</div>
+                    <div class="keyword-growth">גידול של 500% בתנועה</div>
+                    <div class="keyword-info">שיפור של 45 מקומות</div>
+                </div>
+
+                <div class="keyword-card">
+                    <div class="keyword-title">פעילות אלכוהול לאירועים</div>
+                    <div class="keyword-info">נפח חיפוש: 590</div>
+                    <div class="keyword-info">תחרות: נמוכה</div>
+                    <div class="keyword-info">מיקום: 50 → יעד: 5</div>
+                    <div class="keyword-info">מבקרים/חודש: 2 → 41</div>
+                    <div class="keyword-growth">גידול של 500% בתנועה</div>
+                    <div class="keyword-info">שיפור של 45 מקומות</div>
+                </div>
+
+                <div class="keyword-card">
+                    <div class="keyword-title">בר קוקטיילים נייד</div>
+                    <div class="keyword-info">נפח חיפוש: 480</div>
+                    <div class="keyword-info">תחרות: בינונית</div>
+                    <div class="keyword-info">מיקום: 50 → יעד: 5</div>
+                    <div class="keyword-info">מבקרים/חודש: 2 → 34</div>
+                    <div class="keyword-growth">גידול של 500% בתנועה</div>
+                    <div class="keyword-info">שיפור של 45 מקומות</div>
+                </div>
+
+                <div class="keyword-card">
+                    <div class="keyword-title">סדנת קוקטיילים עד הבית</div>
+                    <div class="keyword-info">נפח חיפוש: 390</div>
+                    <div class="keyword-info">תחרות: נמוכה</div>
+                    <div class="keyword-info">מיקום: 50 → יעד: 3</div>
+                    <div class="keyword-info">מבקרים/חודש: 2 → 47</div>
+                    <div class="keyword-growth">גידול של 500% בתנועה</div>
+                    <div class="keyword-info">שיפור של 47 מקומות</div>
+                </div>
+
+                <div class="keyword-card">
+                    <div class="keyword-title">הכנת קוקטיילים לאירועים</div>
+                    <div class="keyword-info">נפח חיפוש: 320</div>
+                    <div class="keyword-info">תחרות: נמוכה</div>
+                    <div class="keyword-info">מיקום: 50 → יעד: 5</div>
+                    <div class="keyword-info">מבקרים/חודש: 1 → 22</div>
+                    <div class="keyword-growth">גידול של 500% בתנועה</div>
+                    <div class="keyword-info">שיפור של 45 מקומות</div>
+                </div>
+
+                <div class="keyword-card">
+                    <div class="keyword-title">חוברת קוקטיילים מתנה</div>
+                    <div class="keyword-info">נפח חיפוש: 210</div>
+                    <div class="keyword-info">תחרות: נמוכה</div>
+                    <div class="keyword-info">מיקום: 50 → יעד: 5</div>
+                    <div class="keyword-info">מבקרים/חודש: 1 → 15</div>
+                    <div class="keyword-growth">גידול של 500% בתנועה</div>
+                    <div class="keyword-info">שיפור של 45 מקומות</div>
+                </div>
+            </div>
+        </section>
+
+        <section class="recommendations">
+            <h3>המלצות לקידום</h3>
+            <ul>
+                <li>צור עמודי נחיתה ייעודיים: 'סדנת קוקטיילים למסיבת רווקות', 'סדנת קוקטיילים ליום הולדת' עם תוכן של 1000+ מילים</li>
+                <li>הוסף סקציית FAQ עם 15+ שאלות נפוצות על סדנאות קוקטיילים ומחירים</li>
+                <li>צלם וידאו דמו של סדנה והטמע בעמוד הבית עם Video Schema</li>
+                <li>בנה עמוד 'אזורי פעילות' עם עמודים ייעודיים לערים מרכזיות</li>
+                <li>הוסף גלריית תמונות מאירועים עם lazy loading ותיאורי ALT ממוקדים</li>
+                <li>פרסם פוסט בלוג שבועי: מתכונים, טיפים להכנת קוקטיילים, רעיונות לאירועים</li>
+            </ul>
+        </section>
+
+        <section class="summary">
+            <h3>סיכום</h3>
+            <p>צפי לעלייה של כ-740 מבקרים חודשיים נוספים תוך 90 יום על ידי מיקוד במילות מפתח רלוונטיות לסדנאות קוקטיילים</p>
+        </section>
+
+        <footer class="closing">
+            בואו נקדם את האתר יחד בקהילת המקדמים המובילה בארץ.
+        </footer>
+    </div>
+</body>
+</html>
