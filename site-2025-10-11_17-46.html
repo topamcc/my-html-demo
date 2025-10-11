@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>דוח פוטנציאל קידום אתרים - ezpass.org.il</title>
+    <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #20b8b8;
+            --heading: #2c5f5d;
+            --secondary: #5a7c7b;
+            --border: #e6e6e6;
+            --card-bg: #fafafa;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Assistant', sans-serif;
+            line-height: 1.6;
+            color: var(--secondary);
+            background: linear-gradient(135deg, #f5f9f9 0%, #ffffff 100%);
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .hero {
+            background: linear-gradient(135deg, var(--primary) 0%, #15a3a3 100%);
+            color: white;
+            text-align: center;
+            padding: 60px 20px;
+            border-radius: 20px;
+            margin-bottom: 40px;
+            box-shadow: 0 10px 30px rgba(32, 184, 184, 0.2);
+        }
+        
+        .hero h1 {
+            font-size: clamp(1.8rem, 4vw, 2.5rem);
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+        
+        .hero .subtitle {
+            font-size: clamp(1rem, 2.5vw, 1.3rem);
+            margin-bottom: 30px;
+            opacity: 0.95;
+            font-weight: 400;
+        }
+        
+        .domain-info {
+            background: rgba(255, 255, 255, 0.15);
+            padding: 20px;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            margin-bottom: 20px;
+        }
+        
+        .domain-info h3 {
+            margin-bottom: 10px;
+            font-size: 1.2rem;
+        }
+        
+        .message {
+            font-size: 1.1rem;
+            font-weight: 300;
+            opacity: 0.9;
+        }
+        
+        .kpi-section {
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            margin-bottom: 40px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+            border: 1px solid var(--border);
+        }
+        
+        .kpi-section h2 {
+            color: var(--heading);
+            font-size: 1.8rem;
+            margin-bottom: 30px;
+            text-align: center;
+            font-weight: 600;
+        }
+        
+        .kpi-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+        
+        .kpi-card {
+            text-align: center;
+            padding: 25px;
+            background: var(--card-bg);
+            border-radius: 15px;
+            border: 1px solid var(--border);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .kpi-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+        }
+        
+        .kpi-value {
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+        
+        .kpi-label {
+            color: var(--heading);
+            font-weight: 600;
+            font-size: 1rem;
+        }
+        
+        .progress-container {
+            margin-top: 15px;
+        }
+        
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background: var(--border);
+            border-radius: 4px;
+            overflow: hidden;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary), #15a3a3);
+            border-radius: 4px;
+            transition: width 0.8s ease;
+        }
+        
+        .keywords-section {
+            margin-bottom: 40px;
+        }
+        
+        .keywords-section h2 {
+            color: var(--heading);
+            font-size: 1.8rem;
+            margin-bottom: 30px;
+            text-align: center;
+            font-weight: 600;
+        }
+        
+        .keywords-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 20px;
+        }
+        
+        .keyword-card {
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            border: 1px solid var(--border);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .keyword-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12);
+        }
+        
+        .keyword-title {
+            color: var(--heading);
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            border-bottom: 2px solid var(--primary);
+            padding-bottom: 8px;
+        }
+        
+        .keyword-stats {
+            margin-bottom: 15px;
+        }
+        
+        .stat-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 8px;
+            font-size: 0.95rem;
+        }
+        
+        .stat-label {
+            color: var(--secondary);
+            font-weight: 500;
+        }
+        
+        .stat-value {
+            color: var(--heading);
+            font-weight: 600;
+        }
+        
+        .growth-highlight {
+            background: linear-gradient(135deg, #e6f9f9 0%, #ccf2f2 100%);
+            color: var(--primary);
+            padding: 10px 15px;
+            border-radius: 10px;
+            font-weight: 700;
+            text-align: center;
+            margin: 10px 0;
+            font-size: 0.95rem;
+        }
+        
+        .improvement-text {
+            background: rgba(32, 184, 184, 0.1);
+            color: var(--heading);
+            padding: 8px 12px;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            text-align: center;
+        }
+        
+        .recommendations-section, .summary-section {
+            background: white;
+            padding: 35px;
+            border-radius: 20px;
+            margin-bottom: 30px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+            border: 1px solid var(--border);
+        }
+        
+        .section-title {
+            color: var(--heading);
+            font-size: 1.8rem;
+            margin-bottom: 25px;
+            font-weight: 600;
+            text-align: center;
+        }
+        
+        .recommendations-list {
+            list-style: none;
+        }
+        
+        .recommendations-list li {
+            margin-bottom: 15px;
+            padding: 15px;
+            background: var(--card-bg);
+            border-radius: 10px;
+            border-right: 4px solid var(--primary);
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+        
+        .recommendations-list li:before {
+            content: "💡";
+            margin-left: 10px;
+            font-size: 1.2rem;
+        }
+        
+        .summary-text {
+            font-size: 1.1rem;
+            line-height: 1.7;
+            color: var(--secondary);
+            text-align: center;
+            font-weight: 400;
+        }
+        
+        .closing-section {
+            background: linear-gradient(135deg, var(--primary) 0%, #15a3a3 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(32, 184, 184, 0.2);
+        }
+        
+        .closing-text {
+            font-size: 1.2rem;
+            font-weight: 600;
+            line-height: 1.5;
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px;
+            }
+            
+            .hero {
+                padding: 40px 15px;
+            }
+            
+            .kpi-section, .recommendations-section, .summary-section {
+                padding: 25px;
+            }
+            
+            .keywords-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .keyword-card {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="hero">
+            <h1>🎉 מצאנו הזדמנויות מעולות לקידום האתר שלך!</h1>
+            <div class="subtitle">הנה המילים שכדאי להתמקד בהן:</div>
+            
+            <div class="domain-info">
+                <h3>דומיין: ezpass.org.il</h3>
+                <div class="message">האתר ממוקם היטב במילות מפתח חשובות בתחום הבטיחות ומבחני מהט עם פוטנציאל שיפור משמעותי</div>
+            </div>
+        </div>
+
+        <div class="kpi-section">
+            <h2>מדדים מרכזיים</h2>
+            <div class="kpi-grid">
+                <div class="kpi-card">
+                    <div class="kpi-value">47</div>
+                    <div class="kpi-label">ציון כללי</div>
+                    <div class="progress-container">
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 47%"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="kpi-card">
+                    <div class="kpi-value">1,500</div>
+                    <div class="kpi-label">תנועה פוטנציאלית/חודש</div>
+                </div>
+                <div class="kpi-card">
+                    <div class="kpi-value">10</div>
+                    <div class="kpi-label">מס' מילות מפתח</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="keywords-section">
+            <h2>מילות מפתח מומלצות</h2>
+            <div class="keywords-grid">
+                <div class="keyword-card">
+                    <div class="keyword-title">מבחן מהט</div>
+                    <div class="keyword-stats">
+                        <div class="stat-row">
+                            <span class="stat-label">נפח חיפוש:</span>
+                            <span class="stat-value">4,400</span>
+                        </div>
+                        <div class="stat-row">
+                            <span class="stat-label">תחרות:</span>
+                            <span class="stat-value">בינונית</span>
+                        </div>
+                        <div class="stat-row">
+                            <span class="stat-label">מיקום:</span>
+                            <span class="stat-value">12 → יעד: 5</span>
+                        </div>
+                        <div class="stat-row">
+                            <span class="stat-label">מבקרים/חודש:</span>
+                            <span class="stat-value">66 → 308</span>
+                        </div>
+                    </div>
+                    <div class="growth-highlight">גידול של 366% בתנועה</div>
+                    <div class="improvement-text">שיפור של 7 מקומות</div>
+                </div>
+
+                <div class="keyword-card">
+                    <div class="keyword-title">מבחנים מהט</div>
+                    <div class="keyword-stats">
+                        <div class="stat-row">
+                            <span class="stat-label">נפח חיפוש:</span>
+                            <span class="stat-value">4,400</span>
+                        </div>
+                        <div class="stat-row">
+                            <span class="stat-label">תחרות:</span>
+                            <span class="stat-value">בינונית</span>
+                        </div>
+                        <div class="stat-row">
+                            <span class="stat-label">מיקום:</span>
+                            <span class="stat-value">13 → יעד: 5</span>
+                        </div>
+                        <div class="stat-row">
+                            <span class="stat-label">מבקרים/חודש:</span>
+                            <span class="stat-value">66 → 308</span>
+                        </div>
+                    </div>
+                    <div class="growth-highlight">גידול של 366% בתנועה</div>
+                    <div class="improvement-text">שיפור של 8 מקומות</div>
+                </div>
+
+                <div class="keyword-card">
+                    <div class="keyword-title">מהט</div>
+                    <div class="keyword-stats">
+                        <div class="stat-row">
+                            <span class="stat-label">נפח חיפוש:</span>
+                            <span class="stat-value">3,600</span>
+                        </div>
+                        <div class="stat-row">
+                            <span class="stat-label">תחרות:</span>
+                            <span class="stat-value">גבוהה</span>
+                        </div>
+                        <div class="stat-row">
+                            <span class="stat-label">מיקום:</span>
+                            <span class="stat-value">29 → יעד: 5</span>
+                        </div>
+                        <div class="stat-row">
+                            <span class="stat-label">מבקרים/חודש:</span>
+                            <span class="stat-value">14 → 252</span>
+                        </div>
+                    </div>
+                    <div class="growth-highlight">גידול של 500% בתנועה</div>
+                    <div class="improvement-text">שיפור של 24 מקומות</div>
+                </div>
+
+                <div class="keyword-card">
+                    <div class="keyword-title">מאגר בחינות מהט</div>
+                    <div class="keyword-stats">
+                        <div class="stat-row">
+                            <span class="stat-label">נפח חיפוש:</span>
+                            <span class="stat-value">2,400</span>
+                        </div>
+                        <div class="stat-row">
+                            <span class="stat-label">תחרות:</span>
+                            <span class="stat-value">נמוכה</span>
+                        </div>
+                        <div class="stat-row">
+                            <span class="stat-label">מיקום:</span>
+                            <span class="stat-value">12 → יעד: 5</span>
+                        </div>
+                        <div class="stat-row">
+                            <span class="stat-label">מבקרים/חודש:</span>
+                            <span class="stat-value">36 → 168</span>
+                        </div>
+                    </div>
+                    <div class="growth-highlight">גידול של 366% בתנועה</div>
+                    <div class="improvement-text">שיפור של 7 מקומות</div>
+                </div>
+
+                <div class="keyword-card">
+                    <div class="keyword-title">מהט מבחנים</div>
+                    <div class="keyword-stats">
+                        <div class="stat-row">
+                            <span class="stat-label">נפח חיפוש:</span>
+                            <span class="stat-value">1,300</span>
+                        </div>
+                        <div class="stat-row">
+                            <span class="stat-label">תחרות:</span>
+                            <span class="stat-value">בינונית</span>
+                        </div>
+                        <div class="stat-row">
+                            <span class="stat-label">מיקום:</span>
+                            <span class="stat-value">13 → יעד: 5</span>
+                        </div>
+                        <div class="stat-row">
+                            <span class="stat-label">מבקרים/חודש:</span>
+                            <span class="stat-value">19 → 91</span>
+                        </div>
+                    </div>
+                    <div class="growth-highlight">גידול של 378% בתנועה</div>
+                    <div class="improvement-text">שיפור של 8 מקומות</div>
+                </div>
+
+                <div class="keyword-card">
+                    <div class="keyword-title">מינוי מנהל עבודה</div>
+                    <div class="keyword-stats">
+                        <div class="stat-row">
+                            <span class="stat-label">נפח חיפוש:</span>
+                            <span class="stat-value">1,300</span>
+                        </div>
+                        <div class="stat-row">
+                            <span class="stat-label">תחרות:</span>
+                            <span class="stat-value">בינונית</span>
+                        </div>
+                        <div class="stat-row">
+                            <span class="stat-label">מיקום:</span>
+                            <span class="stat-value">33 → יעד: 5</span>
+                        </div>
+                        <div class="stat-row">
+                            <span class="stat-label">מבקרים/חודש:</span>
+                            <span class="stat-value">5 → 91</span>
+                        </div>
+                    </div>
+                    <div class="growth-highlight">גידול של 500% בתנועה</div>
+                    <div class="improvement-text">שיפור של 28 מקומות</div>
+                </div>
+
+                <div class="keyword-card">
+                    <div class="keyword-title">בטיחות</div>
+                    <div class="keyword-stats">
+                        <div class="stat-row">
+                            <span class="stat-label">נפח חיפוש:</span>
+                            <span class="stat-value">1,300</span>
+                        </div>
+                        <div class="stat-row">
+                            <span class="stat-label">תחרות:</span>
+                            <span class="stat-value">גבוהה</span>
+                        </div>
+                        <div class="stat-row">
+                            <span class="stat-label">מיקום:</span>
+                            <span class="stat-value">44 → יעד: 5</span>
+                        </div>
+                        <div class="stat-row">
+                            <span class="stat-label">מבקרים/חודש:</span>
+                            <span class="stat-value">5 → 91</span>
+                        </div>
+                    </div>
+                    <div class="growth-highlight">גידול של 500% בתנועה</div>
+                    <div class="improvement-text">שיפור של 39 מקומות</div>
+                </div>
+
+                <div class="keyword-card">
+                    <div class="keyword-title">מה ט</div>
+                    <div class="keyword-stats">
+                        <div class="stat-row">
+                            <span class="stat-label">נפח חיפוש:</span>
+                            <span class="stat-value">1,000</span>
+                        </div>
+                        <div class="stat-row">
+                            <span class="stat-label">תחרות:</span>
+                            <span class="stat-value">נמוכה</span>
+                        </div>
+                        <div class="stat-row">
+                            <span class="stat-label">מיקום:</span>
+                            <span class="stat-value">31 → יעד: 5</span>
+                        </div>
+                        <div class="stat-row">
+                            <span class="stat-label">מבקרים/חודש:</span>
+                            <span class="stat-value">4 → 70</span>
+                        </div>
+                    </div>
+                    <div class="growth-highlight">גידול של 500% בתנועה</div>
+                    <div class="improvement-text">שיפור של 26 מקומות</div>
+                </div>
+
+                <div class="keyword-card">
+                    <div class="keyword-title">פקודת הבטיחות בעבודה</div>
+                    <div class="keyword-stats">
+                        <div class="stat-row">
+                            <span class="stat-label">נפח חיפוש:</span>
+                            <span class="stat-value">1,000</span>
+                        </div>
+                        <div class="stat-row">
+                            <span class="stat-label">תחרות:</span>
+                            <span class="stat-value">בינונית</span>
+                        </div>
+                        <div class="stat-row">
+                            <span class="stat-label">מיקום:</span>
+                            <span class="stat-value">39 → יעד: 5</span>
+                        </div>
+                        <div class="stat-row">
+                            <span class="stat-label">מבקרים/חודש:</span>
+                            <span class="stat-value">4 → 70</span>
+                        </div>
+                    </div>
+                    <div class="growth-highlight">גידול של 500% בתנועה</div>
+                    <div class="improvement-text">שיפור של 34 מקומות</div>
+                </div>
+
+                <div class="keyword-card">
+                    <div class="keyword-title">צמ״א</div>
+                    <div class="keyword-stats">
+                        <div class="stat-row">
+                            <span class="stat-label">נפח חיפוש:</span>
+                            <span class="stat-value">880</span>
+                        </div>
+                        <div class="stat-row">
+                            <span class="stat-label">תחרות:</span>
+                            <span class="stat-value">נמוכה</span>
+                        </div>
+                        <div class="stat-row">
+                            <span class="stat-label">מיקום:</span>
+                            <span class="stat-value">22 → יעד: 5</span>
+                        </div>
+                        <div class="stat-row">
+                            <span class="stat-label">מבקרים/חודש:</span>
+                            <span class="stat-value">13 → 61</span>
+                        </div>
+                    </div>
+                    <div class="growth-highlight">גידול של 369% בתנועה</div>
+                    <div class="improvement-text">שיפור של 17 מקומות</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="recommendations-section">
+            <h2 class="section-title">המלצות לשיפור</h2>
+            <ul class="recommendations-list">
+                <li>ליצור עמודי נחיתה ייעודיים למילות 'מבחן מהט' ו'מבחנים מהט' עם תוכן של 1500+ מילים כולל דוגמאות ושאלות</li>
+                <li>להטמיע Critical CSS Inline ולטעון שאר ה-CSS באופן אסינכרוני להאצת טעינה ראשונית</li>
+                <li>להוסיף Schema של FAQ לעמודים עם שאלות נפוצות על מבחני מהט ובטיחות</li>
+                <li>לבנות מדריכים מפורטים על 'פקודת הבטיחות בעבודה' ו'מינוי מנהל עבודה' עם תוכן ויזואלי</li>
+                <li>להוסיף defer/async לכל קובצי JavaScript ולמזער את הקוד ב-30% לפחות</li>
+                <li>ליצור קישורים פנימיים חכמים בין עמודי מבחנים, חומרי לימוד ומדריכים להעצמת הרלוונטיות</li>
+            </ul>
+        </div>
+
+        <div class="summary-section">
+            <h2 class="section-title">סיכום</h2>
+            <div class="summary-text">צפי לתוספת של כ-1,200 מבקרים חודשיים תוך 90 יום באמצעות מיקוד במילות מפתח בתחום מבחני מהט ובטיחות</div>
+        </div>
+
+        <div class="closing-section">
+            <div class="closing-text">בואו נקדם את האתר יחד בקהילת המקדמים המובילה בארץ.</div>
+        </div>
+    </div>
+</body>
+</html>
