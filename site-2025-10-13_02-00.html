@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>דוח פוטנציאל קידום אתרים - ReviewGuru</title>
+    <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #20b8b8;
+            --heading: #2c5f5d;
+            --secondary-text: #5a7c7b;
+            --border: #e6e6e6;
+            --card-bg: #fafafa;
+            --white: #ffffff;
+            --shadow: rgba(0, 0, 0, 0.1);
+        }
+
+        body {
+            font-family: 'Assistant', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, rgba(32, 184, 184, 0.05) 0%, rgba(44, 95, 93, 0.05) 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .hero {
+            background: var(--white);
+            border-radius: 16px;
+            padding: 40px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 20px var(--shadow);
+            text-align: center;
+            border: 1px solid var(--border);
+        }
+
+        .hero h1 {
+            color: var(--heading);
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+
+        .hero h2 {
+            color: var(--secondary-text);
+            font-size: 1.4rem;
+            font-weight: 400;
+            margin-bottom: 25px;
+        }
+
+        .domain {
+            color: var(--primary);
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+            padding: 10px 20px;
+            background: rgba(32, 184, 184, 0.1);
+            border-radius: 8px;
+            display: inline-block;
+        }
+
+        .message {
+            color: var(--secondary-text);
+            font-size: 1.1rem;
+            font-weight: 400;
+            background: var(--card-bg);
+            padding: 20px;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            margin-top: 20px;
+        }
+
+        .kpi-bar {
+            background: var(--white);
+            border-radius: 16px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 20px var(--shadow);
+            border: 1px solid var(--border);
+        }
+
+        .kpi-bar h3 {
+            color: var(--heading);
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 25px;
+            text-align: center;
+        }
+
+        .kpi-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+        }
+
+        .kpi-item {
+            text-align: center;
+            padding: 20px;
+            background: var(--card-bg);
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            transition: transform 0.3s ease;
+        }
+
+        .kpi-item:hover {
+            transform: translateY(-2px);
+        }
+
+        .kpi-value {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 8px;
+        }
+
+        .kpi-label {
+            color: var(--secondary-text);
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .progress-container {
+            margin-top: 15px;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background: var(--border);
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary), #16a085);
+            transition: width 0.3s ease;
+        }
+
+        .keywords-section {
+            background: var(--white);
+            border-radius: 16px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 20px var(--shadow);
+            border: 1px solid var(--border);
+        }
+
+        .keywords-section h3 {
+            color: var(--heading);
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 25px;
+            text-align: center;
+        }
+
+        .keywords-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .keyword-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .keyword-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 25px var(--shadow);
+        }
+
+        .keyword-title {
+            color: var(--heading);
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+
+        .keyword-stat {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+            font-size: 0.9rem;
+        }
+
+        .keyword-stat-label {
+            color: var(--secondary-text);
+            font-weight: 500;
+        }
+
+        .keyword-stat-value {
+            color: var(--heading);
+            font-weight: 600;
+        }
+
+        .growth-highlight {
+            background: rgba(32, 184, 184, 0.1);
+            color: var(--primary);
+            padding: 8px 12px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            margin-top: 10px;
+            text-align: center;
+        }
+
+        .improvement-text {
+            color: var(--secondary-text);
+            font-size: 0.85rem;
+            font-style: italic;
+            margin-top: 5px;
+        }
+
+        .recommendations {
+            background: var(--white);
+            border-radius: 16px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 20px var(--shadow);
+            border: 1px solid var(--border);
+        }
+
+        .recommendations h3 {
+            color: var(--heading);
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+
+        .recommendations ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .recommendations li {
+            padding: 15px 0;
+            border-bottom: 1px solid var(--border);
+            color: var(--secondary-text);
+            position: relative;
+            padding-right: 25px;
+        }
+
+        .recommendations li:last-child {
+            border-bottom: none;
+        }
+
+        .recommendations li::before {
+            content: "•";
+            color: var(--primary);
+            font-size: 1.5rem;
+            position: absolute;
+            right: 0;
+            top: 10px;
+        }
+
+        .summary {
+            background: var(--white);
+            border-radius: 16px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 20px var(--shadow);
+            border: 1px solid var(--border);
+        }
+
+        .summary h3 {
+            color: var(--heading);
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+
+        .summary p {
+            color: var(--secondary-text);
+            font-size: 1.1rem;
+            line-height: 1.7;
+        }
+
+        .closing {
+            background: linear-gradient(135deg, var(--primary), #16a085);
+            color: var(--white);
+            border-radius: 16px;
+            padding: 25px;
+            text-align: center;
+            box-shadow: 0 4px 20px var(--shadow);
+        }
+
+        .closing p {
+            font-size: 1.1rem;
+            font-weight: 500;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px;
+            }
+
+            .hero {
+                padding: 25px;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero h2 {
+                font-size: 1.2rem;
+            }
+
+            .kpi-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .keywords-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <section class="hero">
+            <h1>🎉 מצאנו הזדמנויות מעולות לקידום האתר שלך!</h1>
+            <h2>הנה המילים שכדאי להתמקד בהן:</h2>
+            <div class="domain">reviewguru.co.il</div>
+            <div class="message">האתר בעל פוטנציאל גבוה להגדלת תנועה אורגנית עם מיקוד במילות מפתח רלוונטיות להשוואת מחירים וביקורות</div>
+        </section>
+
+        <section class="kpi-bar">
+            <h3>מדדי ביצועים מרכזיים</h3>
+            <div class="kpi-grid">
+                <div class="kpi-item">
+                    <div class="kpi-value" aria-label="ציון כללי 100">100</div>
+                    <div class="kpi-label">ציון כללי</div>
+                    <div class="progress-container">
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 100%"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="kpi-item">
+                    <div class="kpi-value" aria-label="תנועה פוטנציאלית 1,683 מבקרים חודשיים">1,683</div>
+                    <div class="kpi-label">תנועה פוטנציאלית/חודש</div>
+                </div>
+                <div class="kpi-item">
+                    <div class="kpi-value" aria-label="10 מילות מפתח">10</div>
+                    <div class="kpi-label">מס' מילות מפתח</div>
+                </div>
+            </div>
+        </section>
+
+        <section class="keywords-section">
+            <h3>מילות מפתח מומלצות</h3>
+            <div class="keywords-grid">
+                <div class="keyword-card">
+                    <div class="keyword-title">השוואת מחירים</div>
+                    <div class="keyword-stat">
+                        <span class="keyword-stat-label">נפח חיפוש:</span>
+                        <span class="keyword-stat-value">8,100</span>
+                    </div>
+                    <div class="keyword-stat">
+                        <span class="keyword-stat-label">תחרות:</span>
+                        <span class="keyword-stat-value">גבוהה</span>
+                    </div>
+                    <div class="keyword-stat">
+                        <span class="keyword-stat-label">מיקום:</span>
+                        <span class="keyword-stat-value">50 → יעד: 3</span>
+                    </div>
+                    <div class="keyword-stat">
+                        <span class="keyword-stat-label">מבקרים/חודש:</span>
+                        <span class="keyword-stat-value">32 → 972</span>
+                    </div>
+                    <div class="growth-highlight">גידול של 500% בתנועה</div>
+                    <div class="improvement-text">שיפור של 47 מקומות</div>
+                </div>
+
+                <div class="keyword-card">
+                    <div class="keyword-title">ביקורות מוצרים</div>
+                    <div class="keyword-stat">
+                        <span class="keyword-stat-label">נפח חיפוש:</span>
+                        <span class="keyword-stat-value">2,900</span>
+                    </div>
+                    <div class="keyword-stat">
+                        <span class="keyword-stat-label">תחרות:</span>
+                        <span class="keyword-stat-value">בינונית</span>
+                    </div>
+                    <div class="keyword-stat">
+                        <span class="keyword-stat-label">מיקום:</span>
+                        <span class="keyword-stat-value">50 → יעד: 5</span>
+                    </div>
+                    <div class="keyword-stat">
+                        <span class="keyword-stat-label">מבקרים/חודש:</span>
+                        <span class="keyword-stat-value">12 → 203</span>
+                    </div>
+                    <div class="growth-highlight">גידול של 500% בתנועה</div>
+                    <div class="improvement-text">שיפור של 45 מקומות</div>
+                </div>
+
+                <div class="keyword-card">
+                    <div class="keyword-title">השוואת מוצרים</div>
+                    <div class="keyword-stat">
+                        <span class="keyword-stat-label">נפח חיפוש:</span>
+                        <span class="keyword-stat-value">1,900</span>
+                    </div>
+                    <div class="keyword-stat">
+                        <span class="keyword-stat-label">תחרות:</span>
+                        <span class="keyword-stat-value">בינונית</span>
+                    </div>
+                    <div class="keyword-stat">
+                        <span class="keyword-stat-label">מיקום:</span>
+                        <span class="keyword-stat-value">50 → יעד: 4</span>
+                    </div>
+                    <div class="keyword-stat">
+                        <span class="keyword-stat-label">מבקרים/חודש:</span>
+                        <span class="keyword-stat-value">8 → 171</span>
+                    </div>
+                    <div class="growth-highlight">גידול של 500% בתנועה</div>
+                    <div class="improvement-text">שיפור של 46 מקומות</div>
+                </div>
+
+                <div class="keyword-card">
+                    <div class="keyword-title">מדריכי קנייה</div>
+                    <div class="keyword-stat">
+                        <span class="keyword-stat-label">נפח חיפוש:</span>
+                        <span class="keyword-stat-value">1,600</span>
+                    </div>
+                    <div class="keyword-stat">
+                        <span class="keyword-stat-label">תחרות:</span>
+                        <span class="keyword-stat-value">נמוכה</span>
+                    </div>
+                    <div class="keyword-stat">
+                        <span class="keyword-stat-label">מיקום:</span>
+                        <span class="keyword-stat-value">50 → יעד: 6</span>
+                    </div>
+                    <div class="keyword-stat">
+                        <span class="keyword-stat-label">מבקרים/חודש:</span>
+                        <span class="keyword-stat-value">6 → 80</span>
+                    </div>
+                    <div class="growth-highlight">גידול של 500% בתנועה</div>
+                    <div class="improvement-text">שיפור של 44 מקומות</div>
+                </div>
+
+                <div class="keyword-card">
+                    <div class="keyword-title">המלצות קניות</div>
+                    <div class="keyword-stat">
+                        <span class="keyword-stat-label">נפח חיפוש:</span>
+                        <span class="keyword-stat-value">1,300</span>
+                    </div>
+                    <div class="keyword-stat">
+                        <span class="keyword-stat-label">תחרות:</span>
+                        <span class="keyword-stat-value">נמוכה</span>
+                    </div>
+                    <div class="keyword-stat">
+                        <span class="keyword-stat-label">מיקום:</span>
+                        <span class="keyword-stat-value">50 → יעד: 5</span>
+                    </div>
+                    <div class="keyword-stat">
+                        <span class="keyword-stat-label">מבקרים/חודש:</span>
+                        <span class="keyword-stat-value">5 → 91</span>
+                    </div>
+                    <div class="growth-highlight">גידול של 500% בתנועה</div>
+                    <div class="improvement-text">שיפור של 45 מקומות</div>
+                </div>
+
+                <div class="keyword-card">
+                    <div class="keyword-title">דירוג מוצרים</div>
+                    <div class="keyword-stat">
+                        <span class="keyword-stat-label">נפח חיפוש:</span>
+                        <span class="keyword-stat-value">880</span>
+                    </div>
+                    <div class="keyword-stat">
+                        <span class="keyword-stat-label">תחרות:</span>
+                        <span class="keyword-stat-value">בינונית</span>
+                    </div>
+                    <div class="keyword-stat">
+                        <span class="keyword-stat-label">מיקום:</span>
+                        <span class="keyword-stat-value">50 → יעד: 7</span>
+                    </div>
+                    <div class="keyword-stat">
+                        <span class="keyword-stat-label">מבקרים/חודש:</span>
+                        <span class="keyword-stat-value">4 → 44</span>
+                    </div>
+                    <div class="growth-highlight">גידול של 500% בתנועה</div>
+                    <div class="improvement-text">שיפור של 43 מקומות</div>
+                </div>
+
+                <div class="keyword-card">
+                    <div class="keyword-title">ביקורות צרכנים</div>
+                    <div class="keyword-stat">
+                        <span class="keyword-stat-label">נפח חיפוש:</span>
+                        <span class="keyword-stat-value">720</span>
+                    </div>
+                    <div class="keyword-stat">
+                        <span class="keyword-stat-label">תחרות:</span>
+                        <span class="keyword-stat-value">נמוכה</span>
+                    </div>
+                    <div class="keyword-stat">
+                        <span class="keyword-stat-label">מיקום:</span>
+                        <span class="keyword-stat-value">50 → יעד: 8</span>
+                    </div>
+                    <div class="keyword-stat">
+                        <span class="keyword-stat-label">מבקרים/חודש:</span>
+                        <span class="keyword-stat-value">3 → 22</span>
+                    </div>
+                    <div class="growth-highlight">גידול של 500% בתנועה</div>
+                    <div class="improvement-text">שיפור של 42 מקומות</div>
+                </div>
+
+                <div class="keyword-card">
+                    <div class="keyword-title">השוואת מחירים אונליין</div>
+                    <div class="keyword-stat">
+                        <span class="keyword-stat-label">נפח חיפוש:</span>
+                        <span class="keyword-stat-value">590</span>
+                    </div>
+                    <div class="keyword-stat">
+                        <span class="keyword-stat-label">תחרות:</span>
+                        <span class="keyword-stat-value">בינונית</span>
+                    </div>
+                    <div class="keyword-stat">
+                        <span class="keyword-stat-label">מיקום:</span>
+                        <span class="keyword-stat-value">50 → יעד: 6</span>
+                    </div>
+                    <div class="keyword-stat">
+                        <span class="keyword-stat-label">מבקרים/חודש:</span>
+                        <span class="keyword-stat-value">2 → 30</span>
+                    </div>
+                    <div class="growth-highlight">גידול של 500% בתנועה</div>
+                    <div class="improvement-text">שיפור של 44 מקומות</div>
+                </div>
+
+                <div class="keyword-card">
+                    <div class="keyword-title">מגזין המלצות</div>
+                    <div class="keyword-stat">
+                        <span class="keyword-stat-label">נפח חיפוש:</span>
+                        <span class="keyword-stat-value">480</span>
+                    </div>
+                    <div class="keyword-stat">
+                        <span class="keyword-stat-label">תחרות:</span>
+                        <span class="keyword-stat-value">נמוכה</span>
+                    </div>
+                    <div class="keyword-stat">
+                        <span class="keyword-stat-label">מיקום:</span>
+                        <span class="keyword-stat-value">50 → יעד: 4</span>
+                    </div>
+                    <div class="keyword-stat">
+                        <span class="keyword-stat-label">מבקרים/חודש:</span>
+                        <span class="keyword-stat-value">2 → 43</span>
+                    </div>
+                    <div class="growth-highlight">גידול של 500% בתנועה</div>
+                    <div class="improvement-text">שיפור של 46 מקומות</div>
+                </div>
+
+                <div class="keyword-card">
+                    <div class="keyword-title">חוות דעת מוצרים</div>
+                    <div class="keyword-stat">
+                        <span class="keyword-stat-label">נפח חיפוש:</span>
+                        <span class="keyword-stat-value">390</span>
+                    </div>
+                    <div class="keyword-stat">
+                        <span class="keyword-stat-label">תחרות:</span>
+                        <span class="keyword-stat-value">נמוכה</span>
+                    </div>
+                    <div class="keyword-stat">
+                        <span class="keyword-stat-label">מיקום:</span>
+                        <span class="keyword-stat-value">50 → יעד: 5</span>
+                    </div>
+                    <div class="keyword-stat">
+                        <span class="keyword-stat-label">מבקרים/חודש:</span>
+                        <span class="keyword-stat-value">2 → 27</span>
+                    </div>
+                    <div class="growth-highlight">גידול של 500% בתנועה</div>
+                    <div class="improvement-text">שיפור של 45 מקומות</div>
+                </div>
+            </div>
+        </section>
+
+        <section class="recommendations">
+            <h3>המלצות לשיפור</h3>
+            <ul>
+                <li>יצירת 10 מדריכי קנייה מקיפים (2000+ מילים) עם השוואות מפורטות בין מוצרים</li>
+                <li>הוספת מערכת ביקורות אינטראקטיבית עם Schema Review לשיפור ה-Rich Snippets</li>
+                <li>אופטימיזציה טכנית דחופה: defer/async ל-JS, Critical CSS, Lazy Loading</li>
+                <li>בניית עמודי נחיתה ממוקדים לכל קטגוריית מוצרים עם כותרות H2/H3 מאופטמות</li>
+                <li>יצירת תוכן השוואתי שבועי: 'השוואת השבוע' עם מיקוד במוצרים פופולריים</li>
+                <li>הטמעת FAQ Schema בכל עמוד מוצר עם שאלות נפוצות של צרכנים</li>
+            </ul>
+        </section>
+
+        <section class="summary">
+            <h3>סיכום</h3>
+            <p>תוך 90 יום ניתן להגדיל את התנועה האורגנית ב-1,700+ מבקרים חודשיים באמצעות מיקוד במילות מפתח רלוונטיות להשוואת מחירים וביקורות</p>
+        </section>
+
+        <section class="closing">
+            <p>בואו נקדם את האתר יחד בקהילת המקדמים המובילה בארץ.</p>
+        </section>
+    </div>
+</body>
+</html>
