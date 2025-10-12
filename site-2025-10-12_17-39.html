@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>דוח פוטנציאל קידום אתרים - ashlomo.co.il</title>
+    <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Assistant', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #f8fdfd 0%, #f0f9f9 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .hero {
+            text-align: center;
+            margin-bottom: 50px;
+            padding: 40px 20px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            border: 1px solid #e6e6e6;
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            color: #2c5f5d;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        .hero h2 {
+            font-size: 1.5rem;
+            color: #5a7c7b;
+            margin-bottom: 25px;
+            font-weight: 400;
+        }
+
+        .domain {
+            display: inline-block;
+            background: #20b8b8;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 25px;
+            font-weight: 600;
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+        }
+
+        .message {
+            font-size: 1.1rem;
+            color: #2c5f5d;
+            background: #f0f9f9;
+            padding: 20px;
+            border-radius: 10px;
+            border-right: 4px solid #20b8b8;
+            margin-top: 20px;
+        }
+
+        .kpi-bar {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            border: 1px solid #e6e6e6;
+            margin-bottom: 40px;
+        }
+
+        .kpi-bar h3 {
+            text-align: center;
+            color: #2c5f5d;
+            margin-bottom: 30px;
+            font-size: 1.8rem;
+        }
+
+        .kpi-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+        }
+
+        .kpi-item {
+            text-align: center;
+            padding: 20px;
+            background: #fafafa;
+            border-radius: 10px;
+            border: 1px solid #e6e6e6;
+        }
+
+        .kpi-value {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #20b8b8;
+            display: block;
+        }
+
+        .kpi-label {
+            color: #5a7c7b;
+            margin-top: 5px;
+            font-weight: 600;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background: #e6e6e6;
+            border-radius: 4px;
+            margin-top: 10px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #20b8b8, #1a9d9d);
+            border-radius: 4px;
+            transition: width 0.3s ease;
+        }
+
+        .keywords-section {
+            margin-bottom: 40px;
+        }
+
+        .keywords-section h3 {
+            text-align: center;
+            color: #2c5f5d;
+            margin-bottom: 30px;
+            font-size: 1.8rem;
+        }
+
+        .keywords-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 25px;
+        }
+
+        .keyword-card {
+            background: white;
+            border-radius: 10px;
+            padding: 25px;
+            box-shadow: 0 3px 15px rgba(0,0,0,0.06);
+            border: 1px solid #e6e6e6;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .keyword-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 25px rgba(0,0,0,0.1);
+        }
+
+        .keyword-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #2c5f5d;
+            margin-bottom: 15px;
+            border-bottom: 2px solid #20b8b8;
+            padding-bottom: 5px;
+        }
+
+        .keyword-metric {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+            color: #5a7c7b;
+        }
+
+        .keyword-metric strong {
+            color: #2c5f5d;
+        }
+
+        .competition-low { color: #28a745; }
+        .competition-medium { color: #ffc107; }
+        .competition-high { color: #dc3545; }
+
+        .growth-highlight {
+            background: linear-gradient(135deg, #20b8b8, #1a9d9d);
+            color: white;
+            padding: 10px 15px;
+            border-radius: 8px;
+            margin-top: 10px;
+            text-align: center;
+            font-weight: 600;
+        }
+
+        .improvement-text {
+            color: #28a745;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        .recommendations {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            border: 1px solid #e6e6e6;
+            margin-bottom: 40px;
+        }
+
+        .recommendations h3 {
+            color: #2c5f5d;
+            margin-bottom: 20px;
+            font-size: 1.8rem;
+        }
+
+        .recommendations ul {
+            list-style: none;
+        }
+
+        .recommendations li {
+            margin-bottom: 15px;
+            padding: 15px;
+            background: #fafafa;
+            border-radius: 8px;
+            border-right: 4px solid #20b8b8;
+            position: relative;
+        }
+
+        .recommendations li::before {
+            content: "✓";
+            color: #20b8b8;
+            font-weight: bold;
+            margin-left: 10px;
+        }
+
+        .summary {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            border: 1px solid #e6e6e6;
+            margin-bottom: 40px;
+        }
+
+        .summary h3 {
+            color: #2c5f5d;
+            margin-bottom: 20px;
+            font-size: 1.8rem;
+        }
+
+        .summary-text {
+            font-size: 1.1rem;
+            color: #2c5f5d;
+            line-height: 1.8;
+            background: #f0f9f9;
+            padding: 20px;
+            border-radius: 10px;
+            border-right: 4px solid #20b8b8;
+        }
+
+        .closing {
+            text-align: center;
+            background: linear-gradient(135deg, #20b8b8, #1a9d9d);
+            color: white;
+            padding: 25px;
+            border-radius: 15px;
+            font-size: 1.2rem;
+            font-weight: 600;
+            box-shadow: 0 5px 20px rgba(32, 184, 184, 0.3);
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2rem; }
+            .hero h2 { font-size: 1.2rem; }
+            .kpi-grid { grid-template-columns: 1fr; }
+            .keywords-grid { grid-template-columns: 1fr; }
+            .container { padding: 15px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="hero">
+            <h1>🎉 מצאנו הזדמנויות מעולות לקידום האתר שלך!</h1>
+            <h2>הנה המילים שכדאי להתמקד בהן:</h2>
+            <div class="domain">ashlomo.co.il</div>
+            <div class="message">האתר ממוקם היטב בתחום עבודות הגבס והחיפויים עם פוטנציאל לגידול של פי 8 בתנועה</div>
+        </div>
+
+        <div class="kpi-bar">
+            <h3>מדדי ביצועים מרכזיים</h3>
+            <div class="kpi-grid">
+                <div class="kpi-item">
+                    <span class="kpi-value" aria-label="ציון כללי">494</span>
+                    <div class="kpi-label">ציון כללי</div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 100%"></div>
+                    </div>
+                </div>
+                <div class="kpi-item">
+                    <span class="kpi-value" aria-label="תנועה פוטנציאלית חודשית">2,688</span>
+                    <div class="kpi-label">תנועה פוטנציאלית/חודש</div>
+                </div>
+                <div class="kpi-item">
+                    <span class="kpi-value" aria-label="מספר מילות מפתח">10</span>
+                    <div class="kpi-label">מס' מילות מפתח</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="keywords-section">
+            <h3>מילות המפתח המומלצות</h3>
+            <div class="keywords-grid">
+                <div class="keyword-card">
+                    <div class="keyword-title">חיפוי קירות</div>
+                    <div class="keyword-metric">
+                        <span>נפח חיפוש:</span>
+                        <strong>14,800</strong>
+                    </div>
+                    <div class="keyword-metric">
+                        <span>תחרות:</span>
+                        <strong class="competition-medium">בינונית</strong>
+                    </div>
+                    <div class="keyword-metric">
+                        <span>מיקום:</span>
+                        <strong>50 → יעד: 5</strong>
+                    </div>
+                    <div class="keyword-metric">
+                        <span>מבקרים/חודש:</span>
+                        <strong>59 → 1,036</strong>
+                    </div>
+                    <div class="growth-highlight">גידול של 500% בתנועה</div>
+                    <div class="improvement-text">שיפור של 45 מקומות</div>
+                </div>
+
+                <div class="keyword-card">
+                    <div class="keyword-title">חיפוי קיר פולימרי</div>
+                    <div class="keyword-metric">
+                        <span>נפח חיפוש:</span>
+                        <strong>6,600</strong>
+                    </div>
+                    <div class="keyword-metric">
+                        <span>תחרות:</span>
+                        <strong class="competition-low">נמוכה</strong>
+                    </div>
+                    <div class="keyword-metric">
+                        <span>מיקום:</span>
+                        <strong>47 → יעד: 5</strong>
+                    </div>
+                    <div class="keyword-metric">
+                        <span>מבקרים/חודש:</span>
+                        <strong>26 → 462</strong>
+                    </div>
+                    <div class="growth-highlight">גידול של 500% בתנועה</div>
+                    <div class="improvement-text">שיפור של 42 מקומות</div>
+                </div>
+
+                <div class="keyword-card">
+                    <div class="keyword-title">קרניז לקיר</div>
+                    <div class="keyword-metric">
+                        <span>נפח חיפוש:</span>
+                        <strong>3,600</strong>
+                    </div>
+                    <div class="keyword-metric">
+                        <span>תחרות:</span>
+                        <strong class="competition-low">נמוכה</strong>
+                    </div>
+                    <div class="keyword-metric">
+                        <span>מיקום:</span>
+                        <strong>31 → יעד: 5</strong>
+                    </div>
+                    <div class="keyword-metric">
+                        <span>מבקרים/חודש:</span>
+                        <strong>14 → 252</strong>
+                    </div>
+                    <div class="growth-highlight">גידול של 500% בתנועה</div>
+                    <div class="improvement-text">שיפור של 26 מקומות</div>
+                </div>
+
+                <div class="keyword-card">
+                    <div class="keyword-title">ספריית קודש</div>
+                    <div class="keyword-metric">
+                        <span>נפח חיפוש:</span>
+                        <strong>2,900</strong>
+                    </div>
+                    <div class="keyword-metric">
+                        <span>תחרות:</span>
+                        <strong class="competition-low">נמוכה</strong>
+                    </div>
+                    <div class="keyword-metric">
+                        <span>מיקום:</span>
+                        <strong>34 → יעד: 5</strong>
+                    </div>
+                    <div class="keyword-metric">
+                        <span>מבקרים/חודש:</span>
+                        <strong>12 → 203</strong>
+                    </div>
+                    <div class="growth-highlight">גידול של 500% בתנועה</div>
+                    <div class="improvement-text">שיפור של 29 מקומות</div>
+                </div>
+
+                <div class="keyword-card">
+                    <div class="keyword-title">ספריה לסלון</div>
+                    <div class="keyword-metric">
+                        <span>נפח חיפוש:</span>
+                        <strong>1,900</strong>
+                    </div>
+                    <div class="keyword-metric">
+                        <span>תחרות:</span>
+                        <strong class="competition-medium">בינונית</strong>
+                    </div>
+                    <div class="keyword-metric">
+                        <span>מיקום:</span>
+                        <strong>40 → יעד: 5</strong>
+                    </div>
+                    <div class="keyword-metric">
+                        <span>מבקרים/חודש:</span>
+                        <strong>8 → 133</strong>
+                    </div>
+                    <div class="growth-highlight">גידול של 500% בתנועה</div>
+                    <div class="improvement-text">שיפור של 35 מקומות</div>
+                </div>
+
+                <div class="keyword-card">
+                    <div class="keyword-title">תקרה אקוסטית</div>
+                    <div class="keyword-metric">
+                        <span>נפח חיפוש:</span>
+                        <strong>1,900</strong>
+                    </div>
+                    <div class="keyword-metric">
+                        <span>תחרות:</span>
+                        <strong class="competition-low">נמוכה</strong>
+                    </div>
+                    <div class="keyword-metric">
+                        <span>מיקום:</span>
+                        <strong>42 → יעד: 5</strong>
+                    </div>
+                    <div class="keyword-metric">
+                        <span>מבקרים/חודש:</span>
+                        <strong>8 → 133</strong>
+                    </div>
+                    <div class="growth-highlight">גידול של 500% בתנועה</div>
+                    <div class="improvement-text">שיפור של 37 מקומות</div>
+                </div>
+
+                <div class="keyword-card">
+                    <div class="keyword-title">חיפוי קירות פנים</div>
+                    <div class="keyword-metric">
+                        <span>נפח חיפוש:</span>
+                        <strong>1,900</strong>
+                    </div>
+                    <div class="keyword-metric">
+                        <span>תחרות:</span>
+                        <strong class="competition-medium">בינונית</strong>
+                    </div>
+                    <div class="keyword-metric">
+                        <span>מיקום:</span>
+                        <strong>50 → יעד: 5</strong>
+                    </div>
+                    <div class="keyword-metric">
+                        <span>מבקרים/חודש:</span>
+                        <strong>8 → 133</strong>
+                    </div>
+                    <div class="growth-highlight">גידול של 500% בתנועה</div>
+                    <div class="improvement-text">שיפור של 45 מקומות</div>
+                </div>
+
+                <div class="keyword-card">
+                    <div class="keyword-title">קבלן גבס ירושלים</div>
+                    <div class="keyword-metric">
+                        <span>נפח חיפוש:</span>
+                        <strong>1,600</strong>
+                    </div>
+                    <div class="keyword-metric">
+                        <span>תחרות:</span>
+                        <strong class="competition-high">גבוהה</strong>
+                    </div>
+                    <div class="keyword-metric">
+                        <span>מיקום:</span>
+                        <strong>50 → יעד: 5</strong>
+                    </div>
+                    <div class="keyword-metric">
+                        <span>מבקרים/חודש:</span>
+                        <strong>6 → 112</strong>
+                    </div>
+                    <div class="growth-highlight">גידול של 500% בתנועה</div>
+                    <div class="improvement-text">שיפור של 45 מקומות</div>
+                </div>
+
+                <div class="keyword-card">
+                    <div class="keyword-title">חיפוי קיר זול</div>
+                    <div class="keyword-metric">
+                        <span>נפח חיפוש:</span>
+                        <strong>1,600</strong>
+                    </div>
+                    <div class="keyword-metric">
+                        <span>תחרות:</span>
+                        <strong class="competition-medium">בינונית</strong>
+                    </div>
+                    <div class="keyword-metric">
+                        <span>מיקום:</span>
+                        <strong>21 → יעד: 5</strong>
+                    </div>
+                    <div class="keyword-metric">
+                        <span>מבקרים/חודש:</span>
+                        <strong>24 → 112</strong>
+                    </div>
+                    <div class="growth-highlight">גידול של 366% בתנועה</div>
+                    <div class="improvement-text">שיפור של 16 מקומות</div>
+                </div>
+
+                <div class="keyword-card">
+                    <div class="keyword-title">חיפוי קיר סלון</div>
+                    <div class="keyword-metric">
+                        <span>נפח חיפוש:</span>
+                        <strong>1,600</strong>
+                    </div>
+                    <div class="keyword-metric">
+                        <span>תחרות:</span>
+                        <strong class="competition-low">נמוכה</strong>
+                    </div>
+                    <div class="keyword-metric">
+                        <span>מיקום:</span>
+                        <strong>31 → יעד: 5</strong>
+                    </div>
+                    <div class="keyword-metric">
+                        <span>מבקרים/חודש:</span>
+                        <strong>6 → 112</strong>
+                    </div>
+                    <div class="growth-highlight">גידול של 500% בתנועה</div>
+                    <div class="improvement-text">שיפור של 26 מקומות</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="recommendations">
+            <h3>המלצות לשיפור</h3>
+            <ul>
+                <li>צור דפי נחיתה ייעודיים למילות המפתח העיקריות: 'חיפוי קירות', 'ספריית קודש', 'תקרה אקוסטית'</li>
+                <li>הוסף גלריית עבודות עם תיאורים מפורטים ו-Alt טקסט ממוקד מילות מפתח</li>
+                <li>פרסם 4 מאמרי בלוג חודשיים על טרנדים בחיפוי קירות ופתרונות גבס</li>
+                <li>בנה 20 קישורים איכותיים מאתרי עיצוב ובנייה ישראליים</li>
+                <li>הוסף עמוד FAQ עם 15+ שאלות נפוצות על עבודות גבס וחיפויים</li>
+                <li>שלב ביקורות לקוחות עם Schema Review לשיפור ה-CTR</li>
+            </ul>
+        </div>
+
+        <div class="summary">
+            <h3>סיכום</h3>
+            <div class="summary-text">
+                צפי לגידול של כ-2,500 מבקרים חודשיים נוספים תוך 90 יום באמצעות מיקוד במילות מפתח רלוונטיות
+            </div>
+        </div>
+
+        <div class="closing">
+            בואו נקדם את האתר יחד בקהילת המקדמים המובילה בארץ.
+        </div>
+    </div>
+</body>
+</html>
