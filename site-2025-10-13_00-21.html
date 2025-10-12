@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>דוח פוטנציאל קידום אתרים - mantaraysailing.co.il</title>
+    <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Assistant', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f8f9fa;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .hero {
+            background: linear-gradient(135deg, #20b8b8 0%, #2c5f5d 100%);
+            color: white;
+            padding: 60px 0;
+            text-align: center;
+        }
+        
+        .hero h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+        
+        .hero .subtitle {
+            font-size: 1.3rem;
+            margin-bottom: 30px;
+            font-weight: 400;
+        }
+        
+        .domain-info {
+            background: rgba(255,255,255,0.1);
+            padding: 20px;
+            border-radius: 12px;
+            margin: 20px 0;
+            backdrop-filter: blur(10px);
+        }
+        
+        .domain-name {
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+        
+        .message {
+            font-size: 1.1rem;
+            line-height: 1.7;
+        }
+        
+        .kpi-section {
+            background: white;
+            margin: -40px auto 40px;
+            padding: 40px;
+            border-radius: 16px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+            max-width: 900px;
+        }
+        
+        .kpi-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+        
+        .kpi-item {
+            text-align: center;
+        }
+        
+        .kpi-value {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #20b8b8;
+            margin-bottom: 8px;
+        }
+        
+        .kpi-label {
+            font-size: 1rem;
+            color: #5a7c7b;
+            font-weight: 500;
+        }
+        
+        .progress-container {
+            margin-top: 15px;
+        }
+        
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background: #e6e6e6;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #20b8b8, #2c5f5d);
+            border-radius: 4px;
+            transition: width 0.3s ease;
+        }
+        
+        .section {
+            margin: 60px 0;
+        }
+        
+        .section-title {
+            font-size: 2rem;
+            font-weight: 600;
+            color: #2c5f5d;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        
+        .keywords-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 24px;
+            margin-top: 40px;
+        }
+        
+        .keyword-card {
+            background: #fafafa;
+            border: 1px solid #e6e6e6;
+            border-radius: 12px;
+            padding: 24px;
+            transition: all 0.3s ease;
+        }
+        
+        .keyword-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 24px rgba(32, 184, 184, 0.15);
+            border-color: #20b8b8;
+        }
+        
+        .keyword-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: #2c5f5d;
+            margin-bottom: 16px;
+        }
+        
+        .keyword-metric {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+            font-size: 0.95rem;
+        }
+        
+        .metric-label {
+            color: #5a7c7b;
+            font-weight: 500;
+        }
+        
+        .metric-value {
+            font-weight: 600;
+            color: #333;
+        }
+        
+        .growth-highlight {
+            background: linear-gradient(135deg, #20b8b8, #2c5f5d);
+            color: white;
+            padding: 12px 16px;
+            border-radius: 8px;
+            margin-top: 16px;
+            font-weight: 600;
+            text-align: center;
+        }
+        
+        .improvement-text {
+            color: #5a7c7b;
+            font-size: 0.9rem;
+            margin-top: 8px;
+            font-style: italic;
+        }
+        
+        .recommendations {
+            background: white;
+            border-radius: 16px;
+            padding: 40px;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+        }
+        
+        .recommendations ul {
+            list-style: none;
+        }
+        
+        .recommendations li {
+            position: relative;
+            padding-right: 30px;
+            margin-bottom: 16px;
+            line-height: 1.7;
+            font-size: 1.05rem;
+        }
+        
+        .recommendations li::before {
+            content: '•';
+            position: absolute;
+            right: 0;
+            color: #20b8b8;
+            font-weight: 700;
+            font-size: 1.2em;
+        }
+        
+        .summary {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e6f3f3 100%);
+            border-radius: 16px;
+            padding: 40px;
+            border: 2px solid #20b8b8;
+        }
+        
+        .summary-text {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #2c5f5d;
+            font-weight: 500;
+        }
+        
+        .closing {
+            background: #2c5f5d;
+            color: white;
+            text-align: center;
+            padding: 30px;
+            margin-top: 60px;
+            border-radius: 12px;
+        }
+        
+        .closing-text {
+            font-size: 1.2rem;
+            font-weight: 500;
+        }
+        
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .hero .subtitle {
+                font-size: 1.1rem;
+            }
+            
+            .kpi-section {
+                margin: -20px 20px 40px;
+                padding: 30px 20px;
+            }
+            
+            .keywords-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .kpi-value {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="hero">
+        <div class="container">
+            <h1>🎉 מצאנו הזדמנויות מעולות לקידום האתר שלך!</h1>
+            <div class="subtitle">הנה המילים שכדאי להתמקד בהן:</div>
+            
+            <div class="domain-info">
+                <div class="domain-name">mantaraysailing.co.il</div>
+                <div class="message">זוהו הזדמנויות משמעותיות לצמיחה בתחום בית ספר לשייט עם פוטנציאל ל-580% גידול בתנועה</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="kpi-section">
+            <div class="kpi-grid">
+                <div class="kpi-item">
+                    <div class="kpi-value" aria-label="ציון כללי">480</div>
+                    <div class="kpi-label">ציון כללי</div>
+                    <div class="progress-container">
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 100%"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="kpi-item">
+                    <div class="kpi-value" aria-label="תנועה פוטנציאלית">165</div>
+                    <div class="kpi-label">תנועה פוטנציאלית/חודש</div>
+                </div>
+                <div class="kpi-item">
+                    <div class="kpi-value" aria-label="מספר מילות מפתח">10</div>
+                    <div class="kpi-label">מס' מילות מפתח</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2 class="section-title">מילות מפתח מומלצות</h2>
+            
+            <div class="keywords-grid">
+                <div class="keyword-card">
+                    <div class="keyword-title">קורס סקיפר</div>
+                    <div class="keyword-metric">
+                        <span class="metric-label">נפח חיפוש:</span>
+                        <span class="metric-value">390</span>
+                    </div>
+                    <div class="keyword-metric">
+                        <span class="metric-label">תחרות:</span>
+                        <span class="metric-value">גבוהה</span>
+                    </div>
+                    <div class="keyword-metric">
+                        <span class="metric-label">מיקום:</span>
+                        <span class="metric-value">50 → יעד: 3</span>
+                    </div>
+                    <div class="keyword-metric">
+                        <span class="metric-label">מבקרים/חודש:</span>
+                        <span class="metric-value">2 → 47</span>
+                    </div>
+                    <div class="growth-highlight">גידול של 500% בתנועה</div>
+                    <div class="improvement-text">שיפור של 47 מקומות</div>
+                </div>
+
+                <div class="keyword-card">
+                    <div class="keyword-title">רישיון משיט 30</div>
+                    <div class="keyword-metric">
+                        <span class="metric-label">נפח חיפוש:</span>
+                        <span class="metric-value">320</span>
+                    </div>
+                    <div class="keyword-metric">
+                        <span class="metric-label">תחרות:</span>
+                        <span class="metric-value">גבוהה</span>
+                    </div>
+                    <div class="keyword-metric">
+                        <span class="metric-label">מיקום:</span>
+                        <span class="metric-value">50 → יעד: 3</span>
+                    </div>
+                    <div class="keyword-metric">
+                        <span class="metric-label">מבקרים/חודש:</span>
+                        <span class="metric-value">1 → 38</span>
+                    </div>
+                    <div class="growth-highlight">גידול של 500% בתנועה</div>
+                    <div class="improvement-text">שיפור של 47 מקומות</div>
+                </div>
+
+                <div class="keyword-card">
+                    <div class="keyword-title">בית ספר לשייט</div>
+                    <div class="keyword-metric">
+                        <span class="metric-label">נפח חיפוש:</span>
+                        <span class="metric-value">260</span>
+                    </div>
+                    <div class="keyword-metric">
+                        <span class="metric-label">תחרות:</span>
+                        <span class="metric-value">בינונית</span>
+                    </div>
+                    <div class="keyword-metric">
+                        <span class="metric-label">מיקום:</span>
+                        <span class="metric-value">50 → יעד: 4</span>
+                    </div>
+                    <div class="keyword-metric">
+                        <span class="metric-label">מבקרים/חודש:</span>
+                        <span class="metric-value">1 → 23</span>
+                    </div>
+                    <div class="growth-highlight">גידול של 500% בתנועה</div>
+                    <div class="improvement-text">שיפור של 46 מקומות</div>
+                </div>
+
+                <div class="keyword-card">
+                    <div class="keyword-title">קורס משיט 12</div>
+                    <div class="keyword-metric">
+                        <span class="metric-label">נפח חיפוש:</span>
+                        <span class="metric-value">210</span>
+                    </div>
+                    <div class="keyword-metric">
+                        <span class="metric-label">תחרות:</span>
+                        <span class="metric-value">בינונית</span>
+                    </div>
+                    <div class="keyword-metric">
+                        <span class="metric-label">מיקום:</span>
+                        <span class="metric-value">50 → יעד: 5</span>
+                    </div>
+                    <div class="keyword-metric">
+                        <span class="metric-label">מבקרים/חודש:</span>
+                        <span class="metric-value">1 → 15</span>
+                    </div>
+                    <div class="growth-highlight">גידול של 500% בתנועה</div>
+                    <div class="improvement-text">שיפור של 45 מקומות</div>
+                </div>
+
+                <div class="keyword-card">
+                    <div class="keyword-title">רישיון סירת מנוע</div>
+                    <div class="keyword-metric">
+                        <span class="metric-label">נפח חיפוש:</span>
+                        <span class="metric-value">170</span>
+                    </div>
+                    <div class="keyword-metric">
+                        <span class="metric-label">תחרות:</span>
+                        <span class="metric-value">בינונית</span>
+                    </div>
+                    <div class="keyword-metric">
+                        <span class="metric-label">מיקום:</span>
+                        <span class="metric-value">50 → יעד: 5</span>
+                    </div>
+                    <div class="keyword-metric">
+                        <span class="metric-label">מבקרים/חודש:</span>
+                        <span class="metric-value">1 → 12</span>
+                    </div>
+                    <div class="growth-highlight">גידול של 500% בתנועה</div>
+                    <div class="improvement-text">שיפור של 45 מקומות</div>
+                </div>
+
+                <div class="keyword-card">
+                    <div class="keyword-title">קורס אופנוע ים</div>
+                    <div class="keyword-metric">
+                        <span class="metric-label">נפח חיפוש:</span>
+                        <span class="metric-value">70</span>
+                    </div>
+                    <div class="keyword-metric">
+                        <span class="metric-label">תחרות:</span>
+                        <span class="metric-value">נמוכה</span>
+                    </div>
+                    <div class="keyword-metric">
+                        <span class="metric-label">מיקום:</span>
+                        <span class="metric-value">33 → יעד: 5</span>
+                    </div>
+                    <div class="keyword-metric">
+                        <span class="metric-label">מבקרים/חודש:</span>
+                        <span class="metric-value">1 → 5</span>
+                    </div>
+                    <div class="growth-highlight">גידול של 400% בתנועה</div>
+                    <div class="improvement-text">שיפור של 28 מקומות</div>
+                </div>
+
+                <div class="keyword-card">
+                    <div class="keyword-title">השכרת יאכטה הרצליה</div>
+                    <div class="keyword-metric">
+                        <span class="metric-label">נפח חיפוש:</span>
+                        <span class="metric-value">140</span>
+                    </div>
+                    <div class="keyword-metric">
+                        <span class="metric-label">תחרות:</span>
+                        <span class="metric-value">גבוהה</span>
+                    </div>
+                    <div class="keyword-metric">
+                        <span class="metric-label">מיקום:</span>
+                        <span class="metric-value">50 → יעד: 6</span>
+                    </div>
+                    <div class="keyword-metric">
+                        <span class="metric-label">מבקרים/חודש:</span>
+                        <span class="metric-value">1 → 7</span>
+                    </div>
+                    <div class="growth-highlight">גידול של 500% בתנועה</div>
+                    <div class="improvement-text">שיפור של 44 מקומות</div>
+                </div>
+
+                <div class="keyword-card">
+                    <div class="keyword-title">קורס ניווט ימי</div>
+                    <div class="keyword-metric">
+                        <span class="metric-label">נפח חיפוש:</span>
+                        <span class="metric-value">90</span>
+                    </div>
+                    <div class="keyword-metric">
+                        <span class="metric-label">תחרות:</span>
+                        <span class="metric-value">נמוכה</span>
+                    </div>
+                    <div class="keyword-metric">
+                        <span class="metric-label">מיקום:</span>
+                        <span class="metric-value">50 → יעד: 7</span>
+                    </div>
+                    <div class="keyword-metric">
+                        <span class="metric-label">מבקרים/חודש:</span>
+                        <span class="metric-value">0 → 5</span>
+                    </div>
+                    <div class="growth-highlight">גידול של 500% בתנועה</div>
+                    <div class="improvement-text">שיפור של 43 מקומות</div>
+                </div>
+
+                <div class="keyword-card">
+                    <div class="keyword-title">לימוד אופנוע ים</div>
+                    <div class="keyword-metric">
+                        <span class="metric-label">נפח חיפוש:</span>
+                        <span class="metric-value">110</span>
+                    </div>
+                    <div class="keyword-metric">
+                        <span class="metric-label">תחרות:</span>
+                        <span class="metric-value">נמוכה</span>
+                    </div>
+                    <div class="keyword-metric">
+                        <span class="metric-label">מיקום:</span>
+                        <span class="metric-value">36 → יעד: 5</span>
+                    </div>
+                    <div class="keyword-metric">
+                        <span class="metric-label">מבקרים/חודש:</span>
+                        <span class="metric-value">2 → 8</span>
+                    </div>
+                    <div class="growth-highlight">גידול של 300% בתנועה</div>
+                    <div class="improvement-text">שיפור של 31 מקומות</div>
+                </div>
+
+                <div class="keyword-card">
+                    <div class="keyword-title">חופשת שייט ביוון</div>
+                    <div class="keyword-metric">
+                        <span class="metric-label">נפח חיפוש:</span>
+                        <span class="metric-value">110</span>
+                    </div>
+                    <div class="keyword-metric">
+                        <span class="metric-label">תחרות:</span>
+                        <span class="metric-value">בינונית</span>
+                    </div>
+                    <div class="keyword-metric">
+                        <span class="metric-label">מיקום:</span>
+                        <span class="metric-value">50 → יעד: 8</span>
+                    </div>
+                    <div class="keyword-metric">
+                        <span class="metric-label">מבקרים/חודש:</span>
+                        <span class="metric-value">0 → 3</span>
+                    </div>
+                    <div class="growth-highlight">גידול של 500% בתנועה</div>
+                    <div class="improvement-text">שיפור של 42 מקומות</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2 class="section-title">המלצות לשיפור</h2>
+            <div class="recommendations">
+                <ul>
+                    <li>צור עמוד נחיתה ייעודי לכל קורס (סקיפר, משיט 30, משיט 12) עם תוכן מעמיק 1,500+ מילים</li>
+                    <li>הוסף בלוג עם מדריכים: 'איך להוציא רישיון משיט', 'עלויות קורס סקיפר', 'טיפים למבחן'</li>
+                    <li>צלם וידאו של שיעור מעשי והטמע ביוטיוב ובאתר עם Video Schema</li>
+                    <li>בנה עמוד FAQ מקיף עם 20+ שאלות נפוצות והטמע FAQ Schema</li>
+                    <li>צור קישורים מפורומים ימיים ישראלים ומקבוצות פייסבוק רלוונטיות</li>
+                    <li>הוסף ביקורות ודירוגים של תלמידים עם Review Schema והצג בולט בעמוד הבית</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2 class="section-title">סיכום</h2>
+            <div class="summary">
+                <div class="summary-text">
+                    פוטנציאל לגידול של כ-165 מבקרים חודשיים נוספים תוך 90 יום על ידי מיקוד במילות מפתח בתחום קורסי שייט ורישיונות משיט
+                </div>
+            </div>
+        </div>
+
+        <div class="closing">
+            <div class="closing-text">
+                בואו נקדם את האתר יחד בקהילת המקדמים המובילה בארץ.
+            </div>
+        </div>
+    </div>
+</body>
+</html>
