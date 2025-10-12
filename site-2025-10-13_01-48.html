@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>דוח פוטנציאל קידום אתרים</title>
+    <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Assistant', sans-serif;
+            background-color: #ffffff;
+            color: #333;
+            line-height: 1.6;
+            direction: rtl;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .hero {
+            background: linear-gradient(135deg, #20b8b8 0%, #2c5f5d 100%);
+            color: white;
+            padding: 40px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+
+        .hero h2 {
+            font-size: 1.5rem;
+            font-weight: 400;
+            margin-bottom: 20px;
+            opacity: 0.9;
+        }
+
+        .hero .domain {
+            font-size: 1.25rem;
+            background: rgba(255,255,255,0.2);
+            padding: 10px 20px;
+            border-radius: 25px;
+            display: inline-block;
+            margin-bottom: 15px;
+        }
+
+        .hero .message {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        .kpi-bar {
+            background: #fafafa;
+            border: 1px solid #e6e6e6;
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 30px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .kpi-item {
+            text-align: center;
+        }
+
+        .kpi-value {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #20b8b8;
+            display: block;
+        }
+
+        .kpi-label {
+            font-size: 1rem;
+            color: #5a7c7b;
+            margin-top: 5px;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background: #e6e6e6;
+            border-radius: 4px;
+            overflow: hidden;
+            margin-top: 10px;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: #20b8b8;
+            transition: width 0.3s ease;
+        }
+
+        .keywords-section h2 {
+            font-size: 2rem;
+            color: #2c5f5d;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .keywords-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+
+        .keyword-card {
+            background: #fafafa;
+            border: 1px solid #e6e6e6;
+            border-radius: 12px;
+            padding: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .keyword-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+            border-color: #20b8b8;
+        }
+
+        .keyword-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: #2c5f5d;
+            margin-bottom: 15px;
+        }
+
+        .keyword-info {
+            margin-bottom: 8px;
+            color: #5a7c7b;
+        }
+
+        .keyword-info.growth {
+            color: #20b8b8;
+            font-weight: 600;
+            font-size: 1.05rem;
+        }
+
+        .keyword-info.small {
+            font-size: 0.9rem;
+        }
+
+        .recommendations-section, .summary-section {
+            background: #fafafa;
+            border: 1px solid #e6e6e6;
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 30px;
+        }
+
+        .recommendations-section h2, .summary-section h2 {
+            font-size: 1.75rem;
+            color: #2c5f5d;
+            margin-bottom: 20px;
+        }
+
+        .recommendations-list {
+            list-style: none;
+        }
+
+        .recommendations-list li {
+            margin-bottom: 12px;
+            padding-right: 20px;
+            position: relative;
+            color: #5a7c7b;
+        }
+
+        .recommendations-list li::before {
+            content: "•";
+            color: #20b8b8;
+            position: absolute;
+            right: 0;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        .closing {
+            background: linear-gradient(135deg, #2c5f5d 0%, #20b8b8 100%);
+            color: white;
+            padding: 25px;
+            border-radius: 12px;
+            text-align: center;
+            font-size: 1.1rem;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .hero h2 {
+                font-size: 1.25rem;
+            }
+            
+            .kpi-bar {
+                grid-template-columns: 1fr;
+            }
+            
+            .keywords-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <section class="hero">
+            <h1>🎉 מצאנו הזדמנויות מעולות לקידום האתר שלך!</h1>
+            <h2>הנה המילים שכדאי להתמקד בהן:</h2>
+            <div class="domain">topa.co.il</div>
+            <div class="message">האתר מדורג היטב במילות מפתח תחרותיות. פוטנציאל גידול של 380% בתנועה תוך 90 יום</div>
+        </section>
+
+        <section class="kpi-bar">
+            <div class="kpi-item">
+                <span class="kpi-value" aria-label="ציון כללי">100</span>
+                <div class="kpi-label">ציון כללי</div>
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: 100%"></div>
+                </div>
+            </div>
+            <div class="kpi-item">
+                <span class="kpi-value" aria-label="תנועה פוטנציאלית חודשית">488</span>
+                <div class="kpi-label">תנועה פוטנציאלית/חודש</div>
+            </div>
+            <div class="kpi-item">
+                <span class="kpi-value" aria-label="מספר מילות מפתח">10</span>
+                <div class="kpi-label">מס' מילות מפתח</div>
+            </div>
+        </section>
+
+        <section class="keywords-section">
+            <h2>מילות המפתח המומלצות</h2>
+            <div class="keywords-grid">
+                <div class="keyword-card">
+                    <div class="keyword-title">משרד פרסום</div>
+                    <div class="keyword-info">נפח חיפוש: 1,300</div>
+                    <div class="keyword-info">תחרות: גבוהה</div>
+                    <div class="keyword-info small">מיקום: 31 → יעד: 5</div>
+                    <div class="keyword-info small">מבקרים/חודש: 5 → 91</div>
+                    <div class="keyword-info growth">גידול של 500% בתנועה</div>
+                    <div class="keyword-info small">שיפור של 26 מקומות</div>
+                </div>
+
+                <div class="keyword-card">
+                    <div class="keyword-title">סוכנות דיגיטל</div>
+                    <div class="keyword-info">נפח חיפוש: 880</div>
+                    <div class="keyword-info">תחרות: גבוהה</div>
+                    <div class="keyword-info small">מיקום: 50 → יעד: 3</div>
+                    <div class="keyword-info small">מבקרים/חודש: 3 → 105</div>
+                    <div class="keyword-info growth">גידול של 500% בתנועה</div>
+                    <div class="keyword-info small">שיפור של 47 מקומות</div>
+                </div>
+
+                <div class="keyword-card">
+                    <div class="keyword-title">קידום ממומן</div>
+                    <div class="keyword-info">נפח חיפוש: 590</div>
+                    <div class="keyword-info">תחרות: בינונית</div>
+                    <div class="keyword-info small">מיקום: 36 → יעד: 5</div>
+                    <div class="keyword-info small">מבקרים/חודש: 2 → 41</div>
+                    <div class="keyword-info growth">גידול של 500% בתנועה</div>
+                    <div class="keyword-info small">שיפור של 31 מקומות</div>
+                </div>
+
+                <div class="keyword-card">
+                    <div class="keyword-title">ניהול סושיאל</div>
+                    <div class="keyword-info">נפח חיפוש: 590</div>
+                    <div class="keyword-info">תחרות: בינונית</div>
+                    <div class="keyword-info small">מיקום: 18 → יעד: 5</div>
+                    <div class="keyword-info small">מבקרים/חודש: 8 → 41</div>
+                    <div class="keyword-info growth">גידול של 412% בתנועה</div>
+                    <div class="keyword-info small">שיפור של 13 מקומות</div>
+                </div>
+
+                <div class="keyword-card">
+                    <div class="keyword-title">קידום ממומן בגוגל</div>
+                    <div class="keyword-info">נפח חיפוש: 590</div>
+                    <div class="keyword-info">תחרות: בינונית</div>
+                    <div class="keyword-info small">מיקום: 17 → יעד: 5</div>
+                    <div class="keyword-info small">מבקרים/חודש: 8 → 41</div>
+                    <div class="keyword-info growth">גידול של 412% בתנועה</div>
+                    <div class="keyword-info small">שיפור של 12 מקומות</div>
+                </div>
+
+                <div class="keyword-card">
+                    <div class="keyword-title">אסטרטגיה דיגיטלית</div>
+                    <div class="keyword-info">נפח חיפוש: 480</div>
+                    <div class="keyword-info">תחרות: בינונית</div>
+                    <div class="keyword-info small">מיקום: 50 → יעד: 6</div>
+                    <div class="keyword-info small">מבקרים/חודש: 1 → 24</div>
+                    <div class="keyword-info growth">גידול של 500% בתנועה</div>
+                    <div class="keyword-info small">שיפור של 44 מקומות</div>
+                </div>
+
+                <div class="keyword-card">
+                    <div class="keyword-title">קמפיינים דיגיטליים</div>
+                    <div class="keyword-info">נפח חיפוש: 390</div>
+                    <div class="keyword-info">תחרות: בינונית</div>
+                    <div class="keyword-info small">מיקום: 50 → יעד: 7</div>
+                    <div class="keyword-info small">מבקרים/חודש: 1 → 19</div>
+                    <div class="keyword-info growth">גידול של 500% בתנועה</div>
+                    <div class="keyword-info small">שיפור של 43 מקומות</div>
+                </div>
+
+                <div class="keyword-card">
+                    <div class="keyword-title">שיווק דיגיטלי</div>
+                    <div class="keyword-info">נפח חיפוש: 2,400</div>
+                    <div class="keyword-info">תחרות: גבוהה</div>
+                    <div class="keyword-info small">מיקום: 50 → יעד: 8</div>
+                    <div class="keyword-info small">מבקרים/חודש: 9 → 72</div>
+                    <div class="keyword-info growth">גידול של 500% בתנועה</div>
+                    <div class="keyword-info small">שיפור של 42 מקומות</div>
+                </div>
+
+                <div class="keyword-card">
+                    <div class="keyword-title">עיצוב גרפי דיגיטלי</div>
+                    <div class="keyword-info">נפח חיפוש: 320</div>
+                    <div class="keyword-info">תחרות: נמוכה</div>
+                    <div class="keyword-info small">מיקום: 50 → יעד: 7</div>
+                    <div class="keyword-info small">מבקרים/חודש: 1 → 16</div>
+                    <div class="keyword-info growth">גידול של 500% בתנועה</div>
+                    <div class="keyword-info small">שיפור של 43 מקומות</div>
+                </div>
+
+                <div class="keyword-card">
+                    <div class="keyword-title">קריאייטיב דיגיטלי</div>
+                    <div class="keyword-info">נפח חיפוש: 260</div>
+                    <div class="keyword-info">תחרות: נמוכה</div>
+                    <div class="keyword-info small">מיקום: 50 → יעד: 5</div>
+                    <div class="keyword-info small">מבקרים/חודש: 1 → 18</div>
+                    <div class="keyword-info growth">גידול של 500% בתנועה</div>
+                    <div class="keyword-info small">שיפור של 45 מקומות</div>
+                </div>
+            </div>
+        </section>
+
+        <section class="recommendations-section">
+            <h2>המלצות לשיפור</h2>
+            <ul class="recommendations-list">
+                <li>יצירת עמודי נחיתה ייעודיים למילות 'משרד פרסום' ו'סוכנות דיגיטל' עם תוכן של 1500+ מילים</li>
+                <li>בניית 20-30 קישורים איכותיים מאתרי עסקים ומדיה ישראליים</li>
+                <li>פרסום 4 מאמרי בלוג חודשיים בנושאי שיווק דיגיטלי וקידום ממומן</li>
+                <li>אופטימיזציה טכנית: Core Web Vitals, מהירות טעינה מתחת ל-2 שניות</li>
+                <li>הוספת עמוד תיק עבודות עם 15+ פרויקטים מפורטים וביקורות לקוחות</li>
+                <li>יישום כל ההמלצות הטכניות תוך 14 יום להשפעה מיידית</li>
+            </ul>
+        </section>
+
+        <section class="summary-section">
+            <h2>סיכום</h2>
+            <p>פוטנציאל גידול של 450+ מבקרים חודשיים נוספים תוך 90 יום באמצעות מיקוד במילות מפתח תחרותיות</p>
+        </section>
+
+        <div class="closing">
+            בואו נקדם את האתר יחד בקהילת המקדמים המובילה בארץ.
+        </div>
+    </div>
+</body>
+</html>
