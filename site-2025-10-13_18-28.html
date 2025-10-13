@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>דוח פוטנציאל קידום אתרים - dglawoffices.co.il</title>
+    <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Assistant', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f9f9f9;
+            direction: rtl;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .hero {
+            background: linear-gradient(135deg, #20b8b8, #2c5f5d);
+            color: white;
+            padding: 60px 0;
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        .hero h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+        
+        .hero h2 {
+            font-size: 1.5rem;
+            font-weight: 400;
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+        
+        .domain-info {
+            background: rgba(255, 255, 255, 0.15);
+            padding: 20px;
+            border-radius: 15px;
+            margin-bottom: 20px;
+            backdrop-filter: blur(10px);
+        }
+        
+        .domain-info h3 {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+        }
+        
+        .message {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            opacity: 0.95;
+        }
+        
+        .kpi-bar {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 40px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            border: 1px solid #e6e6e6;
+        }
+        
+        .kpi-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+        
+        .kpi-item {
+            text-align: center;
+        }
+        
+        .kpi-value {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #20b8b8;
+            margin-bottom: 10px;
+        }
+        
+        .kpi-label {
+            font-size: 1rem;
+            color: #5a7c7b;
+            font-weight: 600;
+        }
+        
+        .progress-bar {
+            width: 100%;
+            height: 12px;
+            background-color: #e6e6e6;
+            border-radius: 6px;
+            overflow: hidden;
+            margin-top: 10px;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #20b8b8, #2c5f5d);
+            border-radius: 6px;
+            transition: width 0.3s ease;
+        }
+        
+        .section {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            border: 1px solid #e6e6e6;
+        }
+        
+        .section h2 {
+            font-size: 1.8rem;
+            color: #2c5f5d;
+            margin-bottom: 25px;
+            font-weight: 700;
+        }
+        
+        .keywords-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+        
+        .keyword-card {
+            background: #fafafa;
+            border: 1px solid #e6e6e6;
+            border-radius: 12px;
+            padding: 20px;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        
+        .keyword-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 25px rgba(0, 0, 0, 0.1);
+        }
+        
+        .keyword-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #2c5f5d;
+            margin-bottom: 15px;
+        }
+        
+        .keyword-stat {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+            font-size: 0.95rem;
+        }
+        
+        .keyword-stat strong {
+            color: #333;
+        }
+        
+        .keyword-stat span {
+            color: #5a7c7b;
+        }
+        
+        .keyword-growth {
+            background: #20b8b8;
+            color: white;
+            padding: 8px 12px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            text-align: center;
+            margin-top: 12px;
+        }
+        
+        .keyword-improvement {
+            color: #2c5f5d;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-top: 8px;
+        }
+        
+        .recommendations {
+            list-style: none;
+        }
+        
+        .recommendations li {
+            background: #fafafa;
+            border: 1px solid #e6e6e6;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 12px;
+            position: relative;
+            padding-right: 40px;
+            transition: background-color 0.2s ease;
+        }
+        
+        .recommendations li:hover {
+            background: #f0f8f8;
+        }
+        
+        .recommendations li::before {
+            content: "•";
+            color: #20b8b8;
+            font-size: 1.5rem;
+            position: absolute;
+            right: 15px;
+            top: 12px;
+        }
+        
+        .summary-text {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #333;
+        }
+        
+        .closing {
+            background: linear-gradient(135deg, #2c5f5d, #20b8b8);
+            color: white;
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            margin-top: 40px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        }
+        
+        .closing p {
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+        
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .hero h2 {
+                font-size: 1.2rem;
+            }
+            
+            .kpi-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .keywords-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .container {
+                padding: 0 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="hero">
+        <div class="container">
+            <h1>🎉 מצאנו הזדמנויות מעולות לקידום האתר שלך!</h1>
+            <h2>הנה המילים שכדאי להתמקד בהן:</h2>
+            
+            <div class="domain-info">
+                <h3>דומיין: dglawoffices.co.il</h3>
+                <div class="message">זיהוי פוטנציאל גידול של 267% בתנועה אורגנית תוך 90 יום עם מיקוד בחדלות פירעון ודיני משפחה</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="kpi-bar">
+            <div class="kpi-grid">
+                <div class="kpi-item">
+                    <div class="kpi-value">100</div>
+                    <div class="kpi-label">ציון כללי</div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 100%"></div>
+                    </div>
+                </div>
+                <div class="kpi-item">
+                    <div class="kpi-value">1,105</div>
+                    <div class="kpi-label">תנועה פוטנציאלית/חודש</div>
+                </div>
+                <div class="kpi-item">
+                    <div class="kpi-value">10</div>
+                    <div class="kpi-label">מס' מילות מפתח</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>מילות המפתח המומלצות</h2>
+            <div class="keywords-grid">
+                <div class="keyword-card">
+                    <div class="keyword-title">עורך דין חדלות פירעון</div>
+                    <div class="keyword-stat">
+                        <strong>נפח חיפוש:</strong>
+                        <span>2,400</span>
+                    </div>
+                    <div class="keyword-stat">
+                        <strong>תחרות:</strong>
+                        <span>גבוהה</span>
+                    </div>
+                    <div class="keyword-stat">
+                        <strong>מיקום:</strong>
+                        <span>50 → יעד: 3</span>
+                    </div>
+                    <div class="keyword-stat">
+                        <strong>מבקרים/חודש:</strong>
+                        <span>10 → 288</span>
+                    </div>
+                    <div class="keyword-growth">גידול של 500% בתנועה</div>
+                    <div class="keyword-improvement">שיפור של 47 מקומות</div>
+                </div>
+
+                <div class="keyword-card">
+                    <div class="keyword-title">הממונה על חדלות פירעון</div>
+                    <div class="keyword-stat">
+                        <strong>נפח חיפוש:</strong>
+                        <span>1,600</span>
+                    </div>
+                    <div class="keyword-stat">
+                        <strong>תחרות:</strong>
+                        <span>בינונית</span>
+                    </div>
+                    <div class="keyword-stat">
+                        <strong>מיקום:</strong>
+                        <span>50 → יעד: 5</span>
+                    </div>
+                    <div class="keyword-stat">
+                        <strong>מבקרים/חודש:</strong>
+                        <span>6 → 112</span>
+                    </div>
+                    <div class="keyword-growth">גידול של 500% בתנועה</div>
+                    <div class="keyword-improvement">שיפור של 45 מקומות</div>
+                </div>
+
+                <div class="keyword-card">
+                    <div class="keyword-title">תקנות חדלות פירעון</div>
+                    <div class="keyword-stat">
+                        <strong>נפח חיפוש:</strong>
+                        <span>1,000</span>
+                    </div>
+                    <div class="keyword-stat">
+                        <strong>תחרות:</strong>
+                        <span>נמוכה</span>
+                    </div>
+                    <div class="keyword-stat">
+                        <strong>מיקום:</strong>
+                        <span>41 → יעד: 5</span>
+                    </div>
+                    <div class="keyword-stat">
+                        <strong>מבקרים/חודש:</strong>
+                        <span>4 → 70</span>
+                    </div>
+                    <div class="keyword-growth">גידול של 500% בתנועה</div>
+                    <div class="keyword-improvement">שיפור של 36 מקומות</div>
+                </div>
+
+                <div class="keyword-card">
+                    <div class="keyword-title">עורך דין דיני משפחה</div>
+                    <div class="keyword-stat">
+                        <strong>נפח חיפוש:</strong>
+                        <span>1,800</span>
+                    </div>
+                    <div class="keyword-stat">
+                        <strong>תחרות:</strong>
+                        <span>גבוהה</span>
+                    </div>
+                    <div class="keyword-stat">
+                        <strong>מיקום:</strong>
+                        <span>50 → יעד: 4</span>
+                    </div>
+                    <div class="keyword-stat">
+                        <strong>מבקרים/חודש:</strong>
+                        <span>7 → 162</span>
+                    </div>
+                    <div class="keyword-growth">גידול של 500% בתנועה</div>
+                    <div class="keyword-improvement">שיפור של 46 מקומות</div>
+                </div>
+
+                <div class="keyword-card">
+                    <div class="keyword-title">הסכם גירושין</div>
+                    <div class="keyword-stat">
+                        <strong>נפח חיפוש:</strong>
+                        <span>1,300</span>
+                    </div>
+                    <div class="keyword-stat">
+                        <strong>תחרות:</strong>
+                        <span>בינונית</span>
+                    </div>
+                    <div class="keyword-stat">
+                        <strong>מיקום:</strong>
+                        <span>50 → יעד: 5</span>
+                    </div>
+                    <div class="keyword-stat">
+                        <strong>מבקרים/חודש:</strong>
+                        <span>5 → 91</span>
+                    </div>
+                    <div class="keyword-growth">גידול של 500% בתנועה</div>
+                    <div class="keyword-improvement">שיפור של 45 מקומות</div>
+                </div>
+
+                <div class="keyword-card">
+                    <div class="keyword-title">צו ירושה</div>
+                    <div class="keyword-stat">
+                        <strong>נפח חיפוש:</strong>
+                        <span>2,900</span>
+                    </div>
+                    <div class="keyword-stat">
+                        <strong>תחרות:</strong>
+                        <span>בינונית</span>
+                    </div>
+                    <div class="keyword-stat">
+                        <strong>מיקום:</strong>
+                        <span>50 → יעד: 5</span>
+                    </div>
+                    <div class="keyword-stat">
+                        <strong>מבקרים/חודש:</strong>
+                        <span>12 → 203</span>
+                    </div>
+                    <div class="keyword-growth">גידול של 500% בתנועה</div>
+                    <div class="keyword-improvement">שיפור של 45 מקומות</div>
+                </div>
+
+                <div class="keyword-card">
+                    <div class="keyword-title">עסקאות מקרקעין</div>
+                    <div class="keyword-stat">
+                        <strong>נפח חיפוש:</strong>
+                        <span>880</span>
+                    </div>
+                    <div class="keyword-stat">
+                        <strong>תחרות:</strong>
+                        <span>גבוהה</span>
+                    </div>
+                    <div class="keyword-stat">
+                        <strong>מיקום:</strong>
+                        <span>50 → יעד: 6</span>
+                    </div>
+                    <div class="keyword-stat">
+                        <strong>מבקרים/חודש:</strong>
+                        <span>4 → 44</span>
+                    </div>
+                    <div class="keyword-growth">גידול של 500% בתנועה</div>
+                    <div class="keyword-improvement">שיפור של 44 מקומות</div>
+                </div>
+
+                <div class="keyword-card">
+                    <div class="keyword-title">רישום בטאבו</div>
+                    <div class="keyword-stat">
+                        <strong>נפח חיפוש:</strong>
+                        <span>720</span>
+                    </div>
+                    <div class="keyword-stat">
+                        <strong>תחרות:</strong>
+                        <span>בינונית</span>
+                    </div>
+                    <div class="keyword-stat">
+                        <strong>מיקום:</strong>
+                        <span>44 → יעד: 5</span>
+                    </div>
+                    <div class="keyword-stat">
+                        <strong>מבקרים/חודש:</strong>
+                        <span>3 → 50</span>
+                    </div>
+                    <div class="keyword-growth">גידול של 500% בתנועה</div>
+                    <div class="keyword-improvement">שיפור של 39 מקומות</div>
+                </div>
+
+                <div class="keyword-card">
+                    <div class="keyword-title">הוצאה לפועל עורך דין</div>
+                    <div class="keyword-stat">
+                        <strong>נפח חיפוש:</strong>
+                        <span>590</span>
+                    </div>
+                    <div class="keyword-stat">
+                        <strong>תחרות:</strong>
+                        <span>בינונית</span>
+                    </div>
+                    <div class="keyword-stat">
+                        <strong>מיקום:</strong>
+                        <span>50 → יעד: 7</span>
+                    </div>
+                    <div class="keyword-stat">
+                        <strong>מבקרים/חודש:</strong>
+                        <span>2 → 30</span>
+                    </div>
+                    <div class="keyword-growth">גידול של 500% בתנועה</div>
+                    <div class="keyword-improvement">שיפור של 43 מקומות</div>
+                </div>
+
+                <div class="keyword-card">
+                    <div class="keyword-title">מזונות ילדים</div>
+                    <div class="keyword-stat">
+                        <strong>נפח חיפוש:</strong>
+                        <span>1,100</span>
+                    </div>
+                    <div class="keyword-stat">
+                        <strong>תחרות:</strong>
+                        <span>בינונית</span>
+                    </div>
+                    <div class="keyword-stat">
+                        <strong>מיקום:</strong>
+                        <span>50 → יעד: 6</span>
+                    </div>
+                    <div class="keyword-stat">
+                        <strong>מבקרים/חודש:</strong>
+                        <span>4 → 55</span>
+                    </div>
+                    <div class="keyword-growth">גידול של 500% בתנועה</div>
+                    <div class="keyword-improvement">שיפור של 44 מקומות</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>המלצות לשיפור</h2>
+            <ul class="recommendations">
+                <li>צור דפי נחיתה ייעודיים: דף לחדלות פירעון, דף לדיני משפחה, דף לירושות - כל דף עם 1500+ מילים</li>
+                <li>פרסם 4 מאמרי בלוג חודשיים בנושאים: תהליך חדלות פירעון, זכויות בגירושין, הוצאת צו ירושה, רישום עסקאות מקרקעין</li>
+                <li>בנה 20 ציטוטים מקומיים (Local Citations) בספריות עסקיות ישראליות עם NAP אחיד</li>
+                <li>הוסף Schema מפורט: LegalService, LocalBusiness, FAQ לכל שירות, Review</li>
+                <li>מקד Title Tags: עמוד חדלות פירעון - 'עורך דין חדלות פירעון | הממונה ותקנות | עו"ד דוד גונן'</li>
+                <li>צור תוכן Q&A: 10 שאלות נפוצות בכל תחום התמחות עם תשובות של 200+ מילים</li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2>סיכום</h2>
+            <div class="summary-text">
+                צפי לגידול של כ-1,105 מבקרים חודשיים נוספים תוך 90 יום באמצעות מיקוד בחדלות פירעון ודיני משפחה
+            </div>
+        </div>
+
+        <div class="closing">
+            <p>בואו נקדם את האתר יחד בקהילת המקדמים המובילה בארץ.</p>
+        </div>
+    </div>
+</body>
+</html>
