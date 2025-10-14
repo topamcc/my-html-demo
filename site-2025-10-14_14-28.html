@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>דוח פוטנציאל קידום אתרים - mantaraysailing.co.il</title>
+    <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Assistant', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #f8fdfd 0%, #eaf7f7 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .hero {
+            background: linear-gradient(135deg, #20b8b8 0%, #2c5f5d 100%);
+            color: white;
+            padding: 60px 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="white" opacity="0.1"/><circle cx="75" cy="75" r="1" fill="white" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+            opacity: 0.1;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero h1 {
+            font-size: 2.8rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .hero .subtitle {
+            font-size: 1.3rem;
+            font-weight: 400;
+            margin-bottom: 30px;
+            opacity: 0.95;
+        }
+
+        .hero .domain {
+            font-size: 1.1rem;
+            background: rgba(255,255,255,0.2);
+            padding: 12px 24px;
+            border-radius: 25px;
+            display: inline-block;
+            margin-bottom: 20px;
+            backdrop-filter: blur(10px);
+        }
+
+        .hero .message {
+            font-size: 1rem;
+            font-weight: 300;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .kpi-section {
+            background: white;
+            margin: -30px auto 40px;
+            max-width: 900px;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(32,184,184,0.15);
+            padding: 40px;
+            position: relative;
+            z-index: 3;
+        }
+
+        .kpi-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .kpi-card {
+            text-align: center;
+            padding: 20px;
+            background: #fafafa;
+            border-radius: 15px;
+            border: 1px solid #e6e6e6;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .kpi-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(32,184,184,0.15);
+        }
+
+        .kpi-value {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #20b8b8;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .kpi-label {
+            font-size: 0.95rem;
+            color: #5a7c7b;
+            font-weight: 500;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background: #e6e6e6;
+            border-radius: 10px;
+            overflow: hidden;
+            margin: 15px 0;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #20b8b8, #2c5f5d);
+            border-radius: 10px;
+            transition: width 0.8s ease;
+        }
+
+        .section {
+            background: white;
+            margin: 40px 0;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+        }
+
+        .section-title {
+            font-size: 2rem;
+            font-weight: 600;
+            color: #2c5f5d;
+            margin-bottom: 30px;
+            text-align: center;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            width: 60px;
+            height: 3px;
+            background: linear-gradient(90deg, #20b8b8, #2c5f5d);
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 2px;
+        }
+
+        .keywords-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 25px;
+        }
+
+        .keyword-card {
+            background: #fafafa;
+            border: 1px solid #e6e6e6;
+            border-radius: 15px;
+            padding: 25px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .keyword-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(32,184,184,0.12);
+            border-color: #20b8b8;
+        }
+
+        .keyword-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: #2c5f5d;
+            margin-bottom: 15px;
+        }
+
+        .keyword-info {
+            font-size: 0.95rem;
+            color: #5a7c7b;
+            margin-bottom: 8px;
+        }
+
+        .keyword-growth {
+            font-size: 1rem;
+            font-weight: 600;
+            color: #20b8b8;
+            margin: 12px 0;
+        }
+
+        .keyword-improvement {
+            font-size: 0.9rem;
+            color: #666;
+            font-style: italic;
+        }
+
+        .recommendations {
+            background: linear-gradient(135deg, #f8fdfd 0%, #eaf7f7 100%);
+            border-right: 4px solid #20b8b8;
+            padding: 30px;
+            border-radius: 15px;
+        }
+
+        .recommendations ul {
+            list-style: none;
+        }
+
+        .recommendations li {
+            position: relative;
+            padding: 15px 0 15px 30px;
+            font-size: 1.05rem;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        .recommendations li::before {
+            content: '✓';
+            position: absolute;
+            right: 0;
+            top: 15px;
+            color: #20b8b8;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        .summary {
+            background: linear-gradient(135deg, #2c5f5d 0%, #20b8b8 100%);
+            color: white;
+            text-align: center;
+            padding: 40px;
+            border-radius: 20px;
+            font-size: 1.15rem;
+            line-height: 1.7;
+        }
+
+        .closing {
+            background: #fafafa;
+            border: 2px solid #e6e6e6;
+            border-radius: 15px;
+            padding: 25px;
+            text-align: center;
+            font-size: 1.1rem;
+            color: #2c5f5d;
+            font-weight: 500;
+            margin-top: 30px;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .kpi-section {
+                margin: -20px 20px 30px;
+                padding: 25px;
+            }
+            
+            .section {
+                padding: 25px;
+                margin: 20px 0;
+            }
+            
+            .keywords-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .keyword-card {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>🎉 מצאנו הזדמנויות מעולות לקידום האתר שלך!</h1>
+                <p class="subtitle">הנה המילים שכדאי להתמקד בהן:</p>
+                <div class="domain">mantaraysailing.co.il</div>
+                <p class="message">זוהה פוטנציאל משמעותי לשיפור נוכחות במילות מפתח בתחום השייט והסקיפרים</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="kpi-section">
+            <div class="kpi-grid">
+                <div class="kpi-card">
+                    <span class="kpi-value">500</span>
+                    <div class="kpi-label">ציון כללי</div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 100%"></div>
+                    </div>
+                </div>
+                <div class="kpi-card">
+                    <span class="kpi-value">159</span>
+                    <div class="kpi-label">תנועה פוטנציאלית/חודש</div>
+                </div>
+                <div class="kpi-card">
+                    <span class="kpi-value">10</span>
+                    <div class="kpi-label">מס' מילות מפתח</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2 class="section-title">מילות המפתח המומלצות</h2>
+            <div class="keywords-grid">
+                <div class="keyword-card">
+                    <div class="keyword-title">קורס סקיפר</div>
+                    <div class="keyword-info">נפח חיפוש: 480</div>
+                    <div class="keyword-info">תחרות: גבוהה</div>
+                    <div class="keyword-info">מיקום: 50 → יעד: 3</div>
+                    <div class="keyword-info">מבקרים/חודש: 2 → 58</div>
+                    <div class="keyword-growth">גידול של 500% בתנועה</div>
+                    <div class="keyword-improvement">שיפור של 47 מקומות</div>
+                </div>
+
+                <div class="keyword-card">
+                    <div class="keyword-title">רישיון משיט 30</div>
+                    <div class="keyword-info">נפח חיפוש: 320</div>
+                    <div class="keyword-info">תחרות: בינונית</div>
+                    <div class="keyword-info">מיקום: 50 → יעד: 5</div>
+                    <div class="keyword-info">מבקרים/חודש: 1 → 22</div>
+                    <div class="keyword-growth">גידול של 500% בתנועה</div>
+                    <div class="keyword-improvement">שיפור של 45 מקומות</div>
+                </div>
+
+                <div class="keyword-card">
+                    <div class="keyword-title">השכרת יאכטה הרצליה</div>
+                    <div class="keyword-info">נפח חיפוש: 260</div>
+                    <div class="keyword-info">תחרות: גבוהה</div>
+                    <div class="keyword-info">מיקום: 50 → יעד: 4</div>
+                    <div class="keyword-info">מבקרים/חודש: 1 → 23</div>
+                    <div class="keyword-growth">גידול של 500% בתנועה</div>
+                    <div class="keyword-improvement">שיפור של 46 מקומות</div>
+                </div>
+
+                <div class="keyword-card">
+                    <div class="keyword-title">מועדון יאכטות</div>
+                    <div class="keyword-info">נפח חיפוש: 210</div>
+                    <div class="keyword-info">תחרות: בינונית</div>
+                    <div class="keyword-info">מיקום: 50 → יעד: 6</div>
+                    <div class="keyword-info">מבקרים/חודש: 1 → 11</div>
+                    <div class="keyword-growth">גידול של 500% בתנועה</div>
+                    <div class="keyword-improvement">שיפור של 44 מקומות</div>
+                </div>
+
+                <div class="keyword-card">
+                    <div class="keyword-title">קורס משיט</div>
+                    <div class="keyword-info">נפח חיפוש: 170</div>
+                    <div class="keyword-info">תחרות: בינונית</div>
+                    <div class="keyword-info">מיקום: 50 → יעד: 5</div>
+                    <div class="keyword-info">מבקרים/חודש: 1 → 12</div>
+                    <div class="keyword-growth">גידול של 500% בתנועה</div>
+                    <div class="keyword-improvement">שיפור של 45 מקומות</div>
+                </div>
+
+                <div class="keyword-card">
+                    <div class="keyword-title">לימודי סקיפר</div>
+                    <div class="keyword-info">נפח חיפוש: 140</div>
+                    <div class="keyword-info">תחרות: נמוכה</div>
+                    <div class="keyword-info">מיקום: 50 → יעד: 4</div>
+                    <div class="keyword-info">מבקרים/חודש: 1 → 13</div>
+                    <div class="keyword-growth">גידול של 500% בתנועה</div>
+                    <div class="keyword-improvement">שיפור של 46 מקומות</div>
+                </div>
+
+                <div class="keyword-card">
+                    <div class="keyword-title">סירה עוצמה א</div>
+                    <div class="keyword-info">נפח חיפוש: 110</div>
+                    <div class="keyword-info">תחרות: נמוכה</div>
+                    <div class="keyword-info">מיקום: 34 → יעד: 5</div>
+                    <div class="keyword-info">מבקרים/חודש: 2 → 8</div>
+                    <div class="keyword-growth">גידול של 300% בתנועה</div>
+                    <div class="keyword-improvement">שיפור של 29 מקומות</div>
+                </div>
+
+                <div class="keyword-card">
+                    <div class="keyword-title">הפלגה יאכטה</div>
+                    <div class="keyword-info">נפח חיפוש: 90</div>
+                    <div class="keyword-info">תחרות: בינונית</div>
+                    <div class="keyword-info">מיקום: 50 → יעד: 7</div>
+                    <div class="keyword-info">מבקרים/חודש: 0 → 5</div>
+                    <div class="keyword-growth">גידול של 500% בתנועה</div>
+                    <div class="keyword-improvement">שיפור של 43 מקומות</div>
+                </div>
+
+                <div class="keyword-card">
+                    <div class="keyword-title">סירה עוצמה ב</div>
+                    <div class="keyword-info">נפח חיפוש: 70</div>
+                    <div class="keyword-info">תחרות: נמוכה</div>
+                    <div class="keyword-info">מיקום: 26 → יעד: 5</div>
+                    <div class="keyword-info">מבקרים/חודש: 0 → 5</div>
+                    <div class="keyword-growth">גידול של 500% בתנועה</div>
+                    <div class="keyword-improvement">שיפור של 21 מקומות</div>
+                </div>
+
+                <div class="keyword-card">
+                    <div class="keyword-title">חברות מועדון שייט</div>
+                    <div class="keyword-info">נפח חיפוש: 60</div>
+                    <div class="keyword-info">תחרות: נמוכה</div>
+                    <div class="keyword-info">מיקום: 50 → יעד: 8</div>
+                    <div class="keyword-info">מבקרים/חודש: 0 → 2</div>
+                    <div class="keyword-growth">גידול של 500% בתנועה</div>
+                    <div class="keyword-improvement">שיפור של 42 מקומות</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2 class="section-title">המלצות לקידום</h2>
+            <div class="recommendations">
+                <ul>
+                    <li>ליצור עמוד ייעודי לכל קורס (סקיפר, משיט 30, עוצמה א', עוצמה ב') עם תוכן מעמיק של 1500+ מילים</li>
+                    <li>להוסיף בלוג עם מדריכים: 'המדריך המלא לרישיון סקיפר', 'כל מה שצריך לדעת על משיט 30'</li>
+                    <li>לבנות עמוד השוואה: 'השוואת קורסי סקיפר בישראל - מחירים, משך, תכנים'</li>
+                    <li>להוסיף סקשן FAQ עם 20+ שאלות נפוצות על קורסי שייט ורישיונות</li>
+                    <li>ליצור גלריית תמונות ווידאו מקורסים עם תיאורי ALT אופטימליים</li>
+                    <li>לפתח מחשבון עלויות אינטראקטיבי לקורס סקיפר כולל בחינות ורישיון</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2 class="section-title">סיכום</h2>
+            <div class="summary">
+                צפי גידול של כ-160 מבקרים חודשיים נוספים תוך 90 יום באמצעות מיקוד במילות מפתח בתחום הסקיפרים והשייט
+            </div>
+        </div>
+
+        <div class="closing">
+            בואו נקדם את האתר יחד בקהילת המקדמים המובילה בארץ.
+        </div>
+    </div>
+</body>
+</html>
