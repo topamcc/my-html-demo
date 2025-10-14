@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>דוח פוטנציאל קידום אתרים - shadmi.co.il</title>
+    <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Assistant', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #f8fdfd 0%, #e8f4f4 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .hero {
+            text-align: center;
+            padding: 40px 20px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 8px 32px rgba(32, 184, 184, 0.1);
+            margin-bottom: 30px;
+        }
+
+        .hero h1 {
+            font-size: 2.5em;
+            color: #2c5f5d;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        .hero h2 {
+            font-size: 1.4em;
+            color: #5a7c7b;
+            margin-bottom: 20px;
+            font-weight: 500;
+        }
+
+        .domain {
+            display: inline-block;
+            background: #20b8b8;
+            color: white;
+            padding: 8px 20px;
+            border-radius: 25px;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+
+        .message {
+            background: #fafafa;
+            padding: 20px;
+            border-radius: 10px;
+            border-right: 4px solid #20b8b8;
+            font-size: 1.1em;
+            color: #2c5f5d;
+            margin-top: 20px;
+        }
+
+        .kpi-bar {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+
+        .kpi-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .kpi-item {
+            text-align: center;
+        }
+
+        .kpi-value {
+            font-size: 2.5em;
+            font-weight: 700;
+            color: #20b8b8;
+            display: block;
+        }
+
+        .kpi-label {
+            color: #5a7c7b;
+            font-weight: 500;
+            margin-top: 5px;
+        }
+
+        .progress-bar {
+            background: #e6e6e6;
+            height: 8px;
+            border-radius: 4px;
+            overflow: hidden;
+            margin-top: 10px;
+        }
+
+        .progress-fill {
+            background: linear-gradient(90deg, #20b8b8, #2c5f5d);
+            height: 100%;
+            border-radius: 4px;
+            transition: width 0.8s ease;
+        }
+
+        .keywords-section {
+            margin-bottom: 40px;
+        }
+
+        .section-title {
+            font-size: 2em;
+            color: #2c5f5d;
+            margin-bottom: 25px;
+            text-align: center;
+            font-weight: 600;
+        }
+
+        .keywords-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .keyword-card {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .keyword-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(32, 184, 184, 0.15);
+        }
+
+        .keyword-title {
+            font-size: 1.3em;
+            color: #2c5f5d;
+            font-weight: 600;
+            margin-bottom: 15px;
+            border-bottom: 2px solid #20b8b8;
+            padding-bottom: 8px;
+        }
+
+        .keyword-stat {
+            margin-bottom: 8px;
+            color: #5a7c7b;
+        }
+
+        .keyword-stat strong {
+            color: #2c5f5d;
+        }
+
+        .growth-highlight {
+            background: linear-gradient(135deg, #20b8b8, #2c5f5d);
+            color: white;
+            padding: 8px 12px;
+            border-radius: 6px;
+            font-weight: 600;
+            margin-top: 10px;
+            text-align: center;
+        }
+
+        .improvement-text {
+            color: #20b8b8;
+            font-weight: 500;
+            font-size: 0.9em;
+        }
+
+        .recommendations-section, .summary-section {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+
+        .recommendations-list {
+            list-style: none;
+        }
+
+        .recommendations-list li {
+            margin-bottom: 15px;
+            padding-right: 20px;
+            position: relative;
+        }
+
+        .recommendations-list li::before {
+            content: "•";
+            color: #20b8b8;
+            font-size: 1.5em;
+            position: absolute;
+            right: 0;
+            top: -2px;
+        }
+
+        .closing {
+            background: linear-gradient(135deg, #20b8b8, #2c5f5d);
+            color: white;
+            text-align: center;
+            padding: 25px;
+            border-radius: 15px;
+            font-size: 1.2em;
+            font-weight: 500;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2em;
+            }
+            
+            .kpi-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .keywords-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .container {
+                padding: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="hero">
+            <h1>🎉 מצאנו הזדמנויות מעולות לקידום האתר שלך!</h1>
+            <h2>הנה המילים שכדאי להתמקד בהן:</h2>
+            <div class="domain">shadmi.co.il</div>
+            <div class="message">האתר מתמחה בדיני משפחה, גירושין וירושות. המילות מפתח שסופקו רלוונטיות לנישה ויכולות להניב תוצאות טובות</div>
+        </div>
+
+        <div class="kpi-bar">
+            <div class="kpi-grid">
+                <div class="kpi-item">
+                    <span class="kpi-value">480</span>
+                    <div class="kpi-label">ציון כללי</div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 100%"></div>
+                    </div>
+                </div>
+                <div class="kpi-item">
+                    <span class="kpi-value">198</span>
+                    <div class="kpi-label">תנועה פוטנציאלית/חודש</div>
+                </div>
+                <div class="kpi-item">
+                    <span class="kpi-value">10</span>
+                    <div class="kpi-label">מס' מילות מפתח</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="keywords-section">
+            <h2 class="section-title">מילות מפתח מומלצות</h2>
+            <div class="keywords-grid">
+                <div class="keyword-card">
+                    <div class="keyword-title">עורך דין גירושין</div>
+                    <div class="keyword-stat">נפח חיפוש: <strong>880</strong></div>
+                    <div class="keyword-stat">תחרות: <strong>גבוהה</strong></div>
+                    <div class="keyword-stat">מיקום: 50 → יעד: 5</div>
+                    <div class="keyword-stat">מבקרים/חודש: 4 → 62</div>
+                    <div class="growth-highlight">גידול של 500% בתנועה</div>
+                    <div class="improvement-text">שיפור של 45 מקומות</div>
+                </div>
+
+                <div class="keyword-card">
+                    <div class="keyword-title">עורך דין משפחה</div>
+                    <div class="keyword-stat">נפח חיפוש: <strong>720</strong></div>
+                    <div class="keyword-stat">תחרות: <strong>גבוהה</strong></div>
+                    <div class="keyword-stat">מיקום: 50 → יעד: 5</div>
+                    <div class="keyword-stat">מבקרים/חודש: 3 → 50</div>
+                    <div class="growth-highlight">גידול של 500% בתנועה</div>
+                    <div class="improvement-text">שיפור של 45 מקומות</div>
+                </div>
+
+                <div class="keyword-card">
+                    <div class="keyword-title">הסכם ממון</div>
+                    <div class="keyword-stat">נפח חיפוש: <strong>390</strong></div>
+                    <div class="keyword-stat">תחרות: <strong>בינונית</strong></div>
+                    <div class="keyword-stat">מיקום: 50 → יעד: 7</div>
+                    <div class="keyword-stat">מבקרים/חודש: 2 → 20</div>
+                    <div class="growth-highlight">גידול של 500% בתנועה</div>
+                    <div class="improvement-text">שיפור של 43 מקומות</div>
+                </div>
+
+                <div class="keyword-card">
+                    <div class="keyword-title">משמורת ילדים</div>
+                    <div class="keyword-stat">נפח חיפוש: <strong>320</strong></div>
+                    <div class="keyword-stat">תחרות: <strong>בינונית</strong></div>
+                    <div class="keyword-stat">מיקום: 50 → יעד: 6</div>
+                    <div class="keyword-stat">מבקרים/חודש: 1 → 16</div>
+                    <div class="growth-highlight">גידול של 500% בתנועה</div>
+                    <div class="improvement-text">שיפור של 44 מקומות</div>
+                </div>
+
+                <div class="keyword-card">
+                    <div class="keyword-title">מזונות ילדים</div>
+                    <div class="keyword-stat">נפח חיפוש: <strong>260</strong></div>
+                    <div class="keyword-stat">תחרות: <strong>בינונית</strong></div>
+                    <div class="keyword-stat">מיקום: 50 → יעד: 6</div>
+                    <div class="keyword-stat">מבקרים/חודש: 1 → 13</div>
+                    <div class="growth-highlight">גידול של 500% בתנועה</div>
+                    <div class="improvement-text">שיפור של 44 מקומות</div>
+                </div>
+
+                <div class="keyword-card">
+                    <div class="keyword-title">חלוקת רכוש בגירושין</div>
+                    <div class="keyword-stat">נפח חיפוש: <strong>210</strong></div>
+                    <div class="keyword-stat">תחרות: <strong>נמוכה</strong></div>
+                    <div class="keyword-stat">מיקום: 50 → יעד: 5</div>
+                    <div class="keyword-stat">מבקרים/חודש: 1 → 15</div>
+                    <div class="growth-highlight">גידול של 500% בתנועה</div>
+                    <div class="improvement-text">שיפור של 45 מקומות</div>
+                </div>
+
+                <div class="keyword-card">
+                    <div class="keyword-title">ידועים בציבור זכויות</div>
+                    <div class="keyword-stat">נפח חיפוש: <strong>140</strong></div>
+                    <div class="keyword-stat">תחרות: <strong>נמוכה</strong></div>
+                    <div class="keyword-stat">מיקום: 50 → יעד: 5</div>
+                    <div class="keyword-stat">מבקרים/חודש: 1 → 10</div>
+                    <div class="growth-highlight">גידול של 500% בתנועה</div>
+                    <div class="improvement-text">שיפור של 45 מקומות</div>
+                </div>
+
+                <div class="keyword-card">
+                    <div class="keyword-title">צוואה וירושה</div>
+                    <div class="keyword-stat">נפח חיפוש: <strong>170</strong></div>
+                    <div class="keyword-stat">תחרות: <strong>בינונית</strong></div>
+                    <div class="keyword-stat">מיקום: 50 → יעד: 8</div>
+                    <div class="keyword-stat">מבקרים/חודש: 1 → 5</div>
+                    <div class="growth-highlight">גידול של 400% בתנועה</div>
+                    <div class="improvement-text">שיפור של 42 מקומות</div>
+                </div>
+
+                <div class="keyword-card">
+                    <div class="keyword-title">בית דין רבני</div>
+                    <div class="keyword-stat">נפח חיפוש: <strong>140</strong></div>
+                    <div class="keyword-stat">תחרות: <strong>נמוכה</strong></div>
+                    <div class="keyword-stat">מיקום: 50 → יעד: 10</div>
+                    <div class="keyword-stat">מבקרים/חודש: 1 → 4</div>
+                    <div class="growth-highlight">גידול של 300% בתנועה</div>
+                    <div class="improvement-text">שיפור של 40 מקומות</div>
+                </div>
+
+                <div class="keyword-card">
+                    <div class="keyword-title">הסדרי ראיה</div>
+                    <div class="keyword-stat">נפח חיפוש: <strong>110</strong></div>
+                    <div class="keyword-stat">תחרות: <strong>נמוכה</strong></div>
+                    <div class="keyword-stat">מיקום: 50 → יעד: 8</div>
+                    <div class="keyword-stat">מבקרים/חודש: 0 → 3</div>
+                    <div class="growth-highlight">גידול של 500% בתנועה</div>
+                    <div class="improvement-text">שיפור של 42 מקומות</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="recommendations-section">
+            <h2 class="section-title">המלצות לקידום</h2>
+            <ul class="recommendations-list">
+                <li>יצירת 10 עמודי תוכן ממוקדים (1500+ מילים) לכל מילת מפתח עיקרית עם מידע מקיף</li>
+                <li>הוספת LocalBusiness Schema עם דגש על שירותי משפחה וגירושין ברמת גן</li>
+                <li>בניית 20-30 קישורים איכותיים מאתרי משפט ומשפחה רלוונטיים</li>
+                <li>יצירת בלוג עם מאמרים שבועיים על זכויות בגירושין, טיפים למתגרשים וחידושי חוק</li>
+                <li>אופטימיזציית Core Web Vitals - דחיית JS/CSS, הקטנת תמונות, CDN</li>
+                <li>הוספת עמוד FAQ מקיף עם 50+ שאלות נפוצות ו-FAQ Schema</li>
+            </ul>
+        </div>
+
+        <div class="summary-section">
+            <h2 class="section-title">סיכום</h2>
+            <p>צפי לגידול של כ-200 מבקרים חודשיים נוספים תוך 90 יום באמצעות מיקוד במילות מפתח רלוונטיות לדיני משפחה</p>
+        </div>
+
+        <div class="closing">
+            בואו נקדם את האתר יחד בקהילת המקדמים המובילה בארץ.
+        </div>
+    </div>
+</body>
+</html>
