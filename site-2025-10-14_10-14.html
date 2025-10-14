@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>דוח פוטנציאל קידום אתרים - www.higayaclinic.co.il</title>
+    <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Assistant', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #f8fdfd 0%, #e8f8f8 100%);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .hero {
+            text-align: center;
+            background: white;
+            padding: 40px 20px;
+            border-radius: 15px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+            margin-bottom: 30px;
+            border: 1px solid #e6e6e6;
+        }
+
+        .hero h1 {
+            color: #2c5f5d;
+            font-size: 2.2rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+
+        .hero h2 {
+            color: #20b8b8;
+            font-size: 1.4rem;
+            font-weight: 500;
+            margin-bottom: 20px;
+        }
+
+        .domain {
+            background: #20b8b8;
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            display: inline-block;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+
+        .message {
+            color: #5a7c7b;
+            font-size: 1.1rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .kpi-bar {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.06);
+            margin-bottom: 30px;
+            border: 1px solid #e6e6e6;
+        }
+
+        .kpi-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+        }
+
+        .kpi-item {
+            text-align: center;
+        }
+
+        .kpi-value {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #20b8b8;
+            margin-bottom: 8px;
+        }
+
+        .kpi-label {
+            color: #2c5f5d;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background: #e6e6e6;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #20b8b8, #2dd4aa);
+            transition: width 0.6s ease;
+        }
+
+        .keywords-section {
+            margin-bottom: 30px;
+        }
+
+        .section-title {
+            color: #2c5f5d;
+            font-size: 1.8rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .keywords-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 20px;
+        }
+
+        .keyword-card {
+            background: #fafafa;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            border: 1px solid #e6e6e6;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .keyword-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+        }
+
+        .keyword-title {
+            color: #2c5f5d;
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+
+        .keyword-row {
+            margin-bottom: 8px;
+            font-size: 0.95rem;
+        }
+
+        .keyword-row.small {
+            font-size: 0.85rem;
+            color: #5a7c7b;
+        }
+
+        .keyword-row.highlight {
+            color: #20b8b8;
+            font-weight: 600;
+            font-size: 1rem;
+        }
+
+        .recommendations {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.06);
+            margin-bottom: 30px;
+            border: 1px solid #e6e6e6;
+        }
+
+        .recommendations ul {
+            list-style: none;
+            padding-right: 0;
+        }
+
+        .recommendations li {
+            margin-bottom: 15px;
+            padding-right: 25px;
+            position: relative;
+            color: #333;
+            line-height: 1.7;
+        }
+
+        .recommendations li:before {
+            content: "✓";
+            position: absolute;
+            right: 0;
+            color: #20b8b8;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        .summary {
+            background: linear-gradient(135deg, #20b8b8 0%, #2dd4aa 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            margin-bottom: 30px;
+            box-shadow: 0 8px 25px rgba(32, 184, 184, 0.3);
+        }
+
+        .summary h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+        }
+
+        .closing {
+            background: #2c5f5d;
+            color: white;
+            padding: 25px;
+            border-radius: 12px;
+            text-align: center;
+            font-weight: 500;
+            font-size: 1.1rem;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+            
+            .hero h2 {
+                font-size: 1.2rem;
+            }
+            
+            .kpi-value {
+                font-size: 2rem;
+            }
+            
+            .keywords-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .container {
+                padding: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="hero">
+            <h1>🎉 מצאנו הזדמנויות מעולות לקידום האתר שלך!</h1>
+            <h2>הנה המילים שכדאי להתמקד בהן:</h2>
+            <div class="domain">www.higayaclinic.co.il</div>
+            <div class="message">אתר המציע שירותי רפואה סינית וטיפולים משלימים במודיעין - פוטנציאל גדול לקידום בשוק המקומי</div>
+        </div>
+
+        <div class="kpi-bar">
+            <div class="kpi-grid">
+                <div class="kpi-item">
+                    <div class="kpi-value" aria-label="ציון כללי">100</div>
+                    <div class="kpi-label">ציון כללי</div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 100%"></div>
+                    </div>
+                </div>
+                <div class="kpi-item">
+                    <div class="kpi-value" aria-label="תנועה פוטנציאלית חודשית">1,828</div>
+                    <div class="kpi-label">תנועה פוטנציאלית/חודש</div>
+                </div>
+                <div class="kpi-item">
+                    <div class="kpi-value" aria-label="מספר מילות מפתח">10</div>
+                    <div class="kpi-label">מס' מילות מפתח</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="keywords-section">
+            <h2 class="section-title">מילות מפתח מומלצות</h2>
+            <div class="keywords-grid">
+                <div class="keyword-card">
+                    <div class="keyword-title">רפלקסולוגיה</div>
+                    <div class="keyword-row">נפח חיפושים: 8,100</div>
+                    <div class="keyword-row">תחרות: בינונית</div>
+                    <div class="keyword-row small">מיקום: 53 → יעד: 5</div>
+                    <div class="keyword-row small">מבקרים/חודש: 32 → 567</div>
+                    <div class="keyword-row highlight">גידול של 500% בתנועה</div>
+                    <div class="keyword-row small">שיפור של 48 מקומות</div>
+                </div>
+
+                <div class="keyword-card">
+                    <div class="keyword-title">נטורופתיה</div>
+                    <div class="keyword-row">נפח חיפושים: 5,400</div>
+                    <div class="keyword-row">תחרות: בינונית</div>
+                    <div class="keyword-row small">מיקום: 34 → יעד: 5</div>
+                    <div class="keyword-row small">מבקרים/חודש: 22 → 378</div>
+                    <div class="keyword-row highlight">גידול של 500% בתנועה</div>
+                    <div class="keyword-row small">שיפור של 29 מקומות</div>
+                </div>
+
+                <div class="keyword-card">
+                    <div class="keyword-title">שיאצו</div>
+                    <div class="keyword-row">נפח חיפושים: 4,400</div>
+                    <div class="keyword-row">תחרות: בינונית</div>
+                    <div class="keyword-row small">מיקום: 26 → יעד: 5</div>
+                    <div class="keyword-row small">מבקרים/חודש: 18 → 308</div>
+                    <div class="keyword-row highlight">גידול של 500% בתנועה</div>
+                    <div class="keyword-row small">שיפור של 21 מקומות</div>
+                </div>
+
+                <div class="keyword-card">
+                    <div class="keyword-title">עיסוי שוודי</div>
+                    <div class="keyword-row">נפח חיפושים: 1,900</div>
+                    <div class="keyword-row">תחרות: נמוכה</div>
+                    <div class="keyword-row small">מיקום: 23 → יעד: 5</div>
+                    <div class="keyword-row small">מבקרים/חודש: 8 → 133</div>
+                    <div class="keyword-row highlight">גידול של 500% בתנועה</div>
+                    <div class="keyword-row small">שיפור של 18 מקומות</div>
+                </div>
+
+                <div class="keyword-card">
+                    <div class="keyword-title">רייקי</div>
+                    <div class="keyword-row">נפח חיפושים: 1,300</div>
+                    <div class="keyword-row">תחרות: נמוכה</div>
+                    <div class="keyword-row small">מיקום: 41 → יעד: 5</div>
+                    <div class="keyword-row small">מבקרים/חודש: 5 → 91</div>
+                    <div class="keyword-row highlight">גידול של 500% בתנועה</div>
+                    <div class="keyword-row small">שיפור של 36 מקומות</div>
+                </div>
+
+                <div class="keyword-card">
+                    <div class="keyword-title">רפלקסולוגיה מפה</div>
+                    <div class="keyword-row">נפח חיפושים: 1,300</div>
+                    <div class="keyword-row">תחרות: נמוכה</div>
+                    <div class="keyword-row small">מיקום: 45 → יעד: 5</div>
+                    <div class="keyword-row small">מבקרים/חודש: 5 → 91</div>
+                    <div class="keyword-row highlight">גידול של 500% בתנועה</div>
+                    <div class="keyword-row small">שיפור של 40 מקומות</div>
+                </div>
+
+                <div class="keyword-card">
+                    <div class="keyword-title">דיקור סיני מודיעין</div>
+                    <div class="keyword-row">נפח חיפושים: 880</div>
+                    <div class="keyword-row">תחרות: גבוהה</div>
+                    <div class="keyword-row small">מיקום: 50 → יעד: 3</div>
+                    <div class="keyword-row small">מבקרים/חודש: 4 → 106</div>
+                    <div class="keyword-row highlight">גידול של 500% בתנועה</div>
+                    <div class="keyword-row small">שיפור של 47 מקומות</div>
+                </div>
+
+                <div class="keyword-card">
+                    <div class="keyword-title">רפואה סינית מודיעין</div>
+                    <div class="keyword-row">נפח חיפושים: 720</div>
+                    <div class="keyword-row">תחרות: גבוהה</div>
+                    <div class="keyword-row small">מיקום: 50 → יעד: 3</div>
+                    <div class="keyword-row small">מבקרים/חודש: 3 → 86</div>
+                    <div class="keyword-row highlight">גידול של 500% בתנועה</div>
+                    <div class="keyword-row small">שיפור של 47 מקומות</div>
+                </div>
+
+                <div class="keyword-card">
+                    <div class="keyword-title">עיסוי רפואי מודיעין</div>
+                    <div class="keyword-row">נפח חיפושים: 590</div>
+                    <div class="keyword-row">תחרות: בינונית</div>
+                    <div class="keyword-row small">מיקום: 50 → יעד: 5</div>
+                    <div class="keyword-row small">מבקרים/חודש: 2 → 41</div>
+                    <div class="keyword-row highlight">גידול של 500% בתנועה</div>
+                    <div class="keyword-row small">שיפור של 45 מקומות</div>
+                </div>
+
+                <div class="keyword-card">
+                    <div class="keyword-title">מדרסים אורתופדיים מודיעין</div>
+                    <div class="keyword-row">נפח חיפושים: 390</div>
+                    <div class="keyword-row">תחרות: בינונית</div>
+                    <div class="keyword-row small">מיקום: 50 → יעד: 5</div>
+                    <div class="keyword-row small">מבקרים/חודש: 2 → 27</div>
+                    <div class="keyword-row highlight">גידול של 500% בתנועה</div>
+                    <div class="keyword-row small">שיפור של 45 מקומות</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="recommendations">
+            <h3 class="section-title">המלצות לקידום</h3>
+            <ul>
+                <li>ליצור דפי נחיתה ייעודיים לכל טיפול (רפלקסולוגיה, שיאצו, נטורופתיה) עם תוכן של 1000+ מילים</li>
+                <li>להוסיף בלוג מקצועי עם 2 מאמרים חודשיים על טיפולים ברפואה משלימה</li>
+                <li>לבנות דף Google My Business חזק עם תמונות, ביקורות ופוסטים שבועיים</li>
+                <li>ליישם Schema של LocalBusiness + MedicalBusiness עם שעות פעילות ושירותים</li>
+                <li>לצמצם זמן טעינה ל-2 שניות באמצעות Critical CSS ו-CDN</li>
+                <li>ליצור קמפיין לינק בילדינג מקומי עם 10 אתרי בריאות ישראליים</li>
+            </ul>
+        </div>
+
+        <div class="summary">
+            <h3>סיכום הפוטנציאל</h3>
+            <p>צפי לתוספת של כ-1,800 מבקרים חודשיים תוך 90 יום באמצעות מיקוד במילות מפתח רלוונטיות לרפואה משלימה</p>
+        </div>
+
+        <div class="closing">
+            בואו נקדם את האתר יחד בקהילת המקדמים המובילה בארץ.
+        </div>
+    </div>
+</body>
+</html>
