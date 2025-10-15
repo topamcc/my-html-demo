@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>דוח פוטנציאל קידום אתרים - irina-painting.com</title>
+    <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Assistant', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .hero {
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            padding: 40px;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        
+        .hero h1 {
+            color: #2c5f5d;
+            font-size: 2.5em;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+        
+        .hero .subtitle {
+            color: #5a7c7b;
+            font-size: 1.3em;
+            margin-bottom: 20px;
+            font-weight: 400;
+        }
+        
+        .domain {
+            background: #20b8b8;
+            color: white;
+            padding: 10px 25px;
+            border-radius: 25px;
+            display: inline-block;
+            font-weight: 600;
+            font-size: 1.1em;
+            margin-bottom: 15px;
+        }
+        
+        .message {
+            color: #5a7c7b;
+            font-size: 1.1em;
+            margin-top: 15px;
+            font-style: italic;
+        }
+        
+        .kpi-bar {
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            padding: 30px;
+            margin-bottom: 30px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+        
+        .kpi-item {
+            text-align: center;
+        }
+        
+        .kpi-value {
+            font-size: 2.5em;
+            font-weight: 700;
+            color: #20b8b8;
+            display: block;
+        }
+        
+        .kpi-label {
+            color: #5a7c7b;
+            font-size: 1.1em;
+            margin-top: 8px;
+            font-weight: 500;
+        }
+        
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background: #e6e6e6;
+            border-radius: 4px;
+            margin-top: 10px;
+            overflow: hidden;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #20b8b8, #2dd4bf);
+            border-radius: 4px;
+            transition: width 0.8s ease;
+        }
+        
+        .keywords-section {
+            margin-bottom: 40px;
+        }
+        
+        .section-title {
+            color: #2c5f5d;
+            font-size: 2em;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .keywords-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 20px;
+        }
+        
+        .keyword-card {
+            background: #fafafa;
+            border: 1px solid #e6e6e6;
+            border-radius: 12px;
+            padding: 25px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .keyword-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(32, 184, 184, 0.15);
+            border-color: #20b8b8;
+        }
+        
+        .keyword-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 4px;
+            height: 100%;
+            background: #20b8b8;
+        }
+        
+        .keyword-title {
+            color: #2c5f5d;
+            font-size: 1.3em;
+            font-weight: 700;
+            margin-bottom: 15px;
+            padding-right: 10px;
+        }
+        
+        .keyword-info {
+            color: #5a7c7b;
+            margin-bottom: 8px;
+            font-size: 0.95em;
+        }
+        
+        .keyword-info.small {
+            font-size: 0.9em;
+            color: #7a8a89;
+        }
+        
+        .keyword-info.highlight {
+            color: #20b8b8;
+            font-weight: 600;
+            font-size: 1em;
+            background: rgba(32, 184, 184, 0.1);
+            padding: 6px 12px;
+            border-radius: 6px;
+            margin-top: 10px;
+        }
+        
+        .recommendations {
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            padding: 35px;
+            margin-bottom: 30px;
+        }
+        
+        .recommendations h2 {
+            color: #2c5f5d;
+            font-size: 1.8em;
+            font-weight: 700;
+            margin-bottom: 25px;
+            text-align: center;
+        }
+        
+        .recommendations ul {
+            list-style: none;
+            padding-right: 0;
+        }
+        
+        .recommendations li {
+            background: #fafafa;
+            border-right: 4px solid #20b8b8;
+            padding: 15px 20px;
+            margin-bottom: 12px;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        .recommendations li:hover {
+            background: rgba(32, 184, 184, 0.05);
+            transform: translateX(-5px);
+        }
+        
+        .recommendations li::before {
+            content: '•';
+            color: #20b8b8;
+            font-size: 1.5em;
+            position: absolute;
+            right: -2px;
+            top: 15px;
+        }
+        
+        .summary {
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            padding: 35px;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .summary h2 {
+            color: #2c5f5d;
+            font-size: 1.8em;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+        
+        .summary p {
+            color: #5a7c7b;
+            font-size: 1.2em;
+            line-height: 1.7;
+        }
+        
+        .closing {
+            background: linear-gradient(135deg, #20b8b8, #2dd4bf);
+            color: white;
+            text-align: center;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(32, 184, 184, 0.3);
+        }
+        
+        .closing p {
+            font-size: 1.2em;
+            font-weight: 600;
+            margin: 0;
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px;
+            }
+            
+            .hero {
+                padding: 30px 20px;
+            }
+            
+            .hero h1 {
+                font-size: 2em;
+            }
+            
+            .kpi-bar {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .keywords-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .keyword-card {
+                padding: 20px;
+            }
+        }
+        
+        .format-number::after {
+            content: attr(data-formatted);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="hero">
+            <h1>🎉 מצאנו הזדמנויות מעולות לקידום האתר שלך!</h1>
+            <div class="subtitle">הנה המילים שכדאי להתמקד בהן:</div>
+            <div class="domain">irina-painting.com</div>
+            <div class="message">אתר של אמנית ישראלית המתמחה בציורים מקוריים - ציורי מים ושמן, עם פוטנציאל חזק לצמיחה אורגנית</div>
+        </div>
+        
+        <div class="kpi-bar">
+            <div class="kpi-item" aria-label="ציון כללי">
+                <span class="kpi-value">471</span>
+                <div class="kpi-label">ציון כללי</div>
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: 100%"></div>
+                </div>
+            </div>
+            <div class="kpi-item" aria-label="תנועה פוטנציאלית חודשית">
+                <span class="kpi-value">80</span>
+                <div class="kpi-label">תנועה פוטנציאלית/חודש</div>
+            </div>
+            <div class="kpi-item" aria-label="מספר מילות מפתח">
+                <span class="kpi-value">10</span>
+                <div class="kpi-label">מס' מילות מפתח</div>
+            </div>
+        </div>
+        
+        <div class="keywords-section">
+            <h2 class="section-title">מילות המפתח המומלצות</h2>
+            <div class="keywords-grid">
+                <div class="keyword-card">
+                    <div class="keyword-title">ציורים מקוריים</div>
+                    <div class="keyword-info">נפח חיפוש: 320</div>
+                    <div class="keyword-info">תחרות: בינונית</div>
+                    <div class="keyword-info small">מיקום: 50 → יעד: 8</div>
+                    <div class="keyword-info small">מבקרים/חודש: 1 → 10</div>
+                    <div class="keyword-info highlight">גידול של 500% בתנועה</div>
+                    <div class="keyword-info small">שיפור של 42 מקומות</div>
+                </div>
+                
+                <div class="keyword-card">
+                    <div class="keyword-title">ציורי שמן</div>
+                    <div class="keyword-info">נפח חיפוש: 260</div>
+                    <div class="keyword-info">תחרות: בינונית</div>
+                    <div class="keyword-info small">מיקום: 50 → יעד: 7</div>
+                    <div class="keyword-info small">מבקרים/חודש: 1 → 13</div>
+                    <div class="keyword-info highlight">גידול של 500% בתנועה</div>
+                    <div class="keyword-info small">שיפור של 43 מקומות</div>
+                </div>
+                
+                <div class="keyword-card">
+                    <div class="keyword-title">ציורי מים</div>
+                    <div class="keyword-info">נפח חיפוש: 210</div>
+                    <div class="keyword-info">תחרות: נמוכה</div>
+                    <div class="keyword-info small">מיקום: 50 → יעד: 6</div>
+                    <div class="keyword-info small">מבקרים/חודש: 1 → 11</div>
+                    <div class="keyword-info highlight">גידול של 500% בתנועה</div>
+                    <div class="keyword-info small">שיפור של 44 מקומות</div>
+                </div>
+                
+                <div class="keyword-card">
+                    <div class="keyword-title">אמנות ישראלית</div>
+                    <div class="keyword-info">נפח חיפוש: 180</div>
+                    <div class="keyword-info">תחרות: גבוהה</div>
+                    <div class="keyword-info small">מיקום: 50 → יעד: 9</div>
+                    <div class="keyword-info small">מבקרים/חודש: 1 → 5</div>
+                    <div class="keyword-info highlight">גידול של 400% בתנועה</div>
+                    <div class="keyword-info small">שיפור של 41 מקומות</div>
+                </div>
+                
+                <div class="keyword-card">
+                    <div class="keyword-title">ציור על קנבס</div>
+                    <div class="keyword-info">נפח חיפוש: 150</div>
+                    <div class="keyword-info">תחרות: נמוכה</div>
+                    <div class="keyword-info small">מיקום: 50 → יעד: 5</div>
+                    <div class="keyword-info small">מבקרים/חודש: 1 → 11</div>
+                    <div class="keyword-info highlight">גידול של 500% בתנועה</div>
+                    <div class="keyword-info small">שיפור של 45 מקומות</div>
+                </div>
+                
+                <div class="keyword-card">
+                    <div class="keyword-title">קניית ציורים</div>
+                    <div class="keyword-info">נפח חיפוש: 140</div>
+                    <div class="keyword-info">תחרות: גבוהה</div>
+                    <div class="keyword-info small">מיקום: 50 → יעד: 8</div>
+                    <div class="keyword-info small">מבקרים/חודש: 1 → 4</div>
+                    <div class="keyword-info highlight">גידול של 300% בתנועה</div>
+                    <div class="keyword-info small">שיפור של 42 מקומות</div>
+                </div>
+                
+                <div class="keyword-card">
+                    <div class="keyword-title">אמנית ישראלית</div>
+                    <div class="keyword-info">נפח חיפוש: 110</div>
+                    <div class="keyword-info">תחרות: בינונית</div>
+                    <div class="keyword-info small">מיקום: 50 → יעד: 7</div>
+                    <div class="keyword-info small">מבקרים/חודש: 0 → 6</div>
+                    <div class="keyword-info highlight">גידול של 500% בתנועה</div>
+                    <div class="keyword-info small">שיפור של 43 מקומות</div>
+                </div>
+                
+                <div class="keyword-card">
+                    <div class="keyword-title">ציור של שמלה</div>
+                    <div class="keyword-info">נפח חיפוש: 110</div>
+                    <div class="keyword-info">תחרות: נמוכה</div>
+                    <div class="keyword-info small">מיקום: 14 → יעד: 5</div>
+                    <div class="keyword-info small">מבקרים/חודש: 2 → 8</div>
+                    <div class="keyword-info highlight">גידול של 300% בתנועה</div>
+                    <div class="keyword-info small">שיפור של 9 מקומות</div>
+                </div>
+                
+                <div class="keyword-card">
+                    <div class="keyword-title">ציורים של רקדניות</div>
+                    <div class="keyword-info">נפח חיפוש: 90</div>
+                    <div class="keyword-info">תחרות: נמוכה</div>
+                    <div class="keyword-info small">מיקום: 25 → יעד: 5</div>
+                    <div class="keyword-info small">מבקרים/חודש: 0 → 6</div>
+                    <div class="keyword-info highlight">גידול של 500% בתנועה</div>
+                    <div class="keyword-info small">שיפור של 20 מקומות</div>
+                </div>
+                
+                <div class="keyword-card">
+                    <div class="keyword-title">ציור טבע</div>
+                    <div class="keyword-info">נפח חיפוש: 90</div>
+                    <div class="keyword-info">תחרות: בינונית</div>
+                    <div class="keyword-info small">מיקום: 73 → יעד: 5</div>
+                    <div class="keyword-info small">מבקרים/חודש: 0 → 6</div>
+                    <div class="keyword-info highlight">גידול של 500% בתנועה</div>
+                    <div class="keyword-info small">שיפור של 68 מקומות</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="recommendations">
+            <h2>המלצות לשיפור הדירוג</h2>
+            <ul>
+                <li>צרי גלריה מקוונת עם תיאור מפורט לכל ציור וטאגים רלוונטיים</li>
+                <li>הוסיפי בלוג עם מאמרים על טכניקות ציור ומקורות השראה</li>
+                <li>בני עמודי נחיתה נפרדים עבור ציורי שמן וציורי מים</li>
+                <li>הוסיפי עמוד 'אודות' עשיר עם סיפור האמנית ותהליך היצירה</li>
+                <li>צרי קשרים עם גלריות ואתרי אמנות ישראליים</li>
+                <li>הוסיפי המלצות לקוחות ותמונות של הציורים במסגרות</li>
+            </ul>
+        </div>
+        
+        <div class="summary">
+            <h2>סיכום הדוח</h2>
+            <p>עם אופטימיזציה מותאמת ותוכן איכותי, האתר יוכל להגיע לכ-90 מבקרים נוספים בחודש תוך 90 יום</p>
+        </div>
+        
+        <div class="closing">
+            <p>בואו נקדם את האתר יחד בקהילת המקדמים המובילה בארץ.</p>
+        </div>
+    </div>
+</body>
+</html>
