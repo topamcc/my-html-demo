@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>דוח פוטנציאל קידום אתרים - www.michvan.co.il</title>
+    <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Assistant', sans-serif;
+            background-color: #f8f9fa;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .hero {
+            background: linear-gradient(135deg, #20b8b8, #2c5f5d);
+            color: white;
+            padding: 40px 30px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            text-align: center;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+        
+        .hero h1 {
+            font-size: 2.2em;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+        
+        .hero h2 {
+            font-size: 1.4em;
+            font-weight: 500;
+            margin-bottom: 20px;
+            opacity: 0.9;
+        }
+        
+        .hero .domain {
+            background: rgba(255,255,255,0.2);
+            padding: 8px 16px;
+            border-radius: 25px;
+            display: inline-block;
+            margin: 10px 0;
+            font-weight: 600;
+        }
+        
+        .hero .message {
+            font-size: 1.1em;
+            margin-top: 15px;
+            opacity: 0.95;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .kpi-bar {
+            background: #fafafa;
+            padding: 30px;
+            border-radius: 12px;
+            margin-bottom: 30px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            border: 1px solid #e6e6e6;
+        }
+        
+        .kpi-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+        
+        .kpi-item {
+            text-align: center;
+        }
+        
+        .kpi-value {
+            font-size: 2.5em;
+            font-weight: 700;
+            color: #20b8b8;
+            display: block;
+            margin-bottom: 5px;
+        }
+        
+        .kpi-label {
+            color: #5a7c7b;
+            font-weight: 500;
+        }
+        
+        .progress-bar {
+            background: #e6e6e6;
+            height: 8px;
+            border-radius: 4px;
+            margin: 10px auto;
+            width: 200px;
+            overflow: hidden;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #20b8b8, #2c5f5d);
+            transition: width 0.3s ease;
+        }
+        
+        .section {
+            background: #fafafa;
+            padding: 30px;
+            border-radius: 12px;
+            margin-bottom: 30px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            border: 1px solid #e6e6e6;
+        }
+        
+        .section h2 {
+            color: #2c5f5d;
+            font-size: 1.8em;
+            font-weight: 600;
+            margin-bottom: 25px;
+            text-align: center;
+        }
+        
+        .keywords-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+        
+        .keyword-card {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            border: 1px solid #e6e6e6;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        
+        .keyword-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        
+        .keyword-title {
+            font-size: 1.3em;
+            font-weight: 600;
+            color: #2c5f5d;
+            margin-bottom: 12px;
+        }
+        
+        .keyword-detail {
+            margin: 8px 0;
+            color: #5a7c7b;
+        }
+        
+        .keyword-detail.small {
+            font-size: 0.9em;
+        }
+        
+        .keyword-detail.highlight {
+            color: #20b8b8;
+            font-weight: 600;
+        }
+        
+        .recommendations {
+            background: #fafafa;
+            padding: 30px;
+            border-radius: 12px;
+            margin-bottom: 30px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            border: 1px solid #e6e6e6;
+        }
+        
+        .recommendations h2 {
+            color: #2c5f5d;
+            font-size: 1.8em;
+            font-weight: 600;
+            margin-bottom: 25px;
+            text-align: center;
+        }
+        
+        .recommendations ul {
+            list-style: none;
+        }
+        
+        .recommendations li {
+            background: white;
+            margin: 12px 0;
+            padding: 15px 20px;
+            border-radius: 8px;
+            border-right: 4px solid #20b8b8;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+        
+        .recommendations li:before {
+            content: "✓";
+            color: #20b8b8;
+            font-weight: bold;
+            margin-left: 10px;
+        }
+        
+        .summary {
+            background: linear-gradient(135deg, #20b8b8, #2c5f5d);
+            color: white;
+            padding: 30px;
+            border-radius: 12px;
+            text-align: center;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+        
+        .summary h2 {
+            color: white;
+            margin-bottom: 20px;
+        }
+        
+        .summary p {
+            font-size: 1.2em;
+            line-height: 1.7;
+        }
+        
+        .closing {
+            background: #2c5f5d;
+            color: white;
+            padding: 25px;
+            border-radius: 12px;
+            text-align: center;
+            font-size: 1.1em;
+            font-weight: 500;
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px;
+            }
+            
+            .hero {
+                padding: 30px 20px;
+            }
+            
+            .hero h1 {
+                font-size: 1.8em;
+            }
+            
+            .hero h2 {
+                font-size: 1.2em;
+            }
+            
+            .kpi-grid {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+            
+            .keywords-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .section {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="hero">
+            <h1>🎉 מצאנו הזדמנויות מעולות לקידום האתר שלך!</h1>
+            <h2>הנה המילים שכדאי להתמקד בהן:</h2>
+            <div class="domain">www.michvan.co.il</div>
+            <div class="message">מכון מכוון מתמחה בהכנה למבחנים צבאיים - המילות המפתח המסופקות רלוונטיות לנישה ומתאימות לשוק הישראלי</div>
+        </div>
+
+        <div class="kpi-bar">
+            <div class="kpi-grid">
+                <div class="kpi-item">
+                    <span class="kpi-value">309</span>
+                    <div class="kpi-label">ציון כללי</div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 100%"></div>
+                    </div>
+                </div>
+                <div class="kpi-item">
+                    <span class="kpi-value">8,872</span>
+                    <div class="kpi-label">תנועה פוטנציאלית/חודש</div>
+                </div>
+                <div class="kpi-item">
+                    <span class="kpi-value">10</span>
+                    <div class="kpi-label">מס' מילות מפתח</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>מילות המפתח המומלצות</h2>
+            <div class="keywords-grid">
+                <div class="keyword-card">
+                    <div class="keyword-title">מיט״ב</div>
+                    <div class="keyword-detail">נפח חיפוש: 90,500</div>
+                    <div class="keyword-detail">תחרות: גבוהה</div>
+                    <div class="keyword-detail small">מיקום: 75 → יעד: 5</div>
+                    <div class="keyword-detail small">מבקרים/חודש: 362 → 6,335</div>
+                    <div class="keyword-detail highlight">גידול של 500% בתנועה</div>
+                    <div class="keyword-detail small">שיפור של 70 מקומות</div>
+                </div>
+                
+                <div class="keyword-card">
+                    <div class="keyword-title">יום המא״ה</div>
+                    <div class="keyword-detail">נפח חיפוש: 4,400</div>
+                    <div class="keyword-detail">תחרות: בינונית</div>
+                    <div class="keyword-detail small">מיקום: 6 → יעד: 3</div>
+                    <div class="keyword-detail small">מבקרים/חודש: 220 → 528</div>
+                    <div class="keyword-detail highlight">גידול של 140% בתנועה</div>
+                    <div class="keyword-detail small">שיפור של 3 מקומות</div>
+                </div>
+                
+                <div class="keyword-card">
+                    <div class="keyword-title">יום המאה</div>
+                    <div class="keyword-detail">נפח חיפוש: 4,400</div>
+                    <div class="keyword-detail">תחרות: בינונית</div>
+                    <div class="keyword-detail small">מיקום: 12 → יעד: 5</div>
+                    <div class="keyword-detail small">מבקרים/חודש: 66 → 308</div>
+                    <div class="keyword-detail highlight">גידול של 367% בתנועה</div>
+                    <div class="keyword-detail small">שיפור של 7 מקומות</div>
+                </div>
+                
+                <div class="keyword-card">
+                    <div class="keyword-title">דפר</div>
+                    <div class="keyword-detail">נפח חיפוש: 2,900</div>
+                    <div class="keyword-detail">תחרות: גבוהה</div>
+                    <div class="keyword-detail small">מיקום: 3 → יעד: 2</div>
+                    <div class="keyword-detail small">מבקרים/חודש: 348 → 464</div>
+                    <div class="keyword-detail highlight">גידול של 33% בתנועה</div>
+                    <div class="keyword-detail small">שיפור של 1 מקומות</div>
+                </div>
+                
+                <div class="keyword-card">
+                    <div class="keyword-title">מבחן פסיכוטכני</div>
+                    <div class="keyword-detail">נפח חיפוש: 2,900</div>
+                    <div class="keyword-detail">תחרות: גבוהה</div>
+                    <div class="keyword-detail small">מיקום: 18 → יעד: 5</div>
+                    <div class="keyword-detail small">מבקרים/חודש: 44 → 203</div>
+                    <div class="keyword-detail highlight">גידול של 361% בתנועה</div>
+                    <div class="keyword-detail small">שיפור של 13 מקומות</div>
+                </div>
+                
+                <div class="keyword-card">
+                    <div class="keyword-title">צו ראשון</div>
+                    <div class="keyword-detail">נפח חיפוש: 2,900</div>
+                    <div class="keyword-detail">תחרות: בינונית</div>
+                    <div class="keyword-detail small">מיקום: 18 → יעד: 5</div>
+                    <div class="keyword-detail small">מבקרים/חודש: 44 → 203</div>
+                    <div class="keyword-detail highlight">גידול של 361% בתנועה</div>
+                    <div class="keyword-detail small">שיפור של 13 מקומות</div>
+                </div>
+                
+                <div class="keyword-card">
+                    <div class="keyword-title">מבחנים פסיכוטכניים</div>
+                    <div class="keyword-detail">נפח חיפוש: 2,900</div>
+                    <div class="keyword-detail">תחרות: גבוהה</div>
+                    <div class="keyword-detail small">מיקום: 23 → יעד: 5</div>
+                    <div class="keyword-detail small">מבקרים/חודש: 44 → 203</div>
+                    <div class="keyword-detail highlight">גידול של 361% בתנועה</div>
+                    <div class="keyword-detail small">שיפור של 18 מקומות</div>
+                </div>
+                
+                <div class="keyword-card">
+                    <div class="keyword-title">מבחן דפר</div>
+                    <div class="keyword-detail">נפח חיפוש: 2,400</div>
+                    <div class="keyword-detail">תחרות: בינונית</div>
+                    <div class="keyword-detail small">מיקום: 6 → יעד: 3</div>
+                    <div class="keyword-detail small">מבקרים/חודש: 120 → 288</div>
+                    <div class="keyword-detail highlight">גידול של 140% בתנועה</div>
+                    <div class="keyword-detail small">שיפור של 3 מקומות</div>
+                </div>
+                
+                <div class="keyword-card">
+                    <div class="keyword-title">תפקידים בצהל</div>
+                    <div class="keyword-detail">נפח חיפוש: 1,900</div>
+                    <div class="keyword-detail">תחרות: בינונית</div>
+                    <div class="keyword-detail small">מיקום: 10 → יעד: 3</div>
+                    <div class="keyword-detail small">מבקרים/חודש: 57 → 228</div>
+                    <div class="keyword-detail highlight">גידול של 300% בתנועה</div>
+                    <div class="keyword-detail small">שיפור של 7 מקומות</div>
+                </div>
+                
+                <div class="keyword-card">
+                    <div class="keyword-title">תפקידים לבנות בצבא</div>
+                    <div class="keyword-detail">נפח חיפוש: 1,600</div>
+                    <div class="keyword-detail">תחרות: נמוכה</div>
+                    <div class="keyword-detail small">מיקום: 26 → יעד: 5</div>
+                    <div class="keyword-detail small">מבקרים/חודש: 24 → 112</div>
+                    <div class="keyword-detail highlight">גידול של 367% בתנועה</div>
+                    <div class="keyword-detail small">שיפור של 21 מקומות</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="recommendations">
+            <h2>המלצות לביצוע</h2>
+            <ul>
+                <li>יצירת דפי נחיתה ייעודיים לכל מבחן (דפר, מיטב, יום המאה) עם תוכן מקיף</li>
+                <li>פיתוח בלוג עם מאמרים על הכנה למבחנים צבאיים ותפקידים בצהל</li>
+                <li>הוספת עדויות וסיפורי הצלחה של חניכים לחיזוק האמינות</li>
+                <li>בניית קישורים פנימיים בין דפי המבחנים השונים</li>
+                <li>יצירת תוכן וידאו הסבר על כל מבחן וטיפים להכנה</li>
+                <li>אופטימיזציה לחיפוש מקומי עם Google My Business</li>
+            </ul>
+        </div>
+
+        <div class="summary">
+            <h2>סיכום</h2>
+            <p>על ידי שיפור המיקום הממוצע ב-3-5 מדרגות, ניתן להגדיל את התנועה החודשית ב-7,000+ מבקרים תוך 90 יום</p>
+        </div>
+
+        <div class="closing">
+            בואו נקדם את האתר יחד בקהילת המקדמים המובילה בארץ.
+        </div>
+    </div>
+</body>
+</html>
