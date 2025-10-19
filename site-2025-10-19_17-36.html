@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>דוח סטטוס בדיקות SEO - kzb.co.il</title>
+    <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Assistant', Arial, sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            color: #2c5f5d;
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .hero {
+            background: linear-gradient(135deg, #20b8b8 0%, #1a9a9a 100%);
+            color: white;
+            text-align: center;
+            padding: 60px 20px;
+            border-radius: 15px;
+            margin-bottom: 40px;
+            box-shadow: 0 15px 35px rgba(32, 184, 184, 0.2);
+        }
+
+        .hero h1 {
+            font-size: 2.5em;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        .hero p {
+            font-size: 1.2em;
+            opacity: 0.95;
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.5;
+        }
+
+        .domain-highlight {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-weight: 600;
+        }
+
+        .status-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin: 40px 0;
+        }
+
+        .status-card {
+            background: #fafafa;
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+            border: 2px solid #e6e6e6;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .status-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #20b8b8, #1a9a9a);
+        }
+
+        .status-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 35px rgba(0,0,0,0.12);
+        }
+
+        .status-icon {
+            font-size: 2.5em;
+            color: #20b8b8;
+            margin-bottom: 15px;
+        }
+
+        .status-title {
+            font-size: 1.1em;
+            font-weight: 600;
+            color: #2c5f5d;
+            margin-bottom: 8px;
+        }
+
+        .status-desc {
+            color: #5a7c7b;
+            font-size: 0.95em;
+        }
+
+        .info-section {
+            background: #fafafa;
+            padding: 40px;
+            border-radius: 15px;
+            margin: 40px 0;
+            border: 2px solid #e6e6e6;
+            text-align: center;
+        }
+
+        .info-section h2 {
+            color: #20b8b8;
+            font-size: 1.8em;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+
+        .info-section p {
+            font-size: 1.1em;
+            color: #5a7c7b;
+            line-height: 1.8;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .waiting-indicator {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.1em;
+            color: #20b8b8;
+            font-weight: 600;
+            margin-top: 20px;
+        }
+
+        .spinner {
+            width: 20px;
+            height: 20px;
+            border: 2px solid #e6e6e6;
+            border-top: 2px solid #20b8b8;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .recommendations {
+            background: #fafafa;
+            padding: 40px;
+            border-radius: 15px;
+            margin: 40px 0;
+            border: 2px solid #e6e6e6;
+        }
+
+        .recommendations h2 {
+            color: #20b8b8;
+            font-size: 1.6em;
+            margin-bottom: 25px;
+            font-weight: 700;
+            text-align: center;
+        }
+
+        .rec-item {
+            display: flex;
+            align-items: flex-start;
+            padding: 20px;
+            background: white;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            border-right: 4px solid #20b8b8;
+        }
+
+        .rec-icon {
+            color: #20b8b8;
+            margin-left: 15px;
+            margin-top: 2px;
+            font-size: 1.2em;
+        }
+
+        .rec-content {
+            flex: 1;
+        }
+
+        .rec-title {
+            font-weight: 600;
+            color: #2c5f5d;
+            margin-bottom: 5px;
+        }
+
+        .rec-desc {
+            color: #5a7c7b;
+            font-size: 0.95em;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 40px 20px;
+            color: #5a7c7b;
+            font-size: 0.9em;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2em;
+            }
+
+            .hero p {
+                font-size: 1em;
+            }
+
+            .status-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .container {
+                padding: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="hero">
+            <h1><i class="fas fa-search"></i> דוח סטטוס בדיקות SEO</h1>
+            <p>בדיקה מקיפה של אתר <span class="domain-highlight">kzb.co.il</span> נמצאת בתהליך עיבוד</p>
+        </div>
+
+        <div class="status-grid">
+            <div class="status-card">
+                <div class="status-icon">
+                    <i class="fas fa-clock"></i>
+                </div>
+                <div class="status-title">בדיקת עמודים</div>
+                <div class="status-desc">סריקת עמודים ללא תיאור meta description</div>
+                <div class="waiting-indicator">
+                    <div class="spinner"></div>
+                    ממתין בתור...
+                </div>
+            </div>
+
+            <div class="status-card">
+                <div class="status-icon">
+                    <i class="fas fa-clock"></i>
+                </div>
+                <div class="status-title">בדיקת משאבים</div>
+                <div class="status-desc">ניתוח תמונות וקבצים שבורים באתר</div>
+                <div class="waiting-indicator">
+                    <div class="spinner"></div>
+                    ממתין בתור...
+                </div>
+            </div>
+
+            <div class="status-card">
+                <div class="status-icon">
+                    <i class="fas fa-clock"></i>
+                </div>
+                <div class="status-title">בדיקת קישורים</div>
+                <div class="status-desc">איתור קישורים פנימיים שבורים</div>
+                <div class="waiting-indicator">
+                    <div class="spinner"></div>
+                    ממתין בתור...
+                </div>
+            </div>
+
+            <div class="status-card">
+                <div class="status-icon">
+                    <i class="fas fa-clock"></i>
+                </div>
+                <div class="status-title">בדיקת אינדוקס</div>
+                <div class="status-desc">זיהוי עמודים עם חוסמי הוספה למנועי חיפוש</div>
+                <div class="waiting-indicator">
+                    <div class="spinner"></div>
+                    ממתין בתור...
+                </div>
+            </div>
+        </div>
+
+        <div class="info-section">
+            <h2><i class="fas fa-info-circle"></i> מה קורה כרגע?</h2>
+            <p>הבדיקות שלך נמצאות כעת בתור לעיבוד. המערכת מבצעת סריקה מקיפה של האתר kzb.co.il עם מגבלה של 200 עמודים לכל בדיקה. תהליך הסריקה כולל ניתוח מעמיק של כל העמודים, המשאבים והקישורים באתר כדי לזהות בעיות SEO אפשריות.</p>
+        </div>
+
+        <div class="recommendations">
+            <h2><i class="fas fa-lightbulb"></i> בינתיים - המלצות כלליות</h2>
+            
+            <div class="rec-item">
+                <i class="fas fa-check-circle rec-icon"></i>
+                <div class="rec-content">
+                    <div class="rec-title">הכינו תיאורי meta description</div>
+                    <div class="rec-desc">כתבו תיאור ייחודי ומעניין לכל עמוד באתר, באורך 150-160 תווים, הכולל מילות מפתח רלוונטיות</div>
+                </div>
+            </div>
+
+            <div class="rec-item">
+                <i class="fas fa-images rec-icon"></i>
+                <div class="rec-content">
+                    <div class="rec-title">בדקו תמונות וכתבו alt text</div>
+                    <div class="rec-desc">ודאו שכל התמונות באתר עובדות תקין וכוללות תיאור alt מדויק ורלוונטי</div>
+                </div>
+            </div>
+
+            <div class="rec-item">
+                <i class="fas fa-link rec-icon"></i>
+                <div class="rec-content">
+                    <div class="rec-title">תקנו קישורים שבורים</div>
+                    <div class="rec-desc">בצעו בדיקה ידנית לקישורים פנימיים שאינם פועלים ותקנו או הסירו אותם</div>
+                </div>
+            </div>
+
+            <div class="rec-item">
+                <i class="fas fa-robot rec-icon"></i>
+                <div class="rec-content">
+                    <div class="rec-title">בצעו אופטימיזציה לרובוטים</div>
+                    <div class="rec-desc">ודאו שהגדרות robots.txt ו-meta robots מאפשרות למנועי חיפוש לאנדקס את התוכן הרלוונטי</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="info-section">
+            <h2><i class="fas fa-chart-line"></i> הדוח המלא בדרך</h2>
+            <p>לאחר השלמת כל הבדיקות תקבלו דוח מפורט הכולל ניתוח מעמיק של כל בעיה שנמצאה, כולל המלצות מדויקות לתיקון וסדר עדיפויות לביצוע. הדוח יכלול גם הנחיות קונקרטיות לשיפור דירוג האתר במנועי החיפוש.</p>
+            <div class="waiting-indicator">
+                <div class="spinner"></div>
+                מעבד בדיקות...
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <p><i class="fas fa-clock"></i> הדוח נוצר אוטומטית | זמן עיבוד משוער: 2-5 דקות</p>
+    </div>
+</body>
+</html>
