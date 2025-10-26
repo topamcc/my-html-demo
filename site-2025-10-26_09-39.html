@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html dir="rtl" lang="he">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>דוח פוטנציאל קידום אתרים - SEO Analysis Report</title>
+    <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Assistant', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: #2c5f5d;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .hero {
+            background: linear-gradient(135deg, #20b8b8 0%, #1a9a9a 100%);
+            color: white;
+            text-align: center;
+            padding: 60px 40px;
+            border-radius: 20px;
+            margin-bottom: 40px;
+            box-shadow: 0 20px 40px rgba(32, 184, 184, 0.3);
+        }
+
+        .hero h1 {
+            font-size: 2.5em;
+            font-weight: 700;
+            margin-bottom: 15px;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .hero p {
+            font-size: 1.2em;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .status-banner {
+            background: linear-gradient(135deg, #ff6b6b 0%, #e55353 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 15px;
+            margin-bottom: 40px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(255, 107, 107, 0.3);
+        }
+
+        .status-banner h2 {
+            font-size: 1.8em;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .status-banner p {
+            font-size: 1.1em;
+            opacity: 0.95;
+            line-height: 1.7;
+        }
+
+        .kpi-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+
+        .kpi-card {
+            background: #fafafa;
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            border: 2px solid #e6e6e6;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+
+        .kpi-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+            border-color: #20b8b8;
+        }
+
+        .kpi-icon {
+            font-size: 3em;
+            margin-bottom: 15px;
+            color: #20b8b8;
+        }
+
+        .kpi-number {
+            font-size: 2.5em;
+            font-weight: 700;
+            color: #20b8b8;
+            margin-bottom: 10px;
+        }
+
+        .kpi-label {
+            font-size: 1.1em;
+            color: #5a7c7b;
+            font-weight: 600;
+        }
+
+        .section {
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            border: 1px solid #e6e6e6;
+        }
+
+        .section h2 {
+            font-size: 1.8em;
+            margin-bottom: 25px;
+            color: #20b8b8;
+            border-bottom: 3px solid #20b8b8;
+            padding-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .info-card {
+            background: linear-gradient(135deg, #e3f9f9 0%, #d1f5f5 100%);
+            padding: 30px;
+            border-radius: 15px;
+            border-right: 5px solid #20b8b8;
+            margin: 20px 0;
+        }
+
+        .info-card h3 {
+            color: #20b8b8;
+            margin-bottom: 15px;
+            font-size: 1.3em;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .info-card p {
+            color: #2c5f5d;
+            line-height: 1.8;
+            font-size: 1.05em;
+        }
+
+        .recommendations-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .recommendations-list li {
+            background: #f9fffe;
+            padding: 20px;
+            margin-bottom: 15px;
+            border-radius: 10px;
+            border-right: 4px solid #20b8b8;
+            transition: all 0.3s ease;
+        }
+
+        .recommendations-list li:hover {
+            background: #e3f9f9;
+            transform: translateX(5px);
+        }
+
+        .recommendations-list li::before {
+            content: "✓";
+            color: #20b8b8;
+            font-weight: bold;
+            margin-left: 10px;
+            font-size: 1.2em;
+        }
+
+        .summary {
+            background: linear-gradient(135deg, #fafafa 0%, #f0f8f8 100%);
+            padding: 35px;
+            border-radius: 15px;
+            margin: 30px 0;
+            border: 2px solid #e6e6e6;
+        }
+
+        .summary h3 {
+            color: #20b8b8;
+            margin-bottom: 20px;
+            font-size: 1.4em;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .summary p {
+            line-height: 1.8;
+            color: #2c5f5d;
+            font-size: 1.05em;
+        }
+
+        .footer {
+            background: #2c5f5d;
+            color: white;
+            text-align: center;
+            padding: 40px;
+            border-radius: 15px;
+            margin-top: 40px;
+        }
+
+        .footer h3 {
+            font-size: 1.5em;
+            margin-bottom: 15px;
+        }
+
+        .footer p {
+            opacity: 0.9;
+            line-height: 1.7;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px;
+            }
+            
+            .hero {
+                padding: 40px 20px;
+            }
+            
+            .hero h1 {
+                font-size: 2em;
+            }
+            
+            .section {
+                padding: 25px;
+            }
+            
+            .kpi-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .emoji {
+            font-style: normal;
+        }
+
+        .data-unavailable {
+            background: linear-gradient(135deg, #fff3cd 0%, #ffeaa7 100%);
+            padding: 25px;
+            border-radius: 15px;
+            border-right: 5px solid #f39c12;
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        .data-unavailable h3 {
+            color: #d68910;
+            margin-bottom: 10px;
+            font-size: 1.2em;
+        }
+
+        .data-unavailable p {
+            color: #873600;
+            font-size: 1em;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Hero Section -->
+        <div class="hero">
+            <h1><span class="emoji">📊</span> דוח פוטנציאל קידום אתרים</h1>
+            <p>ניתוח מקצועי לאופטימיזציה טכנית ושיפור ביצועי חיפוש</p>
+        </div>
+
+        <!-- Status Banner -->
+        <div class="status-banner">
+            <h2><span class="emoji">⚠️</span> סטטוס בדיקת האתר</h2>
+            <p>לא ניתן להשלים את בדיקת האתר במועד זה. ייתכן שמזהה המשימה לא נמצא במערכת או שהתרחשה שגיאה טכנית. אנא נסה שוב מאוחר יותר או צור קשר לתמיכה טכנית.</p>
+        </div>
+
+        <!-- KPI Cards -->
+        <div class="kpi-grid">
+            <div class="kpi-card">
+                <div class="kpi-icon">📝</div>
+                <div class="kpi-number">לא זמין</div>
+                <div class="kpi-label">עמודים ללא תיאור</div>
+            </div>
+            <div class="kpi-card">
+                <div class="kpi-icon">🖼️</div>
+                <div class="kpi-number">לא זמין</div>
+                <div class="kpi-label">תמונות ללא Alt</div>
+            </div>
+            <div class="kpi-card">
+                <div class="kpi-icon">🔗</div>
+                <div class="kpi-number">לא זמין</div>
+                <div class="kpi-label">קישורים שבורים</div>
+            </div>
+            <div class="kpi-card">
+                <div class="kpi-icon">🚫</div>
+                <div class="kpi-number">לא זמין</div>
+                <div class="kpi-label">עמודים לא ניתנים לאינדוקס</div>
+            </div>
+        </div>
+
+        <!-- Data Status Section -->
+        <div class="section">
+            <h2><span class="emoji">📋</span> מצב נתוני הבדיקה</h2>
+            
+            <div class="data-unavailable">
+                <h3>נתונים לא זמינים כרגע</h3>
+                <p>בדיקת האתר לא הושלמה בהצלחה עקב שגיאה במערכת. כל קטגוריות הבדיקה החזירו שגיאת "Task Not Found".</p>
+            </div>
+
+            <div class="info-card">
+                <h3><span class="emoji">🔍</span> פרטי השגיאה</h3>
+                <p><strong>קוד שגיאה:</strong> 40401 - Task Not Found<br>
+                <strong>משמעות:</strong> המשימה המבוקשת לא נמצאה במערכת<br>
+                <strong>השפעה:</strong> לא ניתן לקבל נתונים על בעיות SEO באתר</p>
+            </div>
+        </div>
+
+        <!-- General Recommendations -->
+        <div class="section">
+            <h2><span class="emoji">💡</span> המלצות כלליות לקידום אתרים</h2>
+            <ul class="recommendations-list">
+                <li>בצע בדיקת אתר מקיפה כאשר המערכת תהיה זמינה</li>
+                <li>וודא שכל העמודים כוללים תיאור מטא ייחודי באורך 150-160 תווים</li>
+                <li>הוסף תגיות Alt לכל התמונות באתר עם תיאור רלוונטי</li>
+                <li>בדוק קישורים שבורים באופן קבוע ותקן אותם</li>
+                <li>וודא שעמודים חשובים ניתנים לאינדוקס במנועי החיפוש</li>
+                <li>שפר את מהירות טעינת האתר ואופטימיזציה למובייל</li>
+                <li>צור תוכן איכותי ורלוונטי למילות מפתח יעד</li>
+                <li>בנה אסטרטגיית קישורים פנימיים חזקה</li>
+            </ul>
+        </div>
+
+        <!-- Summary -->
+        <div class="summary">
+            <h3><span class="emoji">📈</span> סיכום ומסקנות</h3>
+            <p>מאחר ונתקלנו בשגיאה טכנית בעת ביצוע הבדיקה, לא ניתן להציג נתונים ספציפיים על מצב האתר. מומלץ לחזור על הבדיקה במועד מאוחר יותר כאשר המערכת תהיה יציבה. בינתיים, יש להתמקד ביישום ההמלצות הכלליות לקידום אתרים המפורטות לעיל, המהוות תשתית חזקה לכל אתר מוקדם SEO.</p>
+        </div>
+
+        <!-- Footer -->
+        <div class="footer">
+            <h3><span class="emoji">🎯</span> הצעד הבא</h3>
+            <p>צור קשר עם הצוות הטכני לבירור מצב הבדיקה, או נסה שוב מאוחר יותר. זכור: קידום אתרים הוא תהליך מתמשך הדורש מעקב וניטור קבועים להשגת התtulisים הטובים ביותר במנועי החיפוש.</p>
+        </div>
+    </div>
+</body>
+</html>
