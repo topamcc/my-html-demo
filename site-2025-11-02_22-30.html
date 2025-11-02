@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>דוח SEO - ybrands.co.il</title>
+    <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Assistant', sans-serif;
+            line-height: 1.6;
+            color: #2c5f5d;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            direction: rtl;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .hero {
+            background: linear-gradient(135deg, #20b8b8 0%, #17a2a2 100%);
+            color: white;
+            padding: 3rem 0;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(32, 184, 184, 0.3);
+        }
+        
+        .hero h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+        
+        .domain-highlight {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 0.3rem 0.8rem;
+            border-radius: 25px;
+            font-weight: 600;
+        }
+        
+        .kpi-section {
+            padding: 2rem 0;
+        }
+        
+        .kpi-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+        
+        .kpi-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border-right: 4px solid #20b8b8;
+        }
+        
+        .kpi-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 35px rgba(0, 0, 0, 0.15);
+        }
+        
+        .kpi-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #20b8b8;
+            margin-bottom: 0.5rem;
+        }
+        
+        .kpi-label {
+            font-size: 1rem;
+            color: #5a7c7b;
+            font-weight: 500;
+        }
+        
+        .kpi-icon {
+            font-size: 2.5rem;
+            color: #20b8b8;
+            margin-bottom: 1rem;
+        }
+        
+        .section {
+            background: white;
+            margin: 2rem 0;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+        }
+        
+        .section-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            color: #2c5f5d;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .section-icon {
+            color: #20b8b8;
+        }
+        
+        .issue-card {
+            background: #fafafa;
+            border: 1px solid #e6e6e6;
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+            transition: all 0.3s ease;
+        }
+        
+        .issue-card:hover {
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            border-color: #20b8b8;
+        }
+        
+        .issue-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+        
+        .issue-icon {
+            font-size: 1.5rem;
+            color: #e67e22;
+        }
+        
+        .issue-title {
+            font-weight: 600;
+            color: #2c5f5d;
+            font-size: 1.1rem;
+        }
+        
+        .issue-url {
+            background: #f8f9fa;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.85rem;
+            color: #495057;
+            border-right: 3px solid #20b8b8;
+            margin: 0.8rem 0;
+            word-break: break-all;
+        }
+        
+        .issue-description {
+            color: #5a7c7b;
+            margin-bottom: 1rem;
+            line-height: 1.6;
+        }
+        
+        .issue-action {
+            background: linear-gradient(135deg, #20b8b8 0%, #17a2a2 100%);
+            color: white;
+            padding: 0.8rem 1.2rem;
+            border-radius: 8px;
+            font-weight: 500;
+            border-right: 4px solid rgba(255, 255, 255, 0.3);
+        }
+        
+        .status-badge {
+            display: inline-block;
+            padding: 0.4rem 1rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            margin-bottom: 1.5rem;
+        }
+        
+        .status-in-progress {
+            background: #fff3cd;
+            color: #856404;
+            border: 1px solid #ffeaa7;
+        }
+        
+        .crawl-info {
+            background: #e3f2fd;
+            border: 1px solid #bbdefb;
+            border-radius: 8px;
+            padding: 1rem;
+            margin-bottom: 2rem;
+            color: #1565c0;
+        }
+        
+        .crawl-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        
+        .crawl-stat {
+            text-align: center;
+        }
+        
+        .crawl-number {
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: #1565c0;
+        }
+        
+        .crawl-label {
+            font-size: 0.85rem;
+            opacity: 0.8;
+        }
+        
+        .summary-section {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            border-right: 4px solid #20b8b8;
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 2rem 0;
+        }
+        
+        .recommendations-list {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .recommendations-list li {
+            background: #f8f9fa;
+            margin-bottom: 0.8rem;
+            padding: 1rem;
+            border-radius: 8px;
+            border-right: 3px solid #20b8b8;
+            position: relative;
+        }
+        
+        .recommendations-list li:before {
+            content: '\f058';
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            color: #20b8b8;
+            margin-left: 0.5rem;
+        }
+        
+        .footer {
+            background: #2c5f5d;
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 3rem;
+        }
+        
+        .footer p {
+            opacity: 0.8;
+        }
+        
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .hero p {
+                font-size: 1rem;
+            }
+            
+            .kpi-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .issue-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.5rem;
+            }
+            
+            .section {
+                margin: 1rem 0;
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="hero">
+        <div class="container">
+            <h1><i class="fas fa-search"></i> דוח SEO מקיף</h1>
+            <p>ניתוח טכני מעמיק עבור <span class="domain-highlight">ybrands.co.il</span></p>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="kpi-section">
+            <div class="kpi-grid">
+                <div class="kpi-card">
+                    <div class="kpi-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <div class="kpi-number">549</div>
+                    <div class="kpi-label">עמודים לא נסרקים</div>
+                </div>
+                <div class="kpi-card">
+                    <div class="kpi-icon">
+                        <i class="fas fa-cog"></i>
+                    </div>
+                    <div class="kpi-number">בתהליך</div>
+                    <div class="kpi-label">סטטוס קרילה</div>
+                </div>
+                <div class="kpi-card">
+                    <div class="kpi-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <div class="kpi-number">39</div>
+                    <div class="kpi-label">עמודים נסרקו</div>
+                </div>
+                <div class="kpi-card">
+                    <div class="kpi-icon">
+                        <i class="fas fa-list"></i>
+                    </div>
+                    <div class="kpi-number">399</div>
+                    <div class="kpi-label">עמודים בתור</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-title">
+                <i class="fas fa-info-circle section-icon"></i>
+                סטטוס הסריקה
+            </div>
+            <div class="status-badge status-in-progress">
+                <i class="fas fa-clock"></i> סריקה בתהליך
+            </div>
+            <div class="crawl-info">
+                <p><strong>מידע על תהליך הסריקה:</strong></p>
+                <div class="crawl-stats">
+                    <div class="crawl-stat">
+                        <div class="crawl-number">200</div>
+                        <div class="crawl-label">מגבלת עמודים</div>
+                    </div>
+                    <div class="crawl-stat">
+                        <div class="crawl-number">39</div>
+                        <div class="crawl-label">עמודים נסרקו</div>
+                    </div>
+                    <div class="crawl-stat">
+                        <div class="crawl-number">399</div>
+                        <div class="crawl-label">עמודים בתור</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-title">
+                <i class="fas fa-shield-alt section-icon"></i>
+                עמודים לא נסרקים לקידום (549 פריטים)
+            </div>
+            
+            <div class="issue-card">
+                <div class="issue-header">
+                    <i class="fas fa-shopping-cart issue-icon"></i>
+                    <div class="issue-title">פרמטרי הוספה לסל</div>
+                </div>
+                
+                <div class="issue-url">https://ybrands.co.il/מותג/abercrombie-fitch/?add-to-cart=34008</div>
+                <div class="issue-description">
+                    עמוד עם פרמטר add-to-cart מסומן כ-noindex למנועי חיפוש. זהו התנהגות רצויה לעמודי סל קניות.
+                </div>
+                <div class="issue-action">
+                    <i class="fas fa-check-circle"></i>
+                    אין פעולה נדרשת - התנהגות תקינה לעמודי e-commerce
+                </div>
+            </div>
+
+            <div class="issue-card">
+                <div class="issue-header">
+                    <i class="fas fa-filter issue-icon"></i>
+                    <div class="issue-title">עמודי סינון ומיון</div>
+                </div>
+                
+                <div class="issue-url">https://ybrands.co.il/מותג/abercrombie-fitch/?filter_מותג=abercrombie-fitch&query_type_מותג=or</div>
+                <div class="issue-description">
+                    עמודים עם פרמטרי סינון ומיון שמסומנים כ-noindex כדי למנוע כפילות תוכן ובעיות SEO.
+                </div>
+                <div class="issue-action">
+                    <i class="fas fa-cog"></i>
+                    בדוק במנוע הקידום: הגדר canonical URLs לעמודי הקטגוריות הראשיים במקום noindex
+                </div>
+            </div>
+
+            <div class="issue-card">
+                <div class="issue-header">
+                    <i class="fas fa-eye issue-icon"></i>
+                    <div class="issue-title">הגדרות תצוגה</div>
+                </div>
+                
+                <div class="issue-url">https://ybrands.co.il/מותג/abercrombie-fitch/?per_page=12</div>
+                <div class="issue-description">
+                    עמודים עם פרמטרי תצוגה (מספר פריטים בעמוד, תצוגת רשימה/גריד) מוגדרים כ-noindex.
+                </div>
+                <div class="issue-action">
+                    <i class="fas fa-link"></i>
+                    הגדר rel="canonical" לעמוד הקטגוריה הבסיסי במקום noindex
+                </div>
+            </div>
+
+            <div class="issue-card">
+                <div class="issue-header">
+                    <i class="fas fa-warehouse issue-icon"></i>
+                    <div class="issue-title">סינון מלאי</div>
+                </div>
+                
+                <div class="issue-url">https://ybrands.co.il/מותג/abercrombie-fitch/?stock_status=instock</div>
+                <div class="issue-description">
+                    עמודים עם סינון לפי זמינות מלאי (במלאי/במבצע) מסומנים כ-noindex.
+                </div>
+                <div class="issue-action">
+                    <i class="fas fa-tags"></i>
+                    שקול לאפשר אינדוקס לעמודי "במבצע" עם canonical מתאים - יכול להועיל לקידום
+                </div>
+            </div>
+
+            <div class="issue-card">
+                <div class="issue-header">
+                    <i class="fas fa-arrow-left issue-icon"></i>
+                    <div class="issue-title">עמודי המשך</div>
+                </div>
+                
+                <div class="issue-url">https://ybrands.co.il/מותג/afnan/page/2/</div>
+                <div class="issue-description">
+                    עמודים 2+ בקטגוריות מסומנים כ-noindex. זוהי פרקטיקה נפוצה במסחר אלקטרוני.
+                </div>
+                <div class="issue-action">
+                    <i class="fas fa-sitemap"></i>
+                    הגדר rel="prev"/"next" בין עמודי הקטגוריה או השתמש ב-canonical לעמוד הראשון
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-title">
+                <i class="fas fa-check-circle section-icon"></i>
+                סיכום הממצאים
+            </div>
+            <div class="summary-section">
+                <p><strong>מצב הבדיקה הנוכחי:</strong> הסריקה של האתר נמצאת בתהליך. נסרקו 39 עמודים מתוך 200 שהוגדרו כמגבלה, עם 399 עמודים נוספים בתור לסריקה.</p>
+                
+                <p><strong>ממצא עיקרי:</strong> האתר מכיל 549 עמודים המוגדרים כ-noindex. רוב הפריטים הללו הם עמודי פרמטרים של מערכת WooCommerce (הוספה לסל, סינונים, מיון) - זוהי התנהגות תקינה ורצויה למסחר אלקטרוני.</p>
+
+                <p><strong>לא נמצאו בעיות קריטיות:</strong> אין תמונות שבורות, אין קישורים פנימיים שבורים, ואין בעיות חמורות ב-meta descriptions בעמודים שנסרקו עד כה.</p>
+                
+                <p>המלצה לפעולה: המתן להשלמת הסריקה המלאה לקבלת תמונה מלאה יותר של מצב ה-SEO באתר.</p>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-title">
+                <i class="fas fa-lightbulb section-icon"></i>
+                המלצות כלליות לשיפור
+            </div>
+            <ul class="recommendations-list">
+                <li>בדוק את הגדרות ה-canonical בעמודי הקטגוריות להימנעות מכפילות תוכן</li>
+                <li>שקול הוספת structured data לעמודי המוצרים לשיפור התצוגה בתוצאות החיפוש</li>
+                <li>וודא שכל עמודי המוצרים הראשיים כוללים meta descriptions ייחודיים</li>
+                <li>הוסף alt text לכל התמונות במוצרים חדשים</li>
+                <li>בחן את מהירות הטעינה של העמודים הראשיים</li>
+                <li>שקול יצירת sitemap XML מעודכן לשיפור הסריקה של מנועי החיפוש</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="footer">
+        <div class="container">
+            <p>דוח זה נוצר באמצעות כלי ניתוח SEO מתקדמים | יום הפקת הדוח: <span id="report-date"></span></p>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('report-date').textContent = new Date().toLocaleDateString('he-IL');
+    </script>
+</body>
+</html>
