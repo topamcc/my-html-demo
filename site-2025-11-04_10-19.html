@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>דוח פוטנציאל קידום אתרים - onyx-adv.co.il</title>
+    <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Assistant', sans-serif;
+            line-height: 1.6;
+            color: #2c5f5d;
+            background: linear-gradient(135deg, #f0f9f9 0%, #e8f5f5 100%);
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #20b8b8 0%, #1a9999 100%);
+            color: white;
+            padding: 60px 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="0.5"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)" /></svg>');
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+        
+        .hero h1 {
+            font-size: 2.5em;
+            font-weight: 700;
+            margin-bottom: 15px;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+        
+        .hero .domain {
+            font-size: 1.3em;
+            opacity: 0.9;
+            font-weight: 400;
+        }
+        
+        /* Status Section */
+        .status-section {
+            padding: 40px 0;
+            background: white;
+            margin: -30px 0 0 0;
+            border-radius: 20px 20px 0 0;
+            box-shadow: 0 -5px 20px rgba(32, 184, 184, 0.1);
+        }
+        
+        .status-card {
+            background: linear-gradient(135deg, #fff3cd 0%, #ffeaa7 100%);
+            border: 2px solid #f39c12;
+            border-radius: 15px;
+            padding: 30px;
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        .status-icon {
+            font-size: 3em;
+            margin-bottom: 15px;
+            display: block;
+        }
+        
+        .status-title {
+            font-size: 1.5em;
+            font-weight: 600;
+            color: #d68910;
+            margin-bottom: 10px;
+        }
+        
+        .status-message {
+            font-size: 1.1em;
+            color: #6c757d;
+            line-height: 1.5;
+        }
+        
+        /* Main Content */
+        .main-content {
+            padding: 40px 0;
+            background: white;
+        }
+        
+        .section {
+            margin-bottom: 50px;
+        }
+        
+        .section-title {
+            font-size: 2em;
+            font-weight: 600;
+            color: #20b8b8;
+            margin-bottom: 25px;
+            border-bottom: 3px solid #e6f7f7;
+            padding-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .section-icon {
+            background: #20b8b8;
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2em;
+        }
+        
+        /* Cards */
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+        
+        .card {
+            background: #fafafa;
+            border: 1px solid #e6e6e6;
+            border-radius: 12px;
+            padding: 25px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 4px;
+            height: 100%;
+            background: #20b8b8;
+        }
+        
+        .card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(32, 184, 184, 0.15);
+            border-color: #20b8b8;
+        }
+        
+        .card-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+        
+        .card-icon {
+            background: linear-gradient(135deg, #20b8b8, #1a9999);
+            color: white;
+            width: 45px;
+            height: 45px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1em;
+        }
+        
+        .card-title {
+            font-weight: 600;
+            color: #2c5f5d;
+            flex: 1;
+        }
+        
+        .card-content {
+            color: #5a7c7b;
+            line-height: 1.6;
+        }
+        
+        .url-highlight {
+            background: linear-gradient(135deg, #e8f5f5, #d4f1f1);
+            padding: 8px 12px;
+            border-radius: 8px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9em;
+            margin: 10px 0;
+            border-right: 3px solid #20b8b8;
+            word-break: break-all;
+        }
+        
+        .recommendation-item {
+            background: linear-gradient(135deg, #f8f9ff, #e6f2ff);
+            border-right: 4px solid #007bff;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+        }
+        
+        .recommendation-title {
+            font-weight: 600;
+            color: #0056b3;
+            margin-bottom: 8px;
+        }
+        
+        /* Footer */
+        .footer {
+            background: #2c5f5d;
+            color: white;
+            padding: 40px 0;
+            text-align: center;
+        }
+        
+        .footer-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .footer h3 {
+            font-size: 1.5em;
+            margin-bottom: 15px;
+            color: #20b8b8;
+        }
+        
+        .footer p {
+            opacity: 0.9;
+            line-height: 1.6;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2em;
+            }
+            
+            .hero .domain {
+                font-size: 1.1em;
+            }
+            
+            .cards-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .container {
+                padding: 0 15px;
+            }
+        }
+        
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .card, .status-card {
+            animation: fadeInUp 0.6s ease-out;
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>🔍 דוח פוטנציאל קידום אתרים</h1>
+                <div class="domain">onyx-adv.co.il</div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Status Section -->
+    <section class="status-section">
+        <div class="container">
+            <div class="status-card">
+                <span class="status-icon">⏳</span>
+                <div class="status-title">הסריקה בתהליך</div>
+                <div class="status-message">
+                    הבדיקה הטכנית של האתר נמצאת כרגע בתור לעיבוד במערכת.<br>
+                    הנתונים יהיו זמינים בקרוב עם פרטים מלאים על בעיות SEO ואפשרויות השיפור.
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Main Content -->
+    <section class="main-content">
+        <div class="container">
+            <!-- מצב הסריקה -->
+            <div class="section">
+                <h2 class="section-title">
+                    <div class="section-icon">📋</div>
+                    פרטי הבדיקה
+                </h2>
+                
+                <div class="cards-grid">
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="card-icon">🌐</div>
+                            <div class="card-title">דומיין נבדק</div>
+                        </div>
+                        <div class="card-content">
+                            <div class="url-highlight">onyx-adv.co.il</div>
+                            האתר נסרק במסגרת בדיקה טכנית מקיפה לזיהוי בעיות SEO ואפשרויות שיפור.
+                        </div>
+                    </div>
+                    
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="card-icon">🔍</div>
+                            <div class="card-title">היקף הסריקה</div>
+                        </div>
+                        <div class="card-content">
+                            מקסימום 200 עמודים נסרקים מההתחלה באתר, כולל בדיקת תמונות, קישורים ואפשרויות אינדוקס.
+                        </div>
+                    </div>
+                    
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="card-icon">⚙️</div>
+                            <div class="card-title">סוגי בדיקות</div>
+                        </div>
+                        <div class="card-content">
+                            <strong>נבדקים:</strong> עמודים ללא תיאור, תמונות שבורות, קישורים פנימיים שבורים, ועמודים לא ניתנים לאינדוקס.
+                        </div>
+                    </div>
+                    
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="card-icon">📊</div>
+                            <div class="card-title">סטטוס נוכחי</div>
+                        </div>
+                        <div class="card-content">
+                            <strong>Task In Queue</strong> - הבקשה נמצאת בתור לעיבוד במערכת ותושלם בקרוב.
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- המלצות כלליות -->
+            <div class="section">
+                <h2 class="section-title">
+                    <div class="section-icon">💡</div>
+                    המלצות כלליות לשיפור SEO
+                </h2>
+                
+                <div class="recommendation-item">
+                    <div class="recommendation-title">בדיקה תקופתית של האתר</div>
+                    בצע סריקות SEO באופן קבוע כדי לזהות בעיות חדשות ולוודא שהתיקונים יושמו נכון.
+                </div>
+                
+                <div class="recommendation-item">
+                    <div class="recommendation-title">אופטימיזציה של תיאורי עמודים</div>
+                    וודא שלכל עמוד יש תיאור ייחודי באורך 150-160 תווים הכולל מילות מפתח רלוונטיות.
+                </div>
+                
+                <div class="recommendation-item">
+                    <div class="recommendation-title">תחזוקת תמונות ומדיה</div>
+                    בדוק באופן שוטף שתמונות נטענות כראוי ויש להן תגיות alt תיאוריות ורלוונטיות.
+                </div>
+                
+                <div class="recommendation-item">
+                    <div class="recommendation-title">ניהול קישורים פנימיים</div>
+                    תקן קישורים שבורים באופן שוטף ובנה מבנה קישורים פנימיים חזק לשיפור ה-UX וה-SEO.
+                </div>
+            </div>
+            
+            <!-- סיכום -->
+            <div class="section">
+                <h2 class="section-title">
+                    <div class="section-icon">📈</div>
+                    סיכום ומסקנות
+                </h2>
+                
+                <div class="card">
+                    <div class="card-content">
+                        האתר onyx-adv.co.il נמצא כרגע בתהליך סריקה מקיפה למציאת בעיות SEO טכניות. 
+                        לאחר השלמת הסריקה, תתקבל תמונה מדויקת של מצב האתר הטכני ורשימת פעולות קונקרטיות לשיפור.
+                        <br><br>
+                        <strong>השלבים הבאים:</strong><br>
+                        1. המתן לסיום הסריקה<br>
+                        2. סקור את הבעיות שיתגלו<br>
+                        3. יישם את התיקונים לפי סדר עדיפויות<br>
+                        4. בצע מעקב אחר התוצאות
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <h3>📊 דוח SEO טכני מתקדם</h3>
+                <p>
+                    דוח זה נוצר במטרה לזהות הזדמנויות שיפור טכניות באתר ולספק הנחיות מעשיות לקידום הביצועים במנועי החיפוש.
+                    לשאלות נוספות או ליעוץ מקצועי, פנה למומחה SEO מוסמך.
+                </p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
